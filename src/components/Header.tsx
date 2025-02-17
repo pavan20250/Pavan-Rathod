@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { Mail, Mailbox, MailCheck, MailCheckIcon, MailIcon, MailMinus, MailOpen, MailPlus, MailQuestion, Mails, MailSearch, MailX } from "lucide-react";
 import pavan from "../../public/pavan.jpg";
 import bgImage from "../../public/bg.jpg";
 
@@ -19,16 +20,6 @@ const Header = () => {
         borderRight: "8px solid white",
       }}
     >
-      
-      {/* Email*/}
-      <div className="absolute top-4 left-4 md:top-6 md:left-6 flex lg:mx-32 md:space-x-4">
-        <a
-          href="mailto:pavannaik0203@gmail.com"
-          className="text-gray-700 hover:text-gray-900 font-mono md:text-lg sm:text-xs"
-        >
-          pavannaik0203@gmail.com
-        </a>
-      </div>
 
       {/* Hero Section */}
       <div className="text-center px-4">
@@ -67,7 +58,17 @@ const Header = () => {
       </div>
 
       {/* Social Links with Icons */}
-      <div className="absolute top-4 right-4 md:top-6 md:right-6 flex lg:mx-32 gap-4">
+      <div className="absolute top-6 right-4 md:top-8 sm:top-8 md:right-6 flex lg:mx-32 gap-4">
+      <div>
+        <a
+          href="mailto:pavannaik0203@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-black transition-all duration-300 hover:scale-[1.1]"
+        >
+          <Mails size={30} className="sm:size-[20px] md:size-[30px]" />
+        </a>
+        </div>
         <div>
         <a
           href="https://www.linkedin.com/in/pavan-rathod-0203k/"
@@ -75,7 +76,7 @@ const Header = () => {
           rel="noopener noreferrer"
           className="text-gray-600 hover:text-black transition-all duration-300 hover:scale-[1.1]"
         >
-          <FaLinkedin size={16} className="sm:size-[20px] md:size-[24px]" />
+          <FaLinkedin size={30} className="sm:size-[20px] md:size-[30px]" />
         </a>
         </div>
         <div>
@@ -85,7 +86,7 @@ const Header = () => {
           rel="noopener noreferrer"
           className="text-gray-600 hover:text-black transition-all duration-300 hover:scale-[1.1]"
         >
-          <FaGithub size={16} className="sm:size-[20px] md:size-[24px]" />
+          <FaGithub size={30} className="sm:size-[20px] md:size-[30px]" />
           
         </a>
         </div>
