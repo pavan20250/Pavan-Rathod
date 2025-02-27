@@ -1,55 +1,36 @@
 import React from "react";
+import Image from "next/image";
+import user from "../../public/user.png";
 
 const About = () => {
   return (
-    <section id="about" className="py-16 bg-white text-white relative">
-      <div className="container mx-auto flex flex-col md:flex-row items-center gap-10 px-5">
+    <section className="py-16 px-6 md:px-12 lg:px-60">
+      <div className="container mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-16">
         {/* Profile Image */}
-        <img 
-          src="/images/user.jpg" 
-          alt="User" 
-          className="w-48 md:w-60 rounded-lg shadow-lg transform hover:scale-105 transition duration-300" 
-        />
-        
-        {/* About Content */} 
-        <div>
-          <h2 className="text-4xl font-extrabold mb-6 text-center md:text-left">
-            About <span className="text-red-500">Me</span>
-          </h2>
-          <p className="text-gray-400 leading-relaxed mb-6 text-center md:text-left">
-            Smart Manufacturing Engineering student with extensive training in manufacturing processes, systems
-            engineering, IT, and networks. Adopts an experiential learning approach, gaining hands-on experience in
-            smart manufacturing technologies. Proficient in Web development, Python, C, C++, and data analysis,
-            showcasing commitment to continuous learning and contributing to innovative projects.
-          </p>
-          
-          {/* Buttons */}
-          <div className="flex justify-center md:justify-start space-x-4">
-            {["Skills", "Experience", "Education"].map((tab) => (
-              <button 
-                key={tab} 
-                className="px-6 py-3 bg-gray-800 rounded-lg hover:bg-red-500 text-white font-medium shadow-md transition duration-300"
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
+        <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md mx-auto">
+          <Image
+            src={user}
+            alt="User"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "cover",
+              borderRadius: "50%",
+            }}
+          />
         </div>
-      </div>
 
-      {/* Decorative SVG */}
-      <div className="absolute bottom-0 left-0 w-full h-full -z-10 opacity-20">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
-          className="w-full h-full"
-        >
-          <path
-            fill="#1e293b"
-            fillOpacity="1"
-            d="M0,224L48,213.3C96,203,192,181,288,165.3C384,149,480,139,576,149.3C672,160,768,192,864,213.3C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          ></path>
-        </svg>
+        {/* About Content */}
+        <div className="text-center md:text-left">
+          <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 leading-relaxed">
+            I am a <span className="font-semibold text-gray-900">Full Stack Developer</span> passionate about creating 
+            intuitive and dynamic web applications. My expertise lies in 
+            <span className="font-semibold text-gray-900"> Next.js, React, and TypeScript</span>, 
+            coupled with experience in building scalable platforms using 
+            <span className="font-semibold text-gray-900"> PostgreSQL</span> and cloud technologies.
+          </p>
+        </div>
       </div>
     </section>
   );

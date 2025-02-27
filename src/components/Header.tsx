@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
-import { Mail, Mailbox, MailCheck, MailCheckIcon, MailIcon, MailMinus, MailOpen, MailPlus, MailQuestion, Mails, MailSearch, MailX } from "lucide-react";
+import { Mails } from "lucide-react";
 import pavan from "../../public/pavan.jpg";
 import bgImage from "../../public/bg.jpg";
 
@@ -53,7 +53,7 @@ const Header = () => {
 
         {/* Latest Shots Button */}
         <button className="px-3 py-1 sm:px-4 sm:py-2 md:px-6 md:py-2 bg-black text-white font-semibold rounded-full hover:bg-gray-800 transition-all">
-          Latest Shots
+          <a href="/blogs">Latest Blogs</a>
         </button>
       </div>
 
