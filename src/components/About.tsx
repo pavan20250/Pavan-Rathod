@@ -7,7 +7,7 @@ const About = () => {
     <section className="py-16 px-6 md:px-12 lg:px-60">
       <div className="container mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-16">
         {/* Profile Image */}
-        <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md mx-auto">
+        <div className="relative w-48 sm:w-44 md:w-44 lg:w-full mx-auto">
           <Image
             src={user}
             alt="User"

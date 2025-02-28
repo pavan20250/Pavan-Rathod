@@ -14,8 +14,8 @@ const Header = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        borderBottomLeftRadius: "100px", 
-        borderBottomRightRadius: "100px",
+        borderBottomLeftRadius: "50px", 
+        borderBottomRightRadius: "50px",
         borderLeft: "8px solid white",
         borderRight: "8px solid white",
       }}
