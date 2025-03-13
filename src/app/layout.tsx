@@ -14,6 +14,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Pavan Rathod",
+  description:
+    "Pavan Rathod - A Full Stack Developer specializing in React, TypeScript, and AWS. Explore my projects and blogs.",
+  openGraph: {
+    title: "Pavan Rathod",
+    description:
+      "Explore my work, projects, and technical insights on React, Typescript, and AWS.",
+    url: "https://pavanrathod.in",
+    siteName: "Pavan Rathod",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -23,6 +33,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* JSON-LD for Personal Branding */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Pavan Rathod",
+              url: "https://pavanrathod.in",
+              sameAs: [
+                "https://www.linkedin.com/in/pavan-rathod-0203k/",
+                "https://github.com/pavan20250",
+              ],
+            }),
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
