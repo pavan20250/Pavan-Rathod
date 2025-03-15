@@ -35,7 +35,7 @@ const Services: React.FC = () => {
 
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 md:px-12">
         {/* Card 1: UX & UI */}
-        <div className="max-w-sm p-6 rounded-lg text-left bg-white shadow-md">
+        <div className="max-w-sm p-6 rounded-lg text-left bg-white shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
           <Image src={design} alt="UX & UI" width={40} height={40} />
           <h3 className="text-lg font-sans mb-2 text-black mt-6">UX & UI</h3>
           <p className="text-sm text-gray-700 font-sans">
@@ -43,7 +43,7 @@ const Services: React.FC = () => {
           </p>
         </div>
         {/* Card 2: Development */}
-        <div className="max-w-sm p-6 rounded-lg text-left bg-white shadow-md">
+        <div className="max-w-sm p-6 rounded-lg text-left bg-white shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
           <Image src={development} alt="Development" width={40} height={40} />
           <h3 className="text-lg font-sans mb-2 text-black mt-6">Full Stack Development</h3>
           <p className="text-sm text-gray-700 font-sans">
@@ -52,7 +52,7 @@ const Services: React.FC = () => {
         </div>
 
         {/* Card 3: Web & Mobile App */}
-        <div className="max-w-sm p-6 rounded-lg text-left bg-white shadow-md">
+        <div className="max-w-sm p-6 rounded-lg text-left bg-white shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
           <Image src={web} alt="Web & Mobile App" width={40} height={40} />
           <h3 className="text-lg font-sans mb-2 text-black mt-6">Web & Mobile App</h3>
           <p className="text-sm text-gray-700 font-sans">
@@ -61,7 +61,7 @@ const Services: React.FC = () => {
         </div>
 
         {/* Card 4: Design & Creative */}
-        <div className="max-w-sm p-6 rounded-lg text-left bg-white shadow-md">
+        <div className="max-w-sm p-6 rounded-lg text-left bg-white shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
           <Image src={creative} alt="Design & Creative" width={40} height={40} />
           <h3 className="text-lg font-sans mb-2 text-black mt-6">Design & Creative</h3>
           <p className="text-sm text-gray-700 font-sans">

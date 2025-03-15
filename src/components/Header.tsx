@@ -45,9 +45,9 @@ const Header = () => {
         {/* Title */}
         <div className="-mt-6 sm:-mt-8">
           <h1 className="text-base sm:text-lg md:text-2xl lg:text-4xl font-bold leading-tight mb-4 sm:mb-6 mt-6 sm:mt-10 md:mt-20 text-gray-800">
-            Crafting <span className="text-black">innovative products,</span>  
-            <br /> shaping <span className="text-gray-700">brands,</span> and  
-            <br /> delivering <span className="text-gray-600">seamless experiences.</span>
+          Building <span className="text-black">scalable applications,</span>  
+            <br /> refining <span className="text-gray-700">user experiences,</span> and  
+            <br />crafting <span className="text-gray-600">seamless digital solutions.</span>
           </h1>
         </div>
 

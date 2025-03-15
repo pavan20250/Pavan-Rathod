@@ -1,6 +1,7 @@
 
 import About from "@/components/About";
 import Header from "@/components/Header";
+import ContactSection from "@/components/Contact";
 import Services from "@/components/Services";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Header />
       <About />
       <Services />
+      <ContactSection />
     </div>
   );
 }
