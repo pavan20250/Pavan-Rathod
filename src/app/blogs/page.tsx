@@ -159,7 +159,7 @@ const BlogPage = () => {
                 More Laughs Coming Soon!
               </h3>
               <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed px-2">
-                I'm working on more hilarious coding stories, debugging adventures, and programming confessions. 
+                I&apos;m working on more hilarious coding stories, debugging adventures, and programming confessions. 
                 Subscribe to get notified when I publish my next masterpiece! 🚀
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">

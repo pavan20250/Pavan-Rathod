@@ -32,12 +32,12 @@ const About = () => {
           {/* About Content */}
           <div className="flex-1 text-center lg:text-left w-full">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-              Hi, I'm <span className="text-gray-600">Pavan</span>
+              Hi, I&apos;m <span className="text-gray-600">Pavan</span>
             </h3>
             
             <div className="space-y-3 text-gray-700 leading-relaxed">
               <p className="text-base md:text-lg">
-                I'm a passionate <span className="font-semibold text-gray-900">Full Stack Developer</span> specializing in 
+                I&apos;m a passionate <span className="font-semibold text-gray-900">Full Stack Developer</span> specializing in 
                 <span className="font-semibold text-gray-900"> Javascript, React, and TypeScript</span>, 
                 building scalable applications with <span className="font-semibold text-gray-900">MongoDB</span> and cloud technologies.
               </p>

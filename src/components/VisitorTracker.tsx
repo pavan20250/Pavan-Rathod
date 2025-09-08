@@ -31,7 +31,13 @@ const VisitorTracker = () => {
           
           for (const service of services) {
             try {
-              const response = await fetch(service, { timeout: 5000 });
+              const controller = new AbortController();
+              const timeoutId = setTimeout(() => controller.abort(), 5000);
+              
+              const response = await fetch(service, { 
+                signal: controller.signal 
+              });
+              clearTimeout(timeoutId);
               const data = await response.json();
               
               if (service.includes('ipapi.co')) {
@@ -70,12 +76,16 @@ const VisitorTracker = () => {
               if (ip !== 'Unknown' && country !== 'Unknown') {
                 break;
               }
-            } catch (serviceError) {
-              console.log(`Service ${service} failed, trying next...`);
+            } catch (error) {
+              if (error instanceof Error && error.name === 'AbortError') {
+                console.log(`Service ${service} timed out, trying next...`);
+              } else {
+                console.log(`Service ${service} failed, trying next...`);
+              }
               continue;
             }
           }
-        } catch (error) {
+        } catch {
           console.log('Could not fetch IP/location data from any service');
         }
         

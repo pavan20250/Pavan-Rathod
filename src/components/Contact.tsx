@@ -74,7 +74,7 @@ export default function ContactSection() {
             <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-2">
               Open to <span className="text-gray-500">new opportunities!</span>
             </h2>
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-6">Let's connect.</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-6">Let&apos;s connect.</h2>
             
             {/* Contact Buttons */}
             <div className="flex flex-row gap-4 w-full max-w-xs">
