@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import VisitorTracker from "@/components/VisitorTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +24,20 @@ export const metadata: Metadata = {
     url: "https://pavanrathod.in",
     siteName: "Pavan Rathod",
     type: "website",
+    images: [
+      {
+        url: "https://pavanrathod.in/pavan.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Pavan Rathod - Full Stack Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pavan Rathod",
+    description: "Full Stack Developer specializing in React, TypeScript, and AWS",
+    images: ["https://pavanrathod.in/pavan.jpg"],
   },
 };
 
@@ -46,6 +61,7 @@ export default function RootLayout({
               sameAs: [
                 "https://www.linkedin.com/in/pavan-rathod-0203k/",
                 "https://github.com/pavan20250",
+                "https://pavanrathod.in",
               ],
             }),
           }}
@@ -54,6 +70,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <VisitorTracker />
         {children}
       </body>
     </html>

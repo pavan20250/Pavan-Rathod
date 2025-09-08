@@ -10,6 +10,7 @@ import bgImage from "../../public/bg.jpg";
 const Services: React.FC = () => {
   return (
     <section
+      id="services"
       className="py-12 text-center bg-cover bg-center"
       style={{
         backgroundImage: `url(${bgImage.src})`,
