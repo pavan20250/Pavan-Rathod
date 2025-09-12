@@ -6,20 +6,22 @@ export async function POST(request: NextRequest) {
     const { name, email, message } = await request.json();
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!name || !message) {
       return NextResponse.json(
-        { error: 'All fields are required' },
+        { error: 'Name and message are required' },
         { status: 400 }
       );
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Invalid email format' },
-        { status: 400 }
-      );
+    // Validate email format only if email is provided
+    if (email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return NextResponse.json(
+          { error: 'Invalid email format' },
+          { status: 400 }
+        );
+      }
     }
 
     // Create transporter
@@ -48,7 +50,7 @@ export async function POST(request: NextRequest) {
             <div style="margin: 20px 0;">
               <h3 style="color: #555; margin-bottom: 10px;">Contact Details:</h3>
               <p style="margin: 5px 0;"><strong>Name:</strong> ${name}</p>
-              <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
+              <p style="margin: 5px 0;"><strong>Email:</strong> ${email || 'Not provided'}</p>
             </div>
             
             <div style="margin: 20px 0;">
@@ -69,7 +71,7 @@ export async function POST(request: NextRequest) {
         New Contact Form Submission
         
         Name: ${name}
-        Email: ${email}
+        Email: ${email || 'Not provided'}
         
         Message:
         ${message}

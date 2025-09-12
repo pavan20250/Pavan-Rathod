@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { FaEnvelope, FaLinkedin } from "react-icons/fa";
 import { Send, CheckCircle } from "lucide-react";
-import Footer from './Footer';
 import handShake from '../../public/image (1).jpg';
 import Image from 'next/image';
 
@@ -121,7 +120,7 @@ export default function ContactSection() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent text-black"
                   placeholder="Your name"
                 />
               </div>
@@ -136,8 +135,7 @@ export default function ContactSection() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent text-black"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -153,7 +151,7 @@ export default function ContactSection() {
                   onChange={handleInputChange}
                   required
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent resize-none"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent resize-none text-black"
                   placeholder="Tell me about your project or just say hello!"
                 />
               </div>
@@ -179,7 +177,6 @@ export default function ContactSection() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

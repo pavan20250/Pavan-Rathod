@@ -69,76 +69,72 @@ const BlogPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 px-3 sm:px-4 py-6 sm:py-8">
       <div className="max-w-6xl mx-auto">
         {/* Page Title */}
-        <div className="text-center mb-8 sm:mb-16 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl blur-3xl"></div>
+        <div className="text-center mb-8 md:mb-16 relative">
           <div className="relative px-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 sm:mb-6 leading-tight">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 md:mb-6 leading-tight">
               The Funny Side of Code
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
+            <p className="text-sm md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
               Where programming meets humor, and bugs become features. Welcome to my digital diary of coding adventures! 🚀
             </p>
-            <div className="flex justify-center mt-4 sm:mt-6">
-              <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+            <div className="flex justify-center mt-4 md:mt-6">
+              <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
             </div>
           </div>
         </div>
         
         {/* Blog Cards Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
           {blogPosts.map((post, index) => (
             <div 
               key={index} 
-              className="group relative bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer transform hover:-translate-y-1 sm:hover:-translate-y-2 hover:scale-102 sm:hover:scale-105"
+              className="group relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer transform hover:-translate-y-2 border border-gray-200/50"
               style={{
                 animationDelay: `${index * 100}ms`,
                 animation: 'fadeInUp 0.6s ease-out forwards'
               }}
             >
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
               {/* Blog Header */}
-              <div className="relative p-4 sm:p-6">
-                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  <div className={`p-2 sm:p-3 rounded-lg sm:rounded-xl ${post.color} shadow-md group-hover:scale-110 transition-transform duration-300`}>
-                    <post.icon size={20} className="sm:w-6 sm:h-6" />
+              <div className="relative p-4 md:p-6">
+                <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                  <div className={`p-2 md:p-3 rounded-xl ${post.color} shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                    <post.icon size={16} className="md:w-6 md:h-6" />
                   </div>
-                  <span className={`px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs font-semibold ${post.color} shadow-sm`}>
+                  <span className={`px-2 md:px-3 py-1 rounded-full text-xs font-semibold ${post.color} shadow-sm`}>
                     {post.category}
                   </span>
                 </div>
                 
-                <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                <h2 className="text-sm md:text-lg font-bold text-gray-800 mb-2 md:mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight line-clamp-2">
                   {post.title}
                 </h2>
                 
-                <p className="text-gray-600 text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-3">
+                <p className="text-gray-600 text-xs md:text-sm leading-relaxed mb-3 md:mb-4 line-clamp-2">
                   {post.excerpt}
                 </p>
                 
                 {/* Blog Meta */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 text-xs text-gray-500 mb-4 sm:mb-6">
-                  <div className="flex items-center gap-2 sm:gap-4">
-                    <div className="flex items-center gap-1 sm:gap-2 bg-gray-100 px-2 sm:px-3 py-1 rounded-full">
-                      <User size={12} className="sm:w-3.5 sm:h-3.5" />
+                <div className="flex flex-col gap-2 text-xs text-gray-500 mb-3 md:mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-full">
+                      <User size={10} className="md:w-3.5 md:h-3.5" />
                       <span className="font-medium text-xs">{post.author}</span>
                     </div>
-                    <div className="flex items-center gap-1 sm:gap-2 bg-gray-100 px-2 sm:px-3 py-1 rounded-full">
-                      <Calendar size={12} className="sm:w-3.5 sm:h-3.5" />
+                    <div className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-full">
+                      <Calendar size={10} className="md:w-3.5 md:h-3.5" />
                       <span className="text-xs">{post.date}</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 sm:gap-2 bg-gray-100 px-2 sm:px-3 py-1 rounded-full w-fit">
-                    <Clock size={12} className="sm:w-3.5 sm:h-3.5" />
+                  <div className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-full w-fit">
+                    <Clock size={10} className="md:w-3.5 md:h-3.5" />
                     <span className="text-xs">{post.readTime}</span>
                   </div>
                 </div>
                 
                 {/* Read More Button */}
-                <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base">
+                <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-2 md:py-3 px-3 md:px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl text-xs md:text-sm">
                   <span>Read More</span>
-                  <ArrowRight size={14} className="sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight size={12} className="md:w-4 md:h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
               </div>
             </div>
