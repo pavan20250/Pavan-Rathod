@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import ContactSection from "@/components/Contact";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Projects />
       <Services />
       <ContactSection />
+      <Footer />
     </div>
   );
 }

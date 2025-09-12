@@ -133,7 +133,7 @@ const Header = () => {
             <div className="w-28 h-28 xs:w-32 xs:h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-52 lg:h-52 rounded-full overflow-hidden border-2 sm:border-4 border-white/80 shadow-2xl backdrop-blur-sm group-hover:scale-105 transition-transform duration-500">
               <Image
                src={pavan}
-               alt="User"
+               alt="Pavan Rathod - Full Stack Developer"
                width={208}
                height={208}
                className="w-full h-full object-cover"
@@ -189,6 +189,8 @@ const Header = () => {
             href="mailto:pavannaik0203@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
+            title="Contact Pavan Rathod - Full Stack Developer"
+            aria-label="Email Pavan Rathod"
             className="text-gray-600 hover:text-black transition-all duration-300 hover:scale-[1.1] p-1 sm:p-2"
           >
             <Mails size={20} className="sm:size-[24px] md:size-[30px]" />
@@ -199,6 +201,8 @@ const Header = () => {
             href="https://www.linkedin.com/in/pavan-rathod-0203k/"
             target="_blank"
             rel="noopener noreferrer"
+            title="Pavan Rathod LinkedIn Profile - Full Stack Developer"
+            aria-label="Visit Pavan Rathod's LinkedIn profile"
             className="text-gray-600 hover:text-black transition-all duration-300 hover:scale-[1.1] p-1 sm:p-2"
           >
             <FaLinkedin size={20} className="sm:size-[24px] md:size-[30px]" />
@@ -209,6 +213,8 @@ const Header = () => {
             href="https://github.com/pavan20250"
             target="_blank"
             rel="noopener noreferrer"
+            title="Pavan Rathod GitHub Profile - Full Stack Developer"
+            aria-label="Visit Pavan Rathod's GitHub profile"
             className="text-gray-600 hover:text-black transition-all duration-300 hover:scale-[1.1] p-1 sm:p-2"
           >
             <FaGithub size={20} className="sm:size-[24px] md:size-[30px]" />
