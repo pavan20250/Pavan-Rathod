@@ -1,9 +1,22 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const VisitorTracker = () => {
+  const hasTracked = useRef(false);
+  const lastTrackTime = useRef(0);
+  const TRACKING_COOLDOWN = 5 * 60 * 1000; // 5 minutes between tracking attempts
+
   useEffect(() => {
     const trackVisitor = async () => {
+      const now = Date.now();
+      
+      // Prevent tracking if we've already tracked this session or too recently
+      if (hasTracked.current || (now - lastTrackTime.current) < TRACKING_COOLDOWN) {
+        return;
+      }
+      
+      hasTracked.current = true;
+      lastTrackTime.current = now;
       try {
         // Get visitor information
         const userAgent = navigator.userAgent;
@@ -140,21 +153,11 @@ const VisitorTracker = () => {
       }
     };
     
-    // Track visitor on page load
+    // Track visitor only on initial page load
     trackVisitor();
     
-    // Track page changes (for SPA navigation)
-    const handleRouteChange = () => {
-      setTimeout(trackVisitor, 1000); // Delay to ensure page is loaded
-    };
-    
-    // Listen for popstate events (back/forward navigation)
-    window.addEventListener('popstate', handleRouteChange);
-    
-    return () => {
-      window.removeEventListener('popstate', handleRouteChange);
-    };
-  }, []);
+    // No additional tracking for navigation changes to reduce email spam
+  }, [TRACKING_COOLDOWN]);
   
   return null; // This component doesn't render anything
 };

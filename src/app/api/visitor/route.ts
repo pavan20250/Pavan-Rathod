@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+// In-memory store for tracking recent visitors (in production, use Redis or database)
+const recentVisitors = new Map<string, { lastEmail: number; count: number }>();
+const EMAIL_COOLDOWN = 30 * 60 * 1000; // 30 minutes
+const MAX_EMAILS_PER_HOUR = 3; // Max 3 emails per IP per hour
+
 export async function POST(request: NextRequest) {
   try {
     const { 
@@ -20,6 +25,60 @@ export async function POST(request: NextRequest) {
       os,
       device
     } = await request.json();
+
+    // Rate limiting: Check if we should send an email for this IP
+    const now = Date.now();
+    const visitorKey = `${ip}-${country}-${city}`;
+    const visitorData = recentVisitors.get(visitorKey);
+    
+    if (visitorData) {
+      const timeSinceLastEmail = now - visitorData.lastEmail;
+      const oneHourAgo = now - (60 * 60 * 1000);
+      
+      // Reset count if it's been more than an hour
+      if (visitorData.lastEmail < oneHourAgo) {
+        visitorData.count = 0;
+      }
+      
+      // Skip if we've sent too many emails recently or too soon
+      if (visitorData.count >= MAX_EMAILS_PER_HOUR || timeSinceLastEmail < EMAIL_COOLDOWN) {
+        return NextResponse.json(
+          { message: 'Email rate limited - visitor already tracked recently' },
+          { status: 200 }
+        );
+      }
+      
+      visitorData.count++;
+      visitorData.lastEmail = now;
+    } else {
+      recentVisitors.set(visitorKey, { lastEmail: now, count: 1 });
+    }
+    
+    // Clean up old entries (older than 24 hours)
+    const oneDayAgo = now - (24 * 60 * 60 * 1000);
+    for (const [key, data] of recentVisitors.entries()) {
+      if (data.lastEmail < oneDayAgo) {
+        recentVisitors.delete(key);
+      }
+    }
+
+    // Filter out known bots and crawlers
+    const botPatterns = [
+      'bot', 'crawler', 'spider', 'scraper', 'crawling', 'facebookexternalhit',
+      'twitterbot', 'linkedinbot', 'whatsapp', 'telegram', 'slackbot',
+      'googlebot', 'bingbot', 'yandexbot', 'baiduspider', 'duckduckbot'
+    ];
+    
+    const isBot = botPatterns.some(pattern => 
+      userAgent.toLowerCase().includes(pattern)
+    );
+    
+    if (isBot) {
+      return NextResponse.json(
+        { message: 'Bot detected - email not sent' },
+        { status: 200 }
+      );
+    }
 
     // Create transporter
     const transporter = nodemailer.createTransport({
