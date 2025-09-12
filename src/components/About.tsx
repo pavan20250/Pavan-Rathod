@@ -69,19 +69,19 @@ const About = () => {
           {/* About Content with Enhanced Styling */}
           <div className="flex-1 text-center lg:text-left w-full">
             <div className="bg-white/60 backdrop-blur-xl border border-white/20 rounded-3xl p-6 lg:p-8 shadow-2xl">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
                 Hi, I&apos;m <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Pavan</span>
-              </h3>
+              </h1>
               
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p className="text-base md:text-lg">
-                  I&apos;m a passionate <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Full Stack Developer</span> specializing in 
+                  I&apos;m <span className="font-bold text-gray-900">Pavan</span> (Pavan Rathod), a passionate <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Full Stack Developer</span> specializing in 
                   <span className="font-bold text-gray-900"> JavaScript, React, and TypeScript</span>, 
                   building scalable applications with <span className="font-bold text-gray-900">MongoDB</span> and cloud technologies.
                 </p>
                 
                 <p className="text-base md:text-lg">
-                  I create intuitive web applications that solve real-world problems, focusing on clean code and 
+                  As a developer, I create intuitive web applications that solve real-world problems, focusing on clean code and 
                   user experiences that are both <span className="font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">beautiful and functional</span>.
                 </p>
               </div>
@@ -109,6 +109,16 @@ const About = () => {
               </div>
             </div>
           </div>
+        </div>
+        
+        {/* Hidden SEO Content for Search Engines */}
+        <div className="sr-only">
+          <h2>Pavan Rathod - Full Stack Developer</h2>
+          <p>Pavan Rathod is a skilled Full Stack Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. 
+             Pavan creates modern web applications and provides expert development services. 
+             Contact Pavan Rathod for your next project.</p>
+          <p>Keywords: Pavan, Pavan Rathod, Full Stack Developer, React Developer, TypeScript Developer, JavaScript Developer, 
+             Node.js Developer, AWS Developer, Web Developer, Software Engineer, Portfolio, LinkedIn, GitHub</p>
         </div>
       </div>
     </section>
