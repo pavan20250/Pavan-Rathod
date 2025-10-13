@@ -75,7 +75,7 @@ const About = () => {
               
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p className="text-base md:text-lg">
-                  I&apos;m <span className="font-bold text-gray-900">Pavan</span> (Pavan Rathod), a passionate <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Full Stack Developer</span> specializing in 
+                  I&apos;m <span className="font-bold text-gray-900">Pavan</span>, a passionate <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Full Stack Developer</span> specializing in 
                   <span className="font-bold text-gray-900"> JavaScript, React, and TypeScript</span>, 
                   building scalable applications with <span className="font-bold text-gray-900">MongoDB</span> and cloud technologies.
                 </p>
