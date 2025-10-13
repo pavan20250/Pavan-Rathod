@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { Mails, Menu, X } from "lucide-react";
-import pavan from "../../public/pavan.jpg";
+import pavan from "../../public/gimini_pavan.png";
 import bgImage from "../../public/bg.jpg";
 
 const Header = () => {

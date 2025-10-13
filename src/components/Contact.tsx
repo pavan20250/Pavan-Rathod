@@ -55,32 +55,32 @@ export default function ContactSection() {
   };
 
   return (
-    <div id="contact" className="flex flex-col min-h-screen bg-gray-50">
-      <div className="flex-1 flex flex-col lg:flex-row items-center justify-center px-4 py-8 gap-12">
+    <div id="contact" className="flex flex-col bg-gray-50">
+      <div className="flex flex-col lg:flex-row items-center justify-center px-4 py-12 gap-8">
         {/* Left Side - Contact Info */}
         <div className="flex flex-col items-center justify-center text-center lg:text-left lg:items-center lg:justify-center w-full lg:w-1/2">
-          <div className="mb-8 flex flex-col items-center">
+          <div className="mb-6 flex flex-col items-center">
             {/* Image Circle */}
-            <div className="w-32 h-32 md:w-36 md:h-36 flex items-center justify-center rounded-full bg-gray-200 mb-6 overflow-hidden">
+            <div className="w-28 h-28 md:w-32 md:h-32 flex items-center justify-center rounded-full bg-gray-200 mb-4 overflow-hidden">
               <Image
                 src={handShake} 
                 alt="Handshake" 
-                width={144}
-                height={144}
+                width={128}
+                height={128}
                 className="object-cover rounded-full"
               />
             </div>
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-2">
+            <h2 className="text-xl md:text-3xl font-bold text-gray-800 mb-2">
               Open to <span className="text-gray-500">new opportunities!</span>
             </h2>
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-6">Let&apos;s connect.</h2>
+            <h2 className="text-xl md:text-3xl font-bold text-gray-800 mb-4">Let&apos;s connect.</h2>
             
             {/* Contact Buttons */}
-            <div className="flex flex-row gap-4 w-full max-w-xs">
+            <div className="flex flex-row gap-3 w-full max-w-xs">
               {/* Email Button */}
               <button 
                 onClick={() => window.location.href = `mailto:${email}`} 
-                className="flex items-center justify-center gap-2 px-6 py-3 w-full bg-black text-white rounded-full shadow-md hover:bg-gray-800"
+                className="flex items-center justify-center gap-2 px-5 py-2.5 w-full bg-black text-white rounded-full shadow-md hover:bg-gray-800 text-sm"
               >
                 <FaEnvelope /> Email Me
               </button>
@@ -88,7 +88,7 @@ export default function ContactSection() {
               {/* LinkedIn Button */}
               <button 
                 onClick={() => window.open(linkedInUrl, "_blank")} 
-                className="flex items-center justify-center gap-2 px-6 py-3 w-full border border-gray-400 text-gray-700 rounded-full shadow-md hover:bg-gray-200"
+                className="flex items-center justify-center gap-2 px-5 py-2.5 w-full border border-gray-400 text-gray-700 rounded-full shadow-md hover:bg-gray-200 text-sm"
               >
                 <FaLinkedin /> LinkedIn
               </button>
@@ -98,19 +98,19 @@ export default function ContactSection() {
 
         {/* Right Side - Contact Form */}
         <div className="w-full lg:w-1/2 max-w-md">
-          <div className="bg-white p-8 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Send me a message</h3>
+          <div className="bg-white p-6 rounded-xl shadow-lg">
+            <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">Send me a message</h3>
             
             {isSubmitted && (
-              <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg flex items-center gap-2">
-                <CheckCircle size={20} />
-                <span>Message sent successfully!</span>
+              <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg flex items-center gap-2">
+                <CheckCircle size={18} />
+                <span className="text-sm">Message sent successfully!</span>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                   Name
                 </label>
                 <input
@@ -120,13 +120,13 @@ export default function ContactSection() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent text-black"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent text-black text-sm"
                   placeholder="Your name"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                   Email
                 </label>
                 <input
@@ -135,13 +135,13 @@ export default function ContactSection() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent text-black"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent text-black text-sm"
                   placeholder="your.email@example.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                   Message
                 </label>
                 <textarea
@@ -150,8 +150,8 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={handleInputChange}
                   required
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent resize-none text-black"
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent resize-none text-black text-sm"
                   placeholder="Tell me about your project or just say hello!"
                 />
               </div>
@@ -159,7 +159,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 {isLoading ? (
                   <>
