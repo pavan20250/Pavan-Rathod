@@ -16,13 +16,13 @@ const About = () => {
       {/* Unified Background Elements - Mobile Optimized */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Large central elements that span both sections - Reduced blur on mobile */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/25 to-purple-200/25 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-emerald-200/25 to-cyan-200/25 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/15 to-pink-200/15 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/25 to-purple-200/25 rounded-full blur-xl md:blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-emerald-200/25 to-cyan-200/25 rounded-full blur-xl md:blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/15 to-pink-200/15 rounded-full blur-xl md:blur-3xl"></div>
         {/* Flowing elements that connect sections - Reduced blur on mobile */}
-        <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-orange-200/20 to-red-200/20 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
-        <div className="absolute bottom-1/4 left-0 w-72 h-72 bg-gradient-to-br from-cyan-200/20 to-blue-200/20 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
-        <div className="absolute top-3/4 right-1/3 w-64 h-64 bg-gradient-to-br from-pink-200/15 to-purple-200/15 rounded-full blur-2xl md:blur-2xl blur-lg"></div>
+        <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-orange-200/20 to-red-200/20 rounded-full blur-xl md:blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-0 w-72 h-72 bg-gradient-to-br from-cyan-200/20 to-blue-200/20 rounded-full blur-xl md:blur-3xl"></div>
+        <div className="absolute top-3/4 right-1/3 w-64 h-64 bg-gradient-to-br from-pink-200/15 to-purple-200/15 rounded-full blur-lg md:blur-2xl"></div>
       </div>
 
       <div className="container mx-auto relative z-10">
@@ -39,8 +39,8 @@ const About = () => {
           {/* Profile Image with Enhanced Design - Mobile Optimized */}
           <div className="relative group">
             {/* Animated Background Rings - Reduced animations on mobile */}
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full blur-xl md:blur-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500 animate-pulse md:animate-pulse"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-cyan-500 to-blue-500 rounded-full blur-2xl md:blur-2xl blur-xl opacity-10 group-hover:opacity-20 transition-opacity duration-500 animate-pulse delay-1000 md:animate-pulse md:delay-1000"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full blur-lg md:blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500 animate-pulse md:animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-cyan-500 to-blue-500 rounded-full blur-xl md:blur-2xl opacity-10 group-hover:opacity-20 transition-opacity duration-500 animate-pulse delay-1000 md:animate-pulse md:delay-1000"></div>
             
             {/* Main Image Container */}
             <div className="relative w-40 h-40 lg:w-64 lg:h-64 mx-auto">
@@ -90,7 +90,7 @@ const About = () => {
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
                 {skills.map((skill, index) => (
                   <div key={index} className="group relative">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-10 rounded-xl blur-xl md:blur-xl blur-lg group-hover:opacity-20 transition-opacity duration-500`}></div>
+                    <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-10 rounded-xl blur-lg md:blur-xl group-hover:opacity-20 transition-opacity duration-500`}></div>
                     <div className="relative bg-white/80 backdrop-blur-sm border border-white/20 rounded-xl p-4 hover:bg-white/90 transition-all duration-500 hover:scale-105 hover:-translate-y-2 shadow-lg hover:shadow-xl" style={{willChange: 'transform'}}>
                       <div className="flex flex-col items-center text-center gap-2">
                         <div className={`w-10 h-10 bg-gradient-to-br ${skill.color} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`} style={{willChange: 'transform'}}>

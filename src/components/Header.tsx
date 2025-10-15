@@ -121,15 +121,15 @@ const Header = () => {
       <div className="text-center w-full max-w-4xl mx-auto relative z-10">
         {/* Animated Background Elements - Mobile Optimized */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-white/10 rounded-full blur-2xl md:blur-2xl blur-lg animate-pulse md:animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 bg-white/5 rounded-full blur-xl md:blur-xl blur-lg animate-pulse delay-1000 md:animate-pulse md:delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40 bg-white/5 rounded-full blur-3xl md:blur-3xl blur-xl animate-pulse delay-500 md:animate-pulse md:delay-500"></div>
+          <div className="absolute top-1/4 left-1/4 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-white/10 rounded-full blur-lg md:blur-2xl animate-pulse md:animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 bg-white/5 rounded-full blur-lg md:blur-xl animate-pulse delay-1000 md:animate-pulse md:delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40 bg-white/5 rounded-full blur-xl md:blur-3xl animate-pulse delay-500 md:animate-pulse md:delay-500"></div>
         </div>
 
         <div className="relative inline-block group">
           {/* Enhanced Profile Image with Glow - Mobile Responsive */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-xl md:blur-xl blur-lg group-hover:blur-2xl transition-all duration-500"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-lg md:blur-xl group-hover:blur-2xl transition-all duration-500"></div>
             <div className="w-28 h-28 xs:w-32 xs:h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-52 lg:h-52 rounded-full overflow-hidden border-2 sm:border-4 border-white/80 shadow-2xl backdrop-blur-sm group-hover:scale-105 transition-transform duration-500">
               <Image
                src={pavan}
