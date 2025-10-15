@@ -16,12 +16,80 @@
 
 html {
   scroll-behavior: smooth;
+  /* Mobile scroll optimizations */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  /* Mobile performance optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  html {
+    /* Reduce scroll momentum on mobile for smoother experience */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    /* Optimize rendering for mobile */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  /* Reduce animations on mobile for better performance */
+  * {
+    animation-duration: 0.3s !important;
+    animation-delay: 0s !important;
+  }
+  
+  /* Optimize blur effects for mobile */
+  .blur-xl {
+    filter: blur(8px);
+  }
+  
+  .blur-2xl {
+    filter: blur(12px);
+  }
+  
+  .blur-3xl {
+    filter: blur(16px);
+  }
+  
+  /* Disable animations on mobile for better performance */
+  .animate-pulse {
+    animation: none !important;
+  }
+  
+  .animate-bounce {
+    animation: none !important;
+  }
+  
+  /* Optimize transforms for mobile */
+  * {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  
+  /* Reduce backdrop-blur on mobile */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(2px);
+  }
+  
+  .backdrop-blur-xl {
+    backdrop-filter: blur(8px);
+  }
 }
 
 /* Custom scrollbar */

@@ -40,7 +40,7 @@ const Services: React.FC = () => {
           <div className="flex flex-col items-center group" role="listitem">
             <div className="relative mb-3">
               <div className="w-5 h-5 bg-blue-500 rounded-full border-3 border-white shadow-lg z-10 relative" aria-hidden="true"></div>
-              <div className="absolute inset-0 w-5 h-5 bg-blue-500 rounded-full animate-ping opacity-20" aria-hidden="true"></div>
+              <div className="absolute inset-0 w-5 h-5 bg-blue-500 rounded-full animate-ping md:animate-ping opacity-20" aria-hidden="true"></div>
             </div>
             <article className="bg-white rounded-xl p-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-blue-500 w-56 text-center" tabIndex={0}>
               <time className="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full mb-1 inline-block" dateTime="2024-05">May 2024 - Present</time>
@@ -53,7 +53,7 @@ const Services: React.FC = () => {
           <div className="flex flex-col items-center group mt-12" role="listitem">
             <div className="relative mb-3">
               <div className="w-5 h-5 bg-emerald-500 rounded-full border-3 border-white shadow-lg z-10 relative" aria-hidden="true"></div>
-              <div className="absolute inset-0 w-5 h-5 bg-emerald-500 rounded-full animate-ping opacity-20" aria-hidden="true"></div>
+              <div className="absolute inset-0 w-5 h-5 bg-emerald-500 rounded-full animate-ping md:animate-ping opacity-20" aria-hidden="true"></div>
             </div>
             <article className="bg-white rounded-xl p-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-emerald-500 w-56 text-center" tabIndex={0}>
               <time className="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-1 rounded-full mb-1 inline-block" dateTime="2024-05/2025-04">May 2024 - Apr 2025</time>
@@ -66,7 +66,7 @@ const Services: React.FC = () => {
           <div className="flex flex-col items-center group" role="listitem">
             <div className="relative mb-3">
               <div className="w-5 h-5 bg-purple-500 rounded-full border-3 border-white shadow-lg z-10 relative" aria-hidden="true"></div>
-              <div className="absolute inset-0 w-5 h-5 bg-purple-500 rounded-full animate-ping opacity-20" aria-hidden="true"></div>
+              <div className="absolute inset-0 w-5 h-5 bg-purple-500 rounded-full animate-ping md:animate-ping opacity-20" aria-hidden="true"></div>
             </div>
             <article className="bg-white rounded-xl p-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-purple-500 w-56 text-center" tabIndex={0}>
               <time className="bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded-full mb-1 inline-block" dateTime="2024">2024</time>
@@ -82,7 +82,7 @@ const Services: React.FC = () => {
           <div className="flex items-center space-x-3 group" role="listitem">
             <div className="relative">
               <div className="w-3 h-3 bg-blue-500 rounded-full border-2 border-white shadow-lg z-10 relative" aria-hidden="true"></div>
-              <div className="absolute inset-0 w-3 h-3 bg-blue-500 rounded-full animate-ping opacity-20" aria-hidden="true"></div>
+              <div className="absolute inset-0 w-3 h-3 bg-blue-500 rounded-full animate-ping md:animate-ping opacity-20" aria-hidden="true"></div>
             </div>
             <article className="bg-white rounded-lg p-2.5 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 border-blue-500 flex-1" tabIndex={0}>
               <time className="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full mb-1 inline-block" dateTime="2024-05">May 2024 - Present</time>
@@ -95,7 +95,7 @@ const Services: React.FC = () => {
           <div className="flex items-center space-x-3 group" role="listitem">
             <div className="relative">
               <div className="w-3 h-3 bg-emerald-500 rounded-full border-2 border-white shadow-lg z-10 relative" aria-hidden="true"></div>
-              <div className="absolute inset-0 w-3 h-3 bg-emerald-500 rounded-full animate-ping opacity-20" aria-hidden="true"></div>
+              <div className="absolute inset-0 w-3 h-3 bg-emerald-500 rounded-full animate-ping md:animate-ping opacity-20" aria-hidden="true"></div>
             </div>
             <article className="bg-white rounded-lg p-2.5 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 border-emerald-500 flex-1" tabIndex={0}>
               <time className="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mb-1 inline-block" dateTime="2024-05/2025-04">May 2024 - Apr 2025</time>
@@ -108,7 +108,7 @@ const Services: React.FC = () => {
           <div className="flex items-center space-x-3 group" role="listitem">
             <div className="relative">
               <div className="w-3 h-3 bg-purple-500 rounded-full border-2 border-white shadow-lg z-10 relative" aria-hidden="true"></div>
-              <div className="absolute inset-0 w-3 h-3 bg-purple-500 rounded-full animate-ping opacity-20" aria-hidden="true"></div>
+              <div className="absolute inset-0 w-3 h-3 bg-purple-500 rounded-full animate-ping md:animate-ping opacity-20" aria-hidden="true"></div>
             </div>
             <article className="bg-white rounded-lg p-2.5 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 border-purple-500 flex-1" tabIndex={0}>
               <time className="bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-0.5 rounded-full mb-1 inline-block" dateTime="2024">2024</time>
@@ -126,7 +126,7 @@ const Services: React.FC = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 px-4 md:px-8" role="list" aria-labelledby="services-heading">
         {/* Service 1: UX & UI Design */}
-        <article className="group relative bg-white/80 backdrop-blur-sm rounded-xl p-3 md:p-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200/50" role="listitem" tabIndex={0}>
+        <article className="group relative bg-white/80 backdrop-blur-sm rounded-xl p-3 md:p-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200/50" role="listitem" tabIndex={0} style={{willChange: 'transform'}}>
           <div className="relative z-10">
             <div className="w-8 h-8 md:w-10 md:h-10 bg-gray-800 rounded-lg flex items-center justify-center mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
               <Palette className="w-4 h-4 md:w-5 md:h-5 text-white" />
@@ -143,7 +143,7 @@ const Services: React.FC = () => {
         </article>
 
         {/* Service 2: Full Stack Development */}
-        <article className="group relative bg-white/80 backdrop-blur-sm rounded-xl p-3 md:p-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200/50" role="listitem" tabIndex={0}>
+        <article className="group relative bg-white/80 backdrop-blur-sm rounded-xl p-3 md:p-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200/50" role="listitem" tabIndex={0} style={{willChange: 'transform'}}>
           <div className="relative z-10">
             <div className="w-8 h-8 md:w-10 md:h-10 bg-gray-800 rounded-lg flex items-center justify-center mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
               <Code className="w-4 h-4 md:w-5 md:h-5 text-white" />
@@ -160,7 +160,7 @@ const Services: React.FC = () => {
         </article>
 
         {/* Service 3: Web & Mobile Apps */}
-        <article className="group relative bg-white/80 backdrop-blur-sm rounded-xl p-3 md:p-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200/50" role="listitem" tabIndex={0}>
+        <article className="group relative bg-white/80 backdrop-blur-sm rounded-xl p-3 md:p-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200/50" role="listitem" tabIndex={0} style={{willChange: 'transform'}}>
           <div className="relative z-10">
             <div className="w-8 h-8 md:w-10 md:h-10 bg-gray-800 rounded-lg flex items-center justify-center mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
               <Smartphone className="w-4 h-4 md:w-5 md:h-5 text-white" />
@@ -177,7 +177,7 @@ const Services: React.FC = () => {
         </article>
 
         {/* Service 4: Creative Solutions */}
-        <article className="group relative bg-white/80 backdrop-blur-sm rounded-xl p-3 md:p-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200/50" role="listitem" tabIndex={0}>
+        <article className="group relative bg-white/80 backdrop-blur-sm rounded-xl p-3 md:p-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200/50" role="listitem" tabIndex={0} style={{willChange: 'transform'}}>
           <div className="relative z-10">
             <div className="w-8 h-8 md:w-10 md:h-10 bg-gray-800 rounded-lg flex items-center justify-center mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
               <Globe className="w-4 h-4 md:w-5 md:h-5 text-white" />

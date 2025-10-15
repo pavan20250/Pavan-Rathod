@@ -11,8 +11,8 @@ const Projects = () => {
       liveUrl: "#",
       featured: false,
       icon: Code,
-      gradient: "from-blue-500 via-purple-500 to-pink-500",
-      bgPattern: "bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.3),transparent_50%)]"
+      gradient: "from-indigo-500 via-purple-500 to-pink-500",
+      bgPattern: "bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.4),transparent_60%)]"
     },
     {
       title: "Weather Dashboard",
@@ -22,8 +22,8 @@ const Projects = () => {
       liveUrl: "#",
       featured: false,
       icon: Globe,
-      gradient: "from-cyan-400 via-blue-500 to-indigo-600",
-      bgPattern: "bg-[radial-gradient(circle_at_70%_30%,rgba(34,211,238,0.3),transparent_50%)]"
+      gradient: "from-sky-400 via-blue-500 to-indigo-600",
+      bgPattern: "bg-[radial-gradient(circle_at_70%_30%,rgba(56,189,248,0.4),transparent_60%)]"
     },
     {
       title: "Portfolio Website",
@@ -34,7 +34,7 @@ const Projects = () => {
       featured: false,
       icon: Smartphone,
       gradient: "from-emerald-400 via-teal-500 to-cyan-600",
-      bgPattern: "bg-[radial-gradient(circle_at_20%_80%,rgba(16,185,129,0.3),transparent_50%)]"
+      bgPattern: "bg-[radial-gradient(circle_at_20%_80%,rgba(16,185,129,0.4),transparent_60%)]"
     },
     {
       title: "E-Commerce Platform v2",
@@ -44,23 +44,23 @@ const Projects = () => {
       liveUrl: "#",
       featured: false,
       icon: ShoppingCart,
-      gradient: "from-orange-400 via-red-500 to-pink-600",
-      bgPattern: "bg-[radial-gradient(circle_at_80%_20%,rgba(251,146,60,0.3),transparent_50%)]"
+      gradient: "from-rose-400 via-pink-500 to-purple-600",
+      bgPattern: "bg-[radial-gradient(circle_at_80%_20%,rgba(251,113,133,0.4),transparent_60%)]"
     }
   ];
 
   return (
     <section id="projects" className="py-16 px-6 md:px-12 lg:px-60 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
-      {/* Unified Background Elements - Same as About */}
+      {/* Unified Background Elements - Mobile Optimized */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Large central elements that span both sections */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/25 to-purple-200/25 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-emerald-200/25 to-cyan-200/25 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/15 to-pink-200/15 rounded-full blur-3xl"></div>
-        {/* Flowing elements that connect sections */}
-        <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-orange-200/20 to-red-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-0 w-72 h-72 bg-gradient-to-br from-cyan-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 right-1/3 w-64 h-64 bg-gradient-to-br from-pink-200/15 to-purple-200/15 rounded-full blur-2xl"></div>
+        {/* Large central elements that span both sections - Reduced blur on mobile */}
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/25 to-purple-200/25 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-emerald-200/25 to-cyan-200/25 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/15 to-pink-200/15 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        {/* Flowing elements that connect sections - Reduced blur on mobile */}
+        <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-orange-200/20 to-red-200/20 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        <div className="absolute bottom-1/4 left-0 w-72 h-72 bg-gradient-to-br from-cyan-200/20 to-blue-200/20 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        <div className="absolute top-3/4 right-1/3 w-64 h-64 bg-gradient-to-br from-pink-200/15 to-purple-200/15 rounded-full blur-2xl md:blur-2xl blur-lg"></div>
       </div>
 
       <div className="container mx-auto relative z-10">
@@ -87,11 +87,11 @@ const Projects = () => {
                 <div className={`${project.featured ? 'lg:flex' : ''}`}>
                   {/* Aesthetic CSS Header */}
                   <div className={`relative ${project.featured ? 'lg:w-1/2' : 'h-24'} bg-gradient-to-br ${project.gradient} ${project.bgPattern} flex items-center justify-center`}>
-                    {/* Animated Background Elements */}
+                    {/* Animated Background Elements - Mobile Optimized */}
                     <div className="absolute inset-0 overflow-hidden">
-                      <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-xl animate-pulse"></div>
-                      <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white/5 rounded-full blur-lg animate-pulse delay-1000"></div>
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+                      <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-xl md:blur-xl blur-lg animate-pulse md:animate-pulse"></div>
+                      <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white/5 rounded-full blur-lg md:blur-lg blur-md animate-pulse delay-1000 md:animate-pulse md:delay-1000"></div>
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/5 rounded-full blur-2xl md:blur-2xl blur-xl animate-pulse delay-500 md:animate-pulse md:delay-500"></div>
                     </div>
                     
                     {/* Icon and Title */}
@@ -115,14 +115,25 @@ const Projects = () => {
                     
                     {/* Technologies */}
                     <div className="flex flex-wrap gap-1 mb-3">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-2 py-1 bg-gradient-to-r from-gray-100 to-gray-50 text-gray-700 text-xs rounded-full border border-gray-200 hover:shadow-sm transition-shadow"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                      {project.technologies.map((tech, techIndex) => {
+                        const techColors = [
+                          "bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 border-blue-200",
+                          "bg-gradient-to-r from-purple-100 to-purple-50 text-purple-700 border-purple-200",
+                          "bg-gradient-to-r from-emerald-100 to-emerald-50 text-emerald-700 border-emerald-200",
+                          "bg-gradient-to-r from-orange-100 to-orange-50 text-orange-700 border-orange-200",
+                          "bg-gradient-to-r from-pink-100 to-pink-50 text-pink-700 border-pink-200"
+                        ];
+                        const colorClass = techColors[techIndex % techColors.length];
+                        
+                        return (
+                          <span
+                            key={techIndex}
+                            className={`px-2 py-1 ${colorClass} text-xs rounded-full border hover:shadow-sm transition-all duration-200 hover:scale-105`}
+                          >
+                            {tech}
+                          </span>
+                        );
+                      })}
                     </div>
 
                     {/* Project Links */}
@@ -131,7 +142,7 @@ const Projects = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-gray-800 to-gray-700 text-white rounded-md hover:from-gray-700 hover:to-gray-600 transition-all duration-200 text-xs shadow-sm hover:shadow-md"
+                        className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-slate-800 to-slate-700 text-white rounded-md hover:from-slate-700 hover:to-slate-600 transition-all duration-200 text-xs shadow-sm hover:shadow-md hover:scale-105"
                       >
                         <Github size={12} />
                         Code
@@ -140,7 +151,7 @@ const Projects = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 px-2 py-1 border border-gray-300 text-gray-700 rounded-md hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 transition-all duration-200 text-xs shadow-sm hover:shadow-md"
+                        className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 border border-blue-200 rounded-md hover:bg-gradient-to-r hover:from-blue-100 hover:to-indigo-100 hover:border-blue-300 transition-all duration-200 text-xs shadow-sm hover:shadow-md hover:scale-105"
                       >
                         <ExternalLink size={12} />
                         Demo
@@ -159,10 +170,10 @@ const Projects = () => {
             href="https://github.com/pavan20250"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            className="group inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white rounded-lg hover:from-slate-700 hover:via-slate-600 hover:to-slate-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
-            <Github size={20} />
-            View More on GitHub
+            <Github size={20} className="group-hover:scale-110 transition-transform duration-300" />
+            <span className="font-medium">View More on GitHub</span>
           </a>
         </div>
       </div>
