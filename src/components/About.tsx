@@ -13,16 +13,16 @@ const About = () => {
 
   return (
     <section id="about" className="py-16 px-6 md:px-12 lg:px-60 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
-      {/* Unified Background Elements */}
+      {/* Unified Background Elements - Mobile Optimized */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Large central elements that span both sections */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/25 to-purple-200/25 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-emerald-200/25 to-cyan-200/25 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/15 to-pink-200/15 rounded-full blur-3xl"></div>
-        {/* Flowing elements that connect sections */}
-        <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-orange-200/20 to-red-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-0 w-72 h-72 bg-gradient-to-br from-cyan-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 right-1/3 w-64 h-64 bg-gradient-to-br from-pink-200/15 to-purple-200/15 rounded-full blur-2xl"></div>
+        {/* Large central elements that span both sections - Reduced blur on mobile */}
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/25 to-purple-200/25 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-emerald-200/25 to-cyan-200/25 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/15 to-pink-200/15 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        {/* Flowing elements that connect sections - Reduced blur on mobile */}
+        <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-orange-200/20 to-red-200/20 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        <div className="absolute bottom-1/4 left-0 w-72 h-72 bg-gradient-to-br from-cyan-200/20 to-blue-200/20 rounded-full blur-3xl md:blur-3xl blur-xl"></div>
+        <div className="absolute top-3/4 right-1/3 w-64 h-64 bg-gradient-to-br from-pink-200/15 to-purple-200/15 rounded-full blur-2xl md:blur-2xl blur-lg"></div>
       </div>
 
       <div className="container mx-auto relative z-10">
@@ -36,11 +36,11 @@ const About = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row items-center gap-8">
-          {/* Profile Image with Enhanced Design */}
+          {/* Profile Image with Enhanced Design - Mobile Optimized */}
           <div className="relative group">
-            {/* Animated Background Rings */}
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500 animate-pulse"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-cyan-500 to-blue-500 rounded-full blur-2xl opacity-10 group-hover:opacity-20 transition-opacity duration-500 animate-pulse delay-1000"></div>
+            {/* Animated Background Rings - Reduced animations on mobile */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full blur-xl md:blur-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500 animate-pulse md:animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-cyan-500 to-blue-500 rounded-full blur-2xl md:blur-2xl blur-xl opacity-10 group-hover:opacity-20 transition-opacity duration-500 animate-pulse delay-1000 md:animate-pulse md:delay-1000"></div>
             
             {/* Main Image Container */}
             <div className="relative w-40 h-40 lg:w-64 lg:h-64 mx-auto">
@@ -56,11 +56,11 @@ const About = () => {
                 />
               </div>
               
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
+              {/* Floating Elements - Reduced animations on mobile */}
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg animate-bounce md:animate-bounce" style={{willChange: 'transform'}}>
                 <Heart className="w-4 h-4 text-white" />
               </div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center shadow-lg animate-bounce delay-500">
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center shadow-lg animate-bounce delay-500 md:animate-bounce md:delay-500" style={{willChange: 'transform'}}>
                 <Code className="w-3 h-3 text-white" />
               </div>
             </div>
@@ -86,14 +86,14 @@ const About = () => {
                 </p>
               </div>
 
-              {/* Enhanced Skills Grid */}
+              {/* Enhanced Skills Grid - Mobile Optimized */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
                 {skills.map((skill, index) => (
                   <div key={index} className="group relative">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-10 rounded-xl blur-xl group-hover:opacity-20 transition-opacity duration-500`}></div>
-                    <div className="relative bg-white/80 backdrop-blur-sm border border-white/20 rounded-xl p-4 hover:bg-white/90 transition-all duration-500 hover:scale-105 hover:-translate-y-2 shadow-lg hover:shadow-xl">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-10 rounded-xl blur-xl md:blur-xl blur-lg group-hover:opacity-20 transition-opacity duration-500`}></div>
+                    <div className="relative bg-white/80 backdrop-blur-sm border border-white/20 rounded-xl p-4 hover:bg-white/90 transition-all duration-500 hover:scale-105 hover:-translate-y-2 shadow-lg hover:shadow-xl" style={{willChange: 'transform'}}>
                       <div className="flex flex-col items-center text-center gap-2">
-                        <div className={`w-10 h-10 bg-gradient-to-br ${skill.color} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <div className={`w-10 h-10 bg-gradient-to-br ${skill.color} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`} style={{willChange: 'transform'}}>
                           <skill.icon className="w-5 h-5 text-white" />
                         </div>
                         <h4 className="font-bold text-gray-800 text-sm">{skill.name}</h4>
