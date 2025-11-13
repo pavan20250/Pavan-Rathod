@@ -18,7 +18,8 @@ html {
   scroll-behavior: smooth;
   /* Mobile scroll optimizations */
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
+  will-change: scroll-position;
 }
 
 body {
@@ -31,21 +32,26 @@ body {
   text-rendering: optimizeLegibility;
   /* Prevent horizontal scroll on mobile */
   overflow-x: hidden;
+  /* Smooth scrolling optimization */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 }
 
 /* Mobile-specific optimizations */
 @media (max-width: 768px) {
   html {
-    /* Reduce scroll momentum on mobile for smoother experience */
+    /* Smooth scroll momentum on mobile */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
   }
   
   body {
-    /* Optimize rendering for mobile */
+    /* Optimize rendering for mobile - only on body, not all elements */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    will-change: scroll-position;
   }
   
   /* Reduce animations on mobile for better performance */
@@ -74,12 +80,6 @@ body {
   
   .animate-bounce {
     animation: none !important;
-  }
-  
-  /* Optimize transforms for mobile */
-  * {
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
   }
   
   /* Reduce backdrop-blur on mobile */
