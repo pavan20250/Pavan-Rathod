@@ -43,7 +43,7 @@ const Services: React.FC = () => {
               <div className="absolute inset-0 w-5 h-5 bg-blue-500 rounded-full animate-ping md:animate-ping opacity-20" aria-hidden="true"></div>
             </div>
             <article className="bg-white rounded-xl p-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-blue-500 w-56 text-center" tabIndex={0}>
-              <time className="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full mb-1 inline-block" dateTime="2024-05">May 2024 - Present</time>
+              <time className="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full mb-1 inline-block" dateTime="2024-05">May 2025 - Nov 2025</time>
               <h3 className="text-base font-bold text-gray-900">Mongrov</h3>
               <p className="text-xs text-gray-600">Developer</p>
             </article>
