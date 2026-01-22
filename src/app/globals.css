@@ -110,7 +110,7 @@ body {
   background: #555;
 }
 
-/* Custom animations for blog page */
+/* Custom animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -120,6 +120,10 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .line-clamp-3 {

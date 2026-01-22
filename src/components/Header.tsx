@@ -183,41 +183,66 @@ const Header = () => {
       </div>
 
       {/* Social Links with Icons - Mobile Responsive */}
-      <div className="absolute top-4 right-2 sm:top-6 sm:right-4 md:top-8 md:right-6 flex gap-2 sm:gap-3 md:gap-4">
-        <div>
+      <div className="absolute top-4 xs:top-6 bottom-auto sm:top-auto sm:bottom-10 md:bottom-12 left-0 right-2 z-20 flex justify-center items-center px-6 xs:px-8 sm:px-4 md:px-6">
+        <div className="flex flex-row items-center gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 flex-shrink-0">
+          {/* Email Link */}
           <a
             href="mailto:pavannaik0203@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             title="Contact Pavan Rathod - Full Stack Developer"
             aria-label="Email Pavan Rathod"
-            className="text-gray-600 hover:text-black transition-all duration-300 hover:scale-[1.1] p-1 sm:p-2"
+            className="group relative flex items-center justify-center w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
           >
-            <Mails size={20} className="sm:size-[24px] md:size-[30px]" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400/0 to-emerald-500/0 group-hover:from-emerald-400/20 group-hover:to-emerald-500/30 transition-all duration-300"></div>
+            <Mails 
+              size={14}
+              className="xs:size-4 sm:size-5 md:size-5 lg:size-6 text-gray-800 group-hover:text-emerald-700 transition-colors duration-300 relative z-10 drop-shadow-sm" 
+            />
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap bg-gray-900/95 text-white text-[10px] xs:text-xs px-2 py-1 rounded-md pointer-events-none hidden sm:block shadow-lg backdrop-blur-sm">
+              Email
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900/95 rotate-45"></span>
+            </span>
           </a>
-        </div>
-        <div>
+          
+          {/* LinkedIn Link */}
           <a
             href="https://www.linkedin.com/in/pavan-rathod-0203k/"
             target="_blank"
             rel="noopener noreferrer"
             title="Pavan Rathod LinkedIn Profile - Full Stack Developer"
             aria-label="Visit Pavan Rathod's LinkedIn profile"
-            className="text-gray-600 hover:text-black transition-all duration-300 hover:scale-[1.1] p-1 sm:p-2"
+            className="group relative flex items-center justify-center w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
           >
-            <FaLinkedin size={20} className="sm:size-[24px] md:size-[30px]" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/0 to-blue-600/0 group-hover:from-blue-400/20 group-hover:to-blue-600/30 transition-all duration-300"></div>
+            <FaLinkedin 
+              size={14}
+              className="xs:size-4 sm:size-5 md:size-5 lg:size-6 text-gray-800 group-hover:text-blue-600 transition-colors duration-300 relative z-10 drop-shadow-sm" 
+            />
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap bg-gray-900/95 text-white text-[10px] xs:text-xs px-2 py-1 rounded-md pointer-events-none hidden sm:block shadow-lg backdrop-blur-sm">
+              LinkedIn
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900/95 rotate-45"></span>
+            </span>
           </a>
-        </div>
-        <div>
+          
+          {/* GitHub Link */}
           <a
             href="https://github.com/pavan20250"
             target="_blank"
             rel="noopener noreferrer"
             title="Pavan Rathod GitHub Profile - Full Stack Developer"
             aria-label="Visit Pavan Rathod's GitHub profile"
-            className="text-gray-600 hover:text-black transition-all duration-300 hover:scale-[1.1] p-1 sm:p-2"
+            className="group relative flex items-center justify-center w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
           >
-            <FaGithub size={20} className="sm:size-[24px] md:size-[30px]" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-700/0 to-gray-900/0 group-hover:from-gray-700/20 group-hover:to-gray-900/30 transition-all duration-300"></div>
+            <FaGithub 
+              size={14}
+              className="xs:size-4 sm:size-5 md:size-5 lg:size-6 text-gray-800 group-hover:text-gray-900 transition-colors duration-300 relative z-10 drop-shadow-sm" 
+            />
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap bg-gray-900/95 text-white text-[10px] xs:text-xs px-2 py-1 rounded-md pointer-events-none hidden sm:block shadow-lg backdrop-blur-sm">
+              GitHub
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900/95 rotate-45"></span>
+            </span>
           </a>
         </div>
       </div>

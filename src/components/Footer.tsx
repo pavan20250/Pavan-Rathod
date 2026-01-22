@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row justify-between items-center text-gray-500 text-sm space-y-3 sm:space-y-0">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-              <p className="font-medium">&copy; 2025 Pavan. All rights reserved.</p>
+              <p className="font-medium">&copy; 2026 Pavan. All rights reserved.</p>
             </div>
             <div className="flex items-center space-x-2 bg-white/60 backdrop-blur-sm rounded-full px-4 py-2 border border-gray-200 shadow-sm">
               <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
