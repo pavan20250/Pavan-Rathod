@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Pavan Rathod - Full Stack Developer | React, TypeScript, AWS Expert',
+    name: 'Pavan Rathod - Full Stack Developer ',
     short_name: 'Pavan Rathod',
     description: 'Pavan Rathod is a passionate Full Stack Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical blogs.',
     start_url: '/',

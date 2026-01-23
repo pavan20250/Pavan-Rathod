@@ -10,10 +10,11 @@ interface SEOProps {
 }
 
 export default function SEO({
-  title = "Pavan Rathod - Full Stack Developer | React, TypeScript, AWS Expert",
+  title = "Pavan Rathod - Full Stack Developer ",
   description = "Pavan Rathod is a passionate Full Stack Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical blogs on modern web development.",
   keywords = [
     "Pavan Rathod",
+    "Katravath Pavan",
     "Full Stack Developer",
     "React Developer",
     "TypeScript Developer",

@@ -54,7 +54,7 @@ const Header = () => {
                   <button
                     key={item.name}
                     onClick={() => scrollToSection(item.id)}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    className={`px-3 py-2 rounded-md text-sm font-bold transition-colors ${
                       isScrolled 
                         ? 'text-gray-700 hover:text-gray-900 hover:bg-gray-100' 
                         : 'text-white hover:text-gray-200 hover:bg-white hover:bg-opacity-10'
@@ -168,7 +168,7 @@ const Header = () => {
         {/* Enhanced CTA Buttons */}
         <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center">
           <a href="/blogs" className="group relative px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-900 text-white font-medium text-sm rounded-full hover:from-gray-700 hover:to-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-block">
-            <span className="relative z-10">Latest Blogs</span>
+            <span className="relative z-10 text-sm font-bold">Latest Blogs</span>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </a>
           
@@ -176,14 +176,14 @@ const Header = () => {
             onClick={() => scrollToSection('contact')}
             className="group relative px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-gray-800 font-medium text-sm rounded-full hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
-            <span className="relative z-10">Get In Touch</span>
+            <span className="relative z-10 text-sm font-bold">Get In Touch</span>
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>
         </div>
       </div>
 
       {/* Social Links with Icons - Mobile Responsive */}
-      <div className="absolute top-4 xs:top-6 bottom-auto sm:top-auto sm:bottom-10 md:bottom-12 left-0 right-2 z-20 flex justify-center items-center px-6 xs:px-8 sm:px-4 md:px-6">
+      <div className="absolute top-4 xs:top-6 bottom-auto sm:top-auto sm:bottom-10 md:bottom-12 left-0 right-0 z-20 flex justify-center items-center px-6 xs:px-8 sm:px-4 md:px-6">
         <div className="flex flex-row items-center gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 flex-shrink-0">
           {/* Email Link */}
           <a
@@ -196,7 +196,7 @@ const Header = () => {
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400/0 to-emerald-500/0 group-hover:from-emerald-400/20 group-hover:to-emerald-500/30 transition-all duration-300"></div>
             <Mails 
-              size={14}
+              size={20}
               className="xs:size-4 sm:size-5 md:size-5 lg:size-6 text-gray-800 group-hover:text-emerald-700 transition-colors duration-300 relative z-10 drop-shadow-sm" 
             />
             <span className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap bg-gray-900/95 text-white text-[10px] xs:text-xs px-2 py-1 rounded-md pointer-events-none hidden sm:block shadow-lg backdrop-blur-sm">
@@ -216,7 +216,7 @@ const Header = () => {
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/0 to-blue-600/0 group-hover:from-blue-400/20 group-hover:to-blue-600/30 transition-all duration-300"></div>
             <FaLinkedin 
-              size={14}
+              size={20}
               className="xs:size-4 sm:size-5 md:size-5 lg:size-6 text-gray-800 group-hover:text-blue-600 transition-colors duration-300 relative z-10 drop-shadow-sm" 
             />
             <span className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap bg-gray-900/95 text-white text-[10px] xs:text-xs px-2 py-1 rounded-md pointer-events-none hidden sm:block shadow-lg backdrop-blur-sm">
@@ -236,7 +236,7 @@ const Header = () => {
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-700/0 to-gray-900/0 group-hover:from-gray-700/20 group-hover:to-gray-900/30 transition-all duration-300"></div>
             <FaGithub 
-              size={14}
+              size={20}
               className="xs:size-4 sm:size-5 md:size-5 lg:size-6 text-gray-800 group-hover:text-gray-900 transition-colors duration-300 relative z-10 drop-shadow-sm" 
             />
             <span className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap bg-gray-900/95 text-white text-[10px] xs:text-xs px-2 py-1 rounded-md pointer-events-none hidden sm:block shadow-lg backdrop-blur-sm">
