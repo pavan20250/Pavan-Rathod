@@ -5,7 +5,7 @@ const projects = [
   {
     title: "Smart Bookmark App",
     description: "Bookmark manager with Google OAuth, private per-user bookmarks, and real-time sync across tabs.",
-    technologies: ["Next.js", "Supabase", "Tailwind", "Postgres", "Realtime"],
+    technologies: ["Next.js", "React", "Supabase", "Tailwind", "Postgres", "Realtime"],
     githubUrl: "https://github.com/pavan20250/smart-bookmark-app",
     liveUrl: "https://smart-bookmark-app-kappa.vercel.app",
     icon: Code,
@@ -14,7 +14,7 @@ const projects = [
   {
     title: "MindCare AI",
     description: "AI-powered behavioral health platform with intake, triage, clinical insights, and smart dashboards.",
-    technologies: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"],
     githubUrl: "https://github.com/pavan20250/mindcare-ai",
     liveUrl: "https://mindcare-ai-blush.vercel.app",
     icon: Smartphone,
@@ -23,7 +23,7 @@ const projects = [
   {
     title: "Web Qest",
     description: "Modern web application built with Next.js and TypeScript, deployed on Vercel.",
-    technologies: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"],
     githubUrl: "https://github.com/pavan20250/web-qest",
     liveUrl: "https://web-qest.vercel.app",
     icon: Globe,
