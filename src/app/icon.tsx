@@ -1,3 +1,5 @@
+import { readFile } from 'fs/promises'
+import { join } from 'path'
 import { ImageResponse } from 'next/og'
 
 export const size = {
@@ -6,28 +8,31 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-export default function Icon() {
+export default async function Icon() {
+  const imagePath = join(process.cwd(), 'public', 'gimini_pavan.png')
+  const buffer = await readFile(imagePath)
+  const dataUrl = `data:image/png;base64,${buffer.toString('base64')}`
+
   return new ImageResponse(
     (
       <div
         style={{
-          fontSize: 24,
-          background: 'linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%)',
+          display: 'flex',
           width: '100%',
           height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'white',
-          fontWeight: 'bold',
           borderRadius: '20%',
+          overflow: 'hidden',
         }}
       >
-        P
+        <img
+          src={dataUrl}
+          width={32}
+          height={32}
+          style={{ objectFit: 'cover', borderRadius: '20%' }}
+          alt=""
+        />
       </div>
     ),
-    {
-      ...size,
-    }
+    { ...size }
   )
 }

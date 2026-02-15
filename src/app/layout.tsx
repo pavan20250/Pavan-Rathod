@@ -13,11 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pavan Rathod - Full Stack Developer ",
+  title: "Pavan Rathod - Software Developer ",
   description:
-    "Pavan Rathod is a passionate Full Stack Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical blogs on modern web development.",
+    "Pavan Rathod is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical blogs on modern web development.",
   keywords: [
     "Pavan Rathod",
+    "Software Developer",
     "Full Stack Developer",
     "React Developer",
     "TypeScript Developer",
@@ -45,9 +46,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Pavan Rathod - Full Stack Developer ",
+    title: "Pavan Rathod - Software Developer ",
     description:
-      "Pavan Rathod is a passionate Full Stack Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical insights.",
+      "Pavan Rathod is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical insights.",
     url: "https://pavanrathod.in",
     siteName: "Pavan Rathod - Portfolio",
     type: "website",
@@ -57,14 +58,14 @@ export const metadata: Metadata = {
         url: "https://pavanrathod.in/pavan.jpg",
         width: 1200,
         height: 630,
-        alt: "Pavan Rathod - Full Stack Developer Portfolio",
+        alt: "Pavan Rathod - Software Developer Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pavan Rathod - Full Stack Developer",
-    description: "Passionate Full Stack Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS",
+    title: "Pavan Rathod - Software Developer",
+    description: "Passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS",
     images: ["https://pavanrathod.in/pavan.jpg"],
     creator: "@pavanrathod",
   },
