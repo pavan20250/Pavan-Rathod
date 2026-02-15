@@ -150,6 +150,15 @@ body {
   66% { transform: translate(-3px, 4px); }
 }
 
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
 @media (min-width: 769px) {
   .about-photo-float {
     animation: about-float 4s ease-in-out infinite;
