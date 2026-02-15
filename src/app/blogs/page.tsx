@@ -1,5 +1,6 @@
 import React from "react";
-import { Calendar, Clock, User, ArrowRight, Coffee, Bug, Rocket, Heart } from "lucide-react";
+import Link from "next/link";
+import { Calendar, Clock, User, ArrowRight, ArrowLeft, Coffee, Bug, Rocket, Heart } from "lucide-react";
 
 const BlogPage = () => {
   const blogPosts = [
@@ -11,7 +12,7 @@ const BlogPage = () => {
       readTime: "5 min read",
       category: "Programming Humor",
       icon: Coffee,
-      color: "bg-yellow-100 text-yellow-800"
+      color: "bg-amber-500/10 text-amber-700 border-amber-200/60",
     },
     {
       title: "The Great Console.log() Mystery",
@@ -21,7 +22,7 @@ const BlogPage = () => {
       readTime: "3 min read",
       category: "Debugging",
       icon: Bug,
-      color: "bg-red-100 text-red-800"
+      color: "bg-rose-500/10 text-rose-700 border-rose-200/60",
     },
     {
       title: "How I Explained React to My Grandma",
@@ -31,7 +32,7 @@ const BlogPage = () => {
       readTime: "7 min read",
       category: "React",
       icon: Heart,
-      color: "bg-pink-100 text-pink-800"
+      color: "bg-pink-500/10 text-pink-700 border-pink-200/60",
     },
     {
       title: "The Day I Deployed to Production on Friday",
@@ -41,7 +42,7 @@ const BlogPage = () => {
       readTime: "4 min read",
       category: "DevOps",
       icon: Rocket,
-      color: "bg-blue-100 text-blue-800"
+      color: "bg-sky-500/10 text-sky-700 border-sky-200/60",
     },
     {
       title: "Why 'It Works on My Machine' is a Valid Excuse",
@@ -51,7 +52,7 @@ const BlogPage = () => {
       readTime: "6 min read",
       category: "Programming Philosophy",
       icon: Coffee,
-      color: "bg-green-100 text-green-800"
+      color: "bg-emerald-500/10 text-emerald-700 border-emerald-200/60",
     },
     {
       title: "The Art of Naming Variables",
@@ -61,114 +62,113 @@ const BlogPage = () => {
       readTime: "8 min read",
       category: "Code Quality",
       icon: Bug,
-      color: "bg-purple-100 text-purple-800"
-    }
+      color: "bg-violet-500/10 text-violet-700 border-violet-200/60",
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 px-3 sm:px-4 py-6 sm:py-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Page Title */}
-        <div className="text-center mb-8 md:mb-16 relative">
-          <div className="relative px-4">
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 md:mb-6 leading-tight">
-              The Funny Side of Code
-            </h1>
-            <p className="text-sm md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
-              Where programming meets humor, and bugs become features. Welcome to my digital diary of coding adventures! 🚀
+    <div className="min-h-screen bg-[#fafafa]">
+      {/* Subtle grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_0.5px,transparent_0.5px),linear-gradient(to_bottom,#e5e7eb_0.5px,transparent_0.5px)] bg-[size:24px_24px] opacity-40 pointer-events-none" aria-hidden />
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900 mb-3 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" aria-hidden />
+          Back to home
+        </Link>
+        {/* Page header */}
+        <header className="text-center mb-8 md:mb-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500 mb-2">
+            Blog
+          </p>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-2 max-w-2xl mx-auto">
+            The Funny Side of Code
+          </h1>
+          <p className="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
+            Where programming meets humor, and bugs become features.
+          </p>
+        </header>
+
+        {/* Blog grid */}
+        <div className="grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {blogPosts.map((post, index) => {
+            const Icon = post.icon;
+            return (
+              <article
+                key={index}
+                className="group/card bg-white rounded-xl border border-gray-200/80 shadow-sm hover:shadow-md hover:border-gray-300/80 transition-all duration-300 overflow-hidden flex flex-col"
+                style={{ animationDelay: `${index * 80}ms` }}
+              >
+                <div className="p-4 sm:p-5 flex flex-col flex-1">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-medium border ${post.color}`}>
+                      <Icon className="w-3 h-3" aria-hidden />
+                      {post.category}
+                    </span>
+                  </div>
+                  <h2 className="text-base font-semibold text-gray-900 mb-1.5 line-clamp-2 group-hover/card:text-gray-700 transition-colors">
+                    {post.title}
+                  </h2>
+                  <p className="text-sm text-gray-600 leading-snug mb-3 line-clamp-2 flex-1">
+                    {post.excerpt}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500 mt-auto pt-3 border-t border-gray-100">
+                    <span className="flex items-center gap-1.5">
+                      <User className="w-3.5 h-3.5" aria-hidden />
+                      {post.author}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5" aria-hidden />
+                      {post.date}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5" aria-hidden />
+                      {post.readTime}
+                    </span>
+                  </div>
+                  <a
+                    href="#"
+                    className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors"
+                  >
+                    Read more
+                    <ArrowRight className="w-4 h-4 group-hover/card:translate-x-0.5 transition-transform" />
+                  </a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        {/* CTA section */}
+        <section className="mt-10 sm:mt-12">
+          <div className="relative rounded-xl border border-gray-200/80 bg-white p-6 sm:p-8 text-center shadow-sm max-w-3xl mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+              More coming soon
             </p>
-            <div className="flex justify-center mt-4 md:mt-6">
-              <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+            <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+              More stories & updates
+            </h2>
+            <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-lg mx-auto">
+              New posts on coding, debugging, and dev life are in the works. Get notified when they go live.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-2 justify-center">
+              <button
+                type="button"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+              >
+                Subscribe for updates
+              </button>
+              <button
+                type="button"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border border-gray-300 text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors"
+              >
+                Suggest a topic
+              </button>
             </div>
           </div>
-        </div>
-        
-        {/* Blog Cards Section */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-          {blogPosts.map((post, index) => (
-            <div 
-              key={index} 
-              className="group relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer transform hover:-translate-y-2 border border-gray-200/50"
-              style={{
-                animationDelay: `${index * 100}ms`,
-                animation: 'fadeInUp 0.6s ease-out forwards'
-              }}
-            >
-              {/* Blog Header */}
-              <div className="relative p-4 md:p-6">
-                <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                  <div className={`p-2 md:p-3 rounded-xl ${post.color} shadow-md group-hover:scale-110 transition-transform duration-300`}>
-                    <post.icon size={16} className="md:w-6 md:h-6" />
-                  </div>
-                  <span className={`px-2 md:px-3 py-1 rounded-full text-xs font-semibold ${post.color} shadow-sm`}>
-                    {post.category}
-                  </span>
-                </div>
-                
-                <h2 className="text-sm md:text-lg font-bold text-gray-800 mb-2 md:mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight line-clamp-2">
-                  {post.title}
-                </h2>
-                
-                <p className="text-gray-600 text-xs md:text-sm leading-relaxed mb-3 md:mb-4 line-clamp-2">
-                  {post.excerpt}
-                </p>
-                
-                {/* Blog Meta */}
-                <div className="flex flex-col gap-2 text-xs text-gray-500 mb-3 md:mb-4">
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-full">
-                      <User size={10} className="md:w-3.5 md:h-3.5" />
-                      <span className="font-medium text-xs">{post.author}</span>
-                    </div>
-                    <div className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-full">
-                      <Calendar size={10} className="md:w-3.5 md:h-3.5" />
-                      <span className="text-xs">{post.date}</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-full w-fit">
-                    <Clock size={10} className="md:w-3.5 md:h-3.5" />
-                    <span className="text-xs">{post.readTime}</span>
-                  </div>
-                </div>
-                
-                {/* Read More Button */}
-                <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-2 md:py-3 px-3 md:px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl text-xs md:text-sm">
-                  <span>Read More</span>
-                  <ArrowRight size={12} className="md:w-4 md:h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        {/* Coming Soon Section */}
-        <div className="mt-12 sm:mt-20 text-center px-4">
-          <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 max-w-3xl mx-auto overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5"></div>
-            <div className="absolute top-0 right-0 w-20 sm:w-32 h-20 sm:h-32 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-2xl"></div>
-            <div className="absolute bottom-0 left-0 w-16 sm:w-24 h-16 sm:h-24 bg-gradient-to-tr from-purple-400/10 to-pink-400/10 rounded-full blur-2xl"></div>
-            
-            <div className="relative">
-              <div className="text-4xl sm:text-6xl mb-4 sm:mb-6">😄</div>
-              <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-800 to-blue-600 bg-clip-text text-transparent mb-4 sm:mb-6">
-                More Laughs Coming Soon!
-              </h3>
-              <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed px-2">
-                I&apos;m working on more hilarious coding stories, debugging adventures, and programming confessions. 
-                Subscribe to get notified when I publish my next masterpiece! 🚀
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                <button className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg sm:rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base">
-                  Subscribe for Updates
-                </button>
-                <button className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg sm:rounded-xl hover:bg-gray-50 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
-                  Suggest a Topic
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
     </div>
   );

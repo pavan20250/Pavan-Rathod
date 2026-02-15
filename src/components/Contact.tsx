@@ -61,13 +61,13 @@ export default function ContactSection() {
         <div className="flex flex-col items-center justify-center text-center lg:text-left lg:items-center lg:justify-center w-full lg:w-1/2">
           <div className="mb-6 flex flex-col items-center">
             {/* Image Circle */}
-            <div className="w-28 h-28 md:w-32 md:h-32 flex items-center justify-center rounded-full bg-gray-200 mb-4 overflow-hidden">
+            <div className="w-28 h-28 md:w-32 md:h-32 flex items-center justify-center rounded-full bg-gray-200 mb-4 overflow-hidden ring-2 ring-gray-100">
               <Image
-                src={handShake} 
-                alt="Handshake" 
+                src={handShake}
+                alt="Handshake"
                 width={128}
                 height={128}
-                className="object-cover rounded-full"
+                className="object-cover w-full h-full"
               />
             </div>
             <h2 className="text-xl md:text-3xl font-bold text-gray-800 mb-2">
@@ -80,7 +80,7 @@ export default function ContactSection() {
               {/* Email Button */}
               <button 
                 onClick={() => window.location.href = `mailto:${email}`} 
-                className="flex items-center justify-center gap-2 px-5 py-2.5 w-full bg-black text-white rounded-full shadow-md hover:bg-gray-800 text-sm"
+                className="flex items-center justify-center gap-2 px-5 py-2.5 w-full bg-gray-900 text-white rounded-full shadow-sm hover:bg-gray-800 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
               >
                 <FaEnvelope /> Email Me
               </button>
@@ -88,7 +88,7 @@ export default function ContactSection() {
               {/* LinkedIn Button */}
               <button 
                 onClick={() => window.open(linkedInUrl, "_blank")} 
-                className="flex items-center justify-center gap-2 px-5 py-2.5 w-full border border-gray-400 text-gray-700 rounded-full shadow-md hover:bg-gray-200 text-sm"
+                className="flex items-center justify-center gap-2 px-5 py-2.5 w-full border border-gray-300 text-gray-700 rounded-full shadow-sm hover:bg-gray-100 hover:border-gray-400 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
               >
                 <FaLinkedin /> LinkedIn
               </button>
@@ -98,11 +98,11 @@ export default function ContactSection() {
 
         {/* Right Side - Contact Form */}
         <div className="w-full lg:w-1/2 max-w-md">
-          <div className="bg-white p-6 rounded-xl shadow-lg">
+          <div className="bg-white p-6 rounded-xl border border-gray-200/80 shadow-md">
             <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">Send me a message</h3>
             
             {isSubmitted && (
-              <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg flex items-center gap-2">
+              <div className="mb-4 p-3 bg-green-50 border border-green-200 text-green-800 rounded-lg flex items-center gap-2 text-sm">
                 <CheckCircle size={18} />
                 <span className="text-sm">Message sent successfully!</span>
               </div>
@@ -120,7 +120,7 @@ export default function ContactSection() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent text-black text-sm"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent text-gray-900 text-sm transition-shadow"
                   placeholder="Your name"
                 />
               </div>
@@ -135,7 +135,7 @@ export default function ContactSection() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent text-black text-sm"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent text-gray-900 text-sm transition-shadow"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -151,7 +151,7 @@ export default function ContactSection() {
                   onChange={handleInputChange}
                   required
                   rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-transparent resize-none text-black text-sm"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent resize-none text-gray-900 text-sm transition-shadow"
                   placeholder="Tell me about your project or just say hello!"
                 />
               </div>
@@ -159,7 +159,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                className="w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 {isLoading ? (
                   <>

@@ -158,7 +158,7 @@ const About = () => {
               </span>
             </motion.h2>
 
-            <div className="space-y-6 text-slate-600 text-[0.9375rem] md:text-base leading-[1.7] max-w-xl">
+            <div className="space-y-6 text-slate-600 text-[0.9375rem] font-semibold md:text-base leading-[1.7] max-w-5xl">
               <motion.p variants={item} className="text-slate-600/95">
                 <strong className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600 font-semibold text-slate-700">
                   Full Stack Developer
@@ -177,7 +177,7 @@ const About = () => {
             </div>
 
             {/* Stack */}
-            <motion.div variants={item} className="mt-14">
+            <motion.div variants={item} className="mt-10">
               <p className="text-sm font-medium tracking-[0.15em] uppercase text-slate-400 mb-5">
                 Stack
               </p>
