@@ -49,30 +49,34 @@ const experiences = [
   },
 ];
 
-const accentStyles: Record<string, { border: string; iconBg: string; line: string; badge: string }> = {
+const accentStyles: Record<string, { border: string; iconBg: string; line: string; badge: string; glow: string }> = {
   blue: {
-    border: "hover:border-blue-400/50",
+    border: "hover:border-blue-400/40",
     iconBg: "bg-blue-500/10 text-blue-600",
     line: "bg-blue-500",
-    badge: "bg-blue-100 text-blue-700",
+    badge: "bg-blue-500/10 text-blue-700 border border-blue-200/50",
+    glow: "group-hover:shadow-blue-500/10",
   },
   violet: {
-    border: "hover:border-violet-400/50",
+    border: "hover:border-violet-400/40",
     iconBg: "bg-violet-500/10 text-violet-600",
     line: "bg-violet-500",
-    badge: "bg-violet-100 text-violet-700",
+    badge: "bg-violet-500/10 text-violet-700 border border-violet-200/50",
+    glow: "group-hover:shadow-violet-500/10",
   },
   indigo: {
-    border: "hover:border-indigo-400/50",
+    border: "hover:border-indigo-400/40",
     iconBg: "bg-indigo-500/10 text-indigo-600",
     line: "bg-indigo-500",
-    badge: "bg-indigo-100 text-indigo-700",
+    badge: "bg-indigo-500/10 text-indigo-700 border border-indigo-200/50",
+    glow: "group-hover:shadow-indigo-500/10",
   },
   emerald: {
-    border: "hover:border-emerald-400/50",
+    border: "hover:border-emerald-400/40",
     iconBg: "bg-emerald-500/10 text-emerald-600",
     line: "bg-emerald-500",
-    badge: "bg-emerald-100 text-emerald-700",
+    badge: "bg-emerald-500/10 text-emerald-700 border border-emerald-200/50",
+    glow: "group-hover:shadow-emerald-500/10",
   },
 };
 
@@ -80,7 +84,7 @@ const Services: React.FC = () => {
   return (
     <section
       id="services"
-      className="relative py-20 px-6 md:px-12 lg:px-24 bg-[#fafafa] overflow-hidden"
+      className="relative min-h-screen flex items-center bg-[#fafafa] overflow-hidden px-6 md:px-12 lg:px-24 py-16"
       role="region"
       aria-labelledby="services-heading"
     >
@@ -94,78 +98,77 @@ const Services: React.FC = () => {
         }}
       />
 
-      <div className="container mx-auto relative z-10 max-w-5xl">
-        {/* Experience */}
-        <div className="mb-20">
-          <div className="mb-14">
-            <p className="text-sm font-medium tracking-widest uppercase text-gray-400 mb-2">
+      <div className="container mx-auto relative z-10 w-full max-w-6xl">
+        <header className="text-center mb-12 lg:mb-14">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-2">
+            What I Offer & Where I&apos;ve Been
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-semibold tracking-tight text-gray-900" id="services-heading">
+            Services & Experience
+          </h2>
+          <p className="text-gray-500 max-w-md mx-auto mt-2 text-sm leading-relaxed">
+            Design, development, and roles that shape what I build.
+          </p>
+        </header>
+
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-10 items-start">
+          {/* Left: Experience — vertical timeline */}
+          <div className="lg:sticky lg:top-24" role="list" aria-labelledby="experience-heading">
+            <h3 className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-6" id="experience-heading">
               Background
-            </p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 mb-3" id="experience-heading">
-              Experience
-            </h2>
-            <p className="text-gray-500 max-w-xl text-base leading-relaxed">
-              Roles and companies I&apos;ve worked with.
-            </p>
+            </h3>
+            <div className="space-y-0">
+              {experiences.map((exp, index) => {
+                const style = accentStyles[exp.accent];
+                const isLast = index === experiences.length - 1;
+                return (
+                  <article
+                    key={index}
+                    className={`group relative flex gap-4 py-5 ${!isLast ? "border-b border-gray-200/60" : ""}`}
+                    role="listitem"
+                    tabIndex={0}
+                  >
+                    <div className="flex flex-col items-center shrink-0">
+                      <div className={`h-2 w-2 rounded-full ${style.line} ring-4 ring-[#fafafa]`} aria-hidden />
+                      {!isLast && (
+                        <div className="w-px flex-1 min-h-[2rem] mt-1 bg-gradient-to-b from-gray-300/80 to-transparent" aria-hidden />
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0 pb-1">
+                      <span className={`inline-block rounded-full px-3 py-1 text-[11px] font-medium mb-2 ${style.badge}`}>
+                        {exp.period}
+                      </span>
+                      <h4 className="text-base font-semibold text-gray-900 tracking-tight">{exp.company}</h4>
+                      <p className="text-sm text-gray-500">{exp.role}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3" role="list" aria-labelledby="experience-heading">
-            {experiences.map((exp, index) => {
-              const style = accentStyles[exp.accent];
-              return (
-                <article
-                  key={index}
-                  className={`group relative flex flex-col rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm transition-all duration-300 ${style.border} hover:shadow-xl`}
-                  role="listitem"
-                  tabIndex={0}
-                >
-                  <div className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${style.line}`} />
-                  <span className={`inline-flex w-fit rounded-md px-2.5 py-1 text-xs font-medium mb-4 ${style.badge}`}>
-                    {exp.period}
-                  </span>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1 tracking-tight">{exp.company}</h3>
-                  <p className="text-sm text-gray-500">{exp.role}</p>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Services */}
-        <div>
-          <div className="mb-14">
-            <p className="text-sm font-medium tracking-widest uppercase text-gray-400 mb-2">
-              What I Offer
-            </p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 mb-3" id="services-heading">
-              Services
-            </h2>
-            <p className="text-gray-500 max-w-xl text-base leading-relaxed">
-              Design and development services for modern products.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4" role="list" aria-labelledby="services-heading">
+          {/* Right: Services — 2x2 grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" role="list" aria-labelledby="services-heading">
             {services.map((service, index) => {
               const IconComponent = service.icon;
               const style = accentStyles[service.accent];
               return (
                 <article
                   key={index}
-                  className={`group relative flex flex-col rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm transition-all duration-300 ${style.border} hover:shadow-xl`}
+                  className={`group relative flex flex-col rounded-2xl border border-gray-200/70 bg-white/80 backdrop-blur-sm p-6 transition-all duration-300 hover:shadow-xl hover:shadow-black/5 ${style.border} ${style.glow}`}
                   role="listitem"
                   tabIndex={0}
                 >
-                  <div className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${style.line}`} />
+                  <div className={`absolute left-0 top-6 bottom-6 w-1 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${style.line}`} aria-hidden />
                   <div
-                    className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl ${style.iconBg} transition-transform duration-300 group-hover:scale-105`}
+                    className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl ${style.iconBg} transition-all duration-300 group-hover:scale-105 group-hover:rotate-3`}
                     aria-hidden
                   >
-                    <IconComponent size={22} strokeWidth={1.75} />
+                    <IconComponent size={24} strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 tracking-tight">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2 tracking-tight pl-0.5">
                     {service.title}
-                  </h3>
+                  </h4>
                   <p className="text-sm text-gray-500 leading-relaxed flex-1">
                     {service.description}
                   </p>
