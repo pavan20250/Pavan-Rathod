@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Code, Database, Cloud, Zap } from "lucide-react";
 
@@ -66,6 +66,22 @@ const item = {
 };
 
 const About = () => {
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+  const [videoInView, setVideoInView] = useState(false);
+
+  useEffect(() => {
+    const el = videoContainerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) setVideoInView(true);
+      },
+      { rootMargin: "100px", threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <section
       id="about"
@@ -84,16 +100,17 @@ const About = () => {
 
       <div className="container relative mx-auto max-w-5xl z-10">
         <div className="flex flex-col lg:flex-row lg:items-center gap-16 lg:gap-24">
-          {/* Media block */}
-          <div className="shrink-0 mx-auto lg:mx-0 order-2 lg:order-1">
+          {/* Media block - video loads only when in viewport */}
+          <div ref={videoContainerRef} className="shrink-0 mx-auto lg:mx-0 order-2 lg:order-1">
             <div className="relative max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] w-full mx-auto">
               <div className="relative overflow-hidden rounded-[2rem] bg-[#fafafa]">
                 <video
-                  src="/Anime_Boy_Intro.mp4"
+                  src={videoInView ? "/Anime_Boy_Intro.mp4" : undefined}
                   autoPlay
                   loop
                   muted
                   playsInline
+                  preload={videoInView ? "auto" : "none"}
                   className="w-full h-auto object-contain relative z-0"
                   aria-label="Intro video"
                 />
