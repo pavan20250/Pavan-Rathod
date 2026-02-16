@@ -218,9 +218,9 @@ const About = () => {
       <div className="sr-only">
         <h2>Pavan Rathod - Full Stack Developer</h2>
         <p>
-          Pavan Rathod is a skilled Full Stack Developer specializing in React, TypeScript,
+          Pavan is a skilled Full Stack Developer specializing in React, TypeScript,
           JavaScript, Node.js, and AWS. Pavan creates modern web applications and provides expert
-          development services. Contact Pavan Rathod for your next project.
+          development services. Contact Pavan for your next project.
         </p>
         <p>
           Keywords: Pavan, Pavan Rathod, Full Stack Developer, React Developer, TypeScript

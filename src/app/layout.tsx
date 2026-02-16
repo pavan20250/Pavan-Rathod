@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Pavan Rathod - Software Developer ",
   description:
-    "Pavan Rathod is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical blogs on modern web development.",
+    "Pavan is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical blogs on modern web development.",
   keywords: [
     "Pavan Rathod",
     "Software Developer",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pavan Rathod - Software Developer ",
     description:
-      "Pavan Rathod is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical insights.",
+      "Pavan is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical insights.",
     url: "https://pavanrathod.in",
     siteName: "Pavan Rathod - Portfolio",
     type: "website",

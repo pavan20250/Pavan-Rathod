@@ -230,8 +230,8 @@ const Header = () => {
             href="https://www.linkedin.com/in/pavan-rathod-0203k/"
             target="_blank"
             rel="noopener noreferrer"
-            title="Pavan Rathod LinkedIn Profile - Full Stack Developer"
-            aria-label="Visit Pavan Rathod's LinkedIn profile"
+            title="Pavan LinkedIn Profile - Full Stack Developer"
+            aria-label="Visit Pavan's LinkedIn profile"
             className="group relative flex items-center justify-center w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/0 to-blue-600/0 group-hover:from-blue-400/20 group-hover:to-blue-600/30 transition-all duration-300"></div>
@@ -250,8 +250,8 @@ const Header = () => {
             href="https://github.com/pavan20250"
             target="_blank"
             rel="noopener noreferrer"
-            title="Pavan Rathod GitHub Profile - Full Stack Developer"
-            aria-label="Visit Pavan Rathod's GitHub profile"
+            title="Pavan GitHub Profile - Full Stack Developer"
+            aria-label="Visit Pavan's GitHub profile"
             className="group relative flex items-center justify-center w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-700/0 to-gray-900/0 group-hover:from-gray-700/20 group-hover:to-gray-900/30 transition-all duration-300"></div>

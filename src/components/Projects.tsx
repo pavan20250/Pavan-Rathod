@@ -147,12 +147,12 @@ const Projects = () => {
                 </div>
 
                 {/* Links */}
-                <div className="flex flex-wrap gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-gray-100">
+                <div className="flex flex-wrap gap-2 pt-3 sm:pt-4 border-t border-gray-100">
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-gray-700 transition-colors py-1 min-h-[44px] sm:min-h-0 ${style.linkHover}`}
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
                   >
                     <Github size={14} className="shrink-0" />
                     Code
@@ -161,7 +161,7 @@ const Projects = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-gray-700 transition-colors py-1 min-h-[44px] sm:min-h-0 ${style.linkHover}`}
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-gray-900 px-3 py-2 text-xs sm:text-sm font-medium text-white hover:bg-gray-800 transition-colors"
                   >
                     <ExternalLink size={14} className="shrink-0" />
                     Live demo

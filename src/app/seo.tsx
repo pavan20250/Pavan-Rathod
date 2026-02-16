@@ -11,7 +11,7 @@ interface SEOProps {
 
 export default function SEO({
   title = "Pavan Rathod - Software Developer ",
-  description = "Pavan Rathod is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical blogs on modern web development.",
+  description = "Pavan is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical blogs on modern web development.",
   keywords = [
     "Pavan Rathod",
     "Software Developer",
