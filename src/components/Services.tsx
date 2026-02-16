@@ -84,7 +84,7 @@ const Services: React.FC = () => {
   return (
     <section
       id="services"
-      className="relative min-h-screen flex items-center bg-[#fafafa] overflow-hidden px-6 md:px-12 lg:px-24 py-16"
+      className="relative min-h-0 sm:min-h-screen flex items-center bg-[#fafafa] overflow-hidden px-4 sm:px-6 md:px-12 lg:px-24 py-10 sm:py-14 md:py-16"
       role="region"
       aria-labelledby="services-heading"
     >
@@ -99,22 +99,22 @@ const Services: React.FC = () => {
       />
 
       <div className="container mx-auto relative z-10 w-full max-w-6xl">
-        <header className="text-center mb-12 lg:mb-14">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-2">
+        <header className="text-center mb-8 sm:mb-10 lg:mb-14">
+          <p className="text-[10px] sm:text-xs font-semibold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-gray-400 mb-1.5 sm:mb-2">
             What I Offer & Where I&apos;ve Been
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-semibold tracking-tight text-gray-900" id="services-heading">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-semibold tracking-tight text-gray-900 px-1" id="services-heading">
             Services & Experience
           </h2>
-          <p className="text-gray-500 max-w-md mx-auto mt-2 text-sm leading-relaxed">
+          <p className="text-gray-500 max-w-md mx-auto mt-1.5 sm:mt-2 text-xs sm:text-sm leading-relaxed px-2">
             Design, development, and roles that shape what I build.
           </p>
         </header>
 
-        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-10 items-start">
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-6 sm:gap-8 lg:gap-10 items-start">
           {/* Left: Experience — vertical timeline */}
           <div className="lg:sticky lg:top-24" role="list" aria-labelledby="experience-heading">
-            <h3 className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-6" id="experience-heading">
+            <h3 className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4 sm:mb-6" id="experience-heading">
               Background
             </h3>
             <div className="space-y-0">
@@ -124,7 +124,7 @@ const Services: React.FC = () => {
                 return (
                   <article
                     key={index}
-                    className={`group relative flex gap-4 py-5 ${!isLast ? "border-b border-gray-200/60" : ""}`}
+                    className={`group relative flex gap-3 sm:gap-4 py-4 sm:py-5 ${!isLast ? "border-b border-gray-200/60" : ""}`}
                     role="listitem"
                     tabIndex={0}
                   >
@@ -135,11 +135,11 @@ const Services: React.FC = () => {
                       )}
                     </div>
                     <div className="flex-1 min-w-0 pb-1">
-                      <span className={`inline-block rounded-full px-3 py-1 text-[11px] font-medium mb-2 ${style.badge}`}>
+                      <span className={`inline-block rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-medium mb-1.5 sm:mb-2 ${style.badge}`}>
                         {exp.period}
                       </span>
-                      <h4 className="text-base font-semibold text-gray-900 tracking-tight">{exp.company}</h4>
-                      <p className="text-sm text-gray-500">{exp.role}</p>
+                      <h4 className="text-sm sm:text-base font-semibold text-gray-900 tracking-tight">{exp.company}</h4>
+                      <p className="text-xs sm:text-sm text-gray-500">{exp.role}</p>
                     </div>
                   </article>
                 );
@@ -148,28 +148,28 @@ const Services: React.FC = () => {
           </div>
 
           {/* Right: Services — 2x2 grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" role="list" aria-labelledby="services-heading">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4" role="list" aria-labelledby="services-heading">
             {services.map((service, index) => {
               const IconComponent = service.icon;
               const style = accentStyles[service.accent];
               return (
                 <article
                   key={index}
-                  className={`group relative flex flex-col rounded-2xl border border-gray-200/70 bg-white/80 backdrop-blur-sm p-6 transition-all duration-300 hover:shadow-xl hover:shadow-black/5 ${style.border} ${style.glow}`}
+                  className={`group relative flex flex-col rounded-xl sm:rounded-2xl border border-gray-200/70 bg-white/80 backdrop-blur-sm p-4 sm:p-5 md:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-black/5 ${style.border} ${style.glow}`}
                   role="listitem"
                   tabIndex={0}
                 >
-                  <div className={`absolute left-0 top-6 bottom-6 w-1 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${style.line}`} aria-hidden />
+                  <div className={`absolute left-0 top-4 sm:top-6 bottom-4 sm:bottom-6 w-1 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${style.line}`} aria-hidden />
                   <div
-                    className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl ${style.iconBg} transition-all duration-300 group-hover:scale-105 group-hover:rotate-3`}
+                    className={`mb-3 sm:mb-4 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl ${style.iconBg} transition-all duration-300 group-hover:scale-105 group-hover:rotate-3`}
                     aria-hidden
                   >
-                    <IconComponent size={24} strokeWidth={1.5} />
+                    <IconComponent size={20} strokeWidth={1.5} />
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2 tracking-tight pl-0.5">
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-1.5 sm:mb-2 tracking-tight pl-0.5">
                     {service.title}
                   </h4>
-                  <p className="text-sm text-gray-500 leading-relaxed flex-1">
+                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed flex-1">
                     {service.description}
                   </p>
                 </article>
