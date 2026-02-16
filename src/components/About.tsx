@@ -85,7 +85,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative py-24 md:py-32 px-6 md:px-12 lg:px-24 overflow-hidden bg-[#fafafa]"
+      className="relative py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden bg-[#fafafa]"
     >
       {/* Subtle grid background */}
       <div
@@ -99,10 +99,10 @@ const About = () => {
       />
 
       <div className="container relative mx-auto max-w-5xl z-10">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-16 lg:gap-24">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-8 sm:gap-12 lg:gap-24">
           {/* Media block - video loads only when in viewport */}
           <div ref={videoContainerRef} className="shrink-0 mx-auto lg:mx-0 order-2 lg:order-1">
-            <div className="relative max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] w-full mx-auto">
+            <div className="relative max-w-[10rem] sm:max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] w-full mx-auto">
               <div className="relative overflow-hidden rounded-[2rem] bg-[#fafafa]">
                 <video
                   src={videoInView ? "/Anime_Boy_Intro.mp4" : undefined}
@@ -135,13 +135,13 @@ const About = () => {
           >
             <motion.p
               variants={item}
-              className="text-sm font-medium tracking-[0.2em] uppercase text-violet-600/90 mb-2"
+              className="text-xs sm:text-sm font-medium tracking-[0.15em] sm:tracking-[0.2em] uppercase text-violet-600/90 mb-1.5 sm:mb-2"
             >
               About
             </motion.p>
             <motion.h2
               variants={item}
-              className="text-3xl md:text-4xl lg:text-[2.5rem] font-semibold text-slate-900 tracking-tight mb-8 leading-[1.2]"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-semibold text-slate-900 tracking-tight mb-6 sm:mb-8 leading-[1.2]"
             >
               Hi, I&apos;m{" "}
               <span className="relative inline-block">
@@ -158,7 +158,7 @@ const About = () => {
               </span>
             </motion.h2>
 
-            <div className="space-y-6 text-slate-600 text-[0.9375rem] font-semibold md:text-base leading-[1.7] max-w-5xl">
+            <div className="space-y-4 sm:space-y-6 text-slate-600 text-sm sm:text-[0.9375rem] font-semibold md:text-base leading-[1.7] max-w-5xl">
               <motion.p variants={item} className="text-slate-600/95">
                 <strong className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600 font-semibold text-slate-700">
                   Full Stack Developer
@@ -177,11 +177,11 @@ const About = () => {
             </div>
 
             {/* Stack */}
-            <motion.div variants={item} className="mt-10">
-              <p className="text-sm font-medium tracking-[0.15em] uppercase text-slate-400 mb-5">
+            <motion.div variants={item} className="mt-8 sm:mt-10">
+              <p className="text-xs sm:text-sm font-medium tracking-[0.15em] uppercase text-slate-400 mb-3 sm:mb-5">
                 Stack
               </p>
-              <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <ul className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                 {skills.map((skill, index) => {
                   const Icon = skill.icon;
                   return (
@@ -189,17 +189,17 @@ const About = () => {
                       key={index}
                       variants={item}
                       whileHover={{ y: -2, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-                      className={`group flex flex-col gap-3 rounded-2xl py-5 px-4 ${skill.bg} border ${skill.border} shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.12)] transition-all duration-300 cursor-default`}
+                      className={`group flex flex-col gap-2 sm:gap-3 rounded-xl sm:rounded-2xl py-4 sm:py-5 px-3 sm:px-4 ${skill.bg} border ${skill.border} shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.12)] transition-all duration-300 cursor-default`}
                     >
                       <span
-                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${skill.iconBg} ${skill.iconHover} transition-colors duration-300`}
+                        className={`flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-lg sm:rounded-xl ${skill.iconBg} ${skill.iconHover} transition-colors duration-300`}
                       >
-                        <Icon size={22} strokeWidth={1.6} />
+                        <Icon size={20} strokeWidth={1.6} />
                       </span>
                       <div className="min-w-0">
-                        <p className="font-semibold text-slate-800 text-sm tracking-tight">{skill.name}</p>
+                        <p className="font-semibold text-slate-800 text-xs sm:text-sm tracking-tight">{skill.name}</p>
                         <p
-                          className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed"
+                          className="text-[10px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1 line-clamp-2 leading-relaxed"
                           title={skill.description}
                         >
                           {skill.description}
