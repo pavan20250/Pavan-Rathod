@@ -155,6 +155,26 @@ body {
   50% { opacity: 1; }
 }
 
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+/* macOS Terminal window chrome */
+.mac-terminal {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    0 12px 24px -8px rgba(0, 0, 0, 0.15),
+    0 20px 40px -12px rgba(0, 0, 0, 0.12);
+}
+
 .animate-pulse-slow {
   animation: pulse-slow 4s ease-in-out infinite;
 }

@@ -124,18 +124,18 @@ const Services: React.FC = () => {
                 return (
                   <article
                     key={index}
-                    className={`group relative flex gap-3 sm:gap-4 py-4 sm:py-5 ${!isLast ? "border-b border-gray-200/60" : ""}`}
+                    className={`group relative flex gap-3 sm:gap-4 py-4 sm:py-5 ${!isLast ? "border-b border-white/50" : ""}`}
                     role="listitem"
                     tabIndex={0}
                   >
                     <div className="flex flex-col items-center shrink-0">
                       <div className={`h-2 w-2 rounded-full ${style.line} ring-4 ring-[#fafafa]`} aria-hidden />
                       {!isLast && (
-                        <div className="w-px flex-1 min-h-[2rem] mt-1 bg-gradient-to-b from-gray-300/80 to-transparent" aria-hidden />
+                        <div className="w-px flex-1 min-h-[2rem] mt-1 bg-gradient-to-b from-slate-300/60 to-transparent" aria-hidden />
                       )}
                     </div>
                     <div className="flex-1 min-w-0 pb-1">
-                      <span className={`inline-block rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-medium mb-1.5 sm:mb-2 ${style.badge}`}>
+                      <span className={`inline-block rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-medium mb-1.5 sm:mb-2 backdrop-blur-sm border-white/40 ${style.badge}`}>
                         {exp.period}
                       </span>
                       <h4 className="text-sm sm:text-base font-semibold text-gray-900 tracking-tight">{exp.company}</h4>
@@ -155,10 +155,11 @@ const Services: React.FC = () => {
               return (
                 <article
                   key={index}
-                  className={`group relative flex flex-col rounded-xl sm:rounded-2xl border border-gray-200/70 bg-white/80 backdrop-blur-sm p-4 sm:p-5 md:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-black/5 ${style.border} ${style.glow}`}
+                  className={`group relative flex flex-col rounded-xl sm:rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md shadow-lg shadow-slate-300/20 p-4 sm:p-5 md:p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-400/25 hover:bg-white/60 ${style.border} ${style.glow}`}
                   role="listitem"
                   tabIndex={0}
                 >
+                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/70 pointer-events-none" aria-hidden />
                   <div className={`absolute left-0 top-4 sm:top-6 bottom-4 sm:bottom-6 w-1 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${style.line}`} aria-hidden />
                   <div
                     className={`mb-3 sm:mb-4 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl ${style.iconBg} transition-all duration-300 group-hover:scale-105 group-hover:rotate-3`}

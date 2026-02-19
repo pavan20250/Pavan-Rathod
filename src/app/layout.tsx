@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,11 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pavan Rathod - Software Developer ",
-  description:
-    "Pavan is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical blogs on modern web development.",
+  title: site.title,
+  description: site.description,
   keywords: [
-    "Pavan Rathod",
+    site.name,
     "Software Developer",
     "Full Stack Developer",
     "React Developer",
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     "Portfolio",
     "Software Engineer"
   ],
-  authors: [{ name: "Pavan Rathod" }],
-  creator: "Pavan Rathod",
-  publisher: "Pavan Rathod",
+  authors: [{ name: site.name }],
+  creator: site.name,
+  publisher: site.name,
   robots: {
     index: true,
     follow: true,
@@ -46,11 +46,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Pavan Rathod - Software Developer ",
-    description:
-      "Pavan is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical insights.",
-    url: "https://pavanrathod.in",
-    siteName: "Pavan Rathod - Portfolio",
+    title: site.title,
+    description: site.description,
+    url: site.url,
+    siteName: `${site.name} - Portfolio`,
     type: "website",
     locale: "en_US",
     images: [
@@ -58,19 +57,19 @@ export const metadata: Metadata = {
         url: "https://pavanrathod.in/pavan.jpg",
         width: 1200,
         height: 630,
-        alt: "Pavan Rathod - Software Developer Portfolio",
+        alt: `${site.name} - Software Developer Portfolio`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pavan Rathod - Software Developer",
-    description: "Passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS",
+    title: site.title,
+    description: site.description,
     images: ["https://pavanrathod.in/pavan.jpg"],
     creator: "@pavanrathod",
   },
   alternates: {
-    canonical: "https://pavanrathod.in",
+    canonical: site.url,
   },
   verification: {
     google: "your-google-verification-code", // Replace with actual verification code
@@ -92,17 +91,17 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Pavan Rathod",
-              givenName: "Pavan",
-              familyName: "Rathod",
+              name: site.name,
+              givenName: site.shortName,
+              familyName: site.name.split(" ").slice(1).join(" ") || site.name,
               jobTitle: "Full Stack Developer",
               description: "Passionate Full Stack Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS",
-              url: "https://pavanrathod.in",
-              image: "https://pavanrathod.in/pavan.jpg",
+              url: site.url,
+              image: `${site.url}/pavan.jpg`,
               sameAs: [
                 "https://www.linkedin.com/in/pavan-rathod-0203k/",
                 "https://github.com/pavan20250",
-                "https://pavanrathod.in",
+                site.url,
               ],
               knowsAbout: [
                 "React",

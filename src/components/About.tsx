@@ -3,7 +3,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Code, Database, Cloud, Zap } from "lucide-react";
+import { site } from "@/lib/site";
 
+const atAGlance = [
+  { value: "10+", label: "Projects (1 startup)" },
+  { value: "1+", label: "Years of Experience" },
+  { value: "E2E", label: "Full stack" },
+  { value: "—", label: "Open to work" },
+];
 
 const skills = [
   {
@@ -145,7 +152,7 @@ const About = () => {
             >
               Hi, I&apos;m{" "}
               <span className="relative inline-block">
-                <span className="relative z-10">Pavan</span>
+                <span className="relative z-10">{site.shortName}</span>
                 <motion.span
                   className="absolute bottom-1 left-0 right-0 h-2.5 bg-gradient-to-r rounded-sm -z-0"
                   aria-hidden
@@ -175,6 +182,29 @@ const About = () => {
                 and problem-solving skills.
               </motion.p>
             </div>
+
+            {/* At a glance — open source / README-style metrics */}
+            <motion.div
+              variants={item}
+              className="mt-6 sm:mt-8 rounded-r-lg border border-slate-200/80 border-l-[3px] border-l-slate-400 bg-slate-50/80 font-mono text-sm overflow-hidden"
+              aria-label="Key metrics"
+            >
+              <div className="flex items-center gap-1 px-3 py-1.5 border-b border-slate-200/60 bg-slate-100/50">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
+                <span className="text-[10px] sm:text-xs uppercase tracking-wider text-slate-500">at a glance</span>
+              </div>
+              <div className="flex flex-wrap divide-x divide-slate-200/80">
+                {atAGlance.map((stat, i) => (
+                  <div
+                    key={i}
+                    className="flex min-w-0 flex-1 basis-1/2 sm:basis-0 items-baseline gap-2 px-3 sm:px-4 py-3 sm:py-3.5"
+                  >
+                    <span className="tabular-nums font-semibold text-slate-800">{stat.value}</span>
+                    <span className="text-[10px] sm:text-xs uppercase tracking-widest text-slate-500">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
             {/* Stack */}
             <motion.div variants={item} className="mt-8 sm:mt-10">
@@ -216,14 +246,14 @@ const About = () => {
 
       {/* Hidden SEO content */}
       <div className="sr-only">
-        <h2>Pavan Rathod - Full Stack Developer</h2>
+        <h2>{site.name} - Full Stack Developer</h2>
         <p>
-          Pavan is a skilled Full Stack Developer specializing in React, TypeScript,
-          JavaScript, Node.js, and AWS. Pavan creates modern web applications and provides expert
-          development services. Contact Pavan for your next project.
+          {site.shortName} is a skilled Full Stack Developer specializing in React, TypeScript,
+          JavaScript, Node.js, and AWS. {site.shortName} creates modern web applications and provides expert
+          development services. Contact {site.shortName} for your next project.
         </p>
         <p>
-          Keywords: Pavan, Pavan Rathod, Full Stack Developer, React Developer, TypeScript
+          Keywords: {site.shortName}, {site.name}, Full Stack Developer, React Developer, TypeScript
           Developer, JavaScript Developer, Node.js Developer, AWS Developer, Web Developer,
           Software Engineer, Portfolio, LinkedIn, GitHub
         </p>
