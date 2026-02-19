@@ -88,7 +88,7 @@ const Projects = () => {
         }}
       />
 
-      <div className="container mx-auto relative z-10 max-w-6xl">
+      <div className="container mx-auto relative z-10 max-w-5xl">
         {/* Section header */}
         <div className="mb-6 sm:mb-8">
           <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
