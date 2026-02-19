@@ -3,10 +3,11 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { Mails, Menu, X } from "lucide-react";
+import { site } from "@/lib/site";
 import pavan from "../../public/gimini_pavan.png";
 import bgImage from "../../public/bg.jpg";
 
-const SECTION_IDS = ['home', 'about', 'projects', 'services', 'contact'] as const;
+const SECTION_IDS = ['home', 'about', 'projects', 'now', 'services', 'contact'] as const;
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,10 +53,14 @@ const Header = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <button onClick={() => scrollToSection('home')} className="outline-none">
-                <span className={`text-xl font-bold ${isScrolled ? 'text-gray-800' : 'text-gray-800'}`}>
-                  Pavan
-                </span>
+              <button onClick={() => scrollToSection('home')} className="outline-none flex items-center">
+                <Image
+                  src="/pavan_logo.png"
+                  alt={site.name}
+                  width={120}
+                  height={36}
+                  className="h-10 w-auto object-contain"
+                />
               </button>
             </div>
 
@@ -66,6 +71,7 @@ const Header = () => {
                   { name: 'Home', id: 'home' },
                   { name: 'About', id: 'about' },
                   { name: 'Projects', id: 'projects' },
+                  { name: 'Now', id: 'now' },
                   { name: 'Services', id: 'services' },
                   { name: 'Contact', id: 'contact' }
                 ].map((item) => (
@@ -104,6 +110,7 @@ const Header = () => {
                 { name: 'Home', id: 'home' },
                 { name: 'About', id: 'about' },
                 { name: 'Projects', id: 'projects' },
+                { name: 'Now', id: 'now' },
                 { name: 'Services', id: 'services' },
                 { name: 'Contact', id: 'contact' }
               ].map((item) => (
@@ -153,7 +160,7 @@ const Header = () => {
             <div className="w-28 h-28 xs:w-32 xs:h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-52 lg:h-52 rounded-full overflow-hidden border-2 sm:border-4 border-white/80 shadow-2xl backdrop-blur-sm group-hover:scale-105 transition-transform duration-500">
               <Image
                src={pavan}
-               alt="Pavan Rathod - Full Stack Developer"
+               alt={`${site.name} - Full Stack Developer`}
                width={208}
                height={208}
                className="w-full h-full object-cover"
@@ -171,7 +178,7 @@ const Header = () => {
 
           {/* Enhanced Name Tag - Mobile Responsive */}
           <div className="absolute flex items-center gap-1 sm:gap-2 bg-white/90 backdrop-blur-sm px-2 sm:px-3 md:px-5 py-1 rounded-full shadow-lg transform translate-x-16 -translate-y-8 xs:translate-x-20 xs:-translate-y-10 sm:-translate-x-16 sm:-translate-y-12 md:-translate-x-20 md:-translate-y-12 lg:translate-x-40 lg:-translate-y-20 -rotate-12 group-hover:scale-110 transition-transform duration-300">
-            <p className="text-xs sm:text-sm md:text-lg text-black font-mono font-bold">Pavan</p>
+            <p className="text-xs sm:text-sm md:text-lg text-black font-mono font-bold">{site.shortName}</p>
             <span className="text-sm sm:text-base md:text-lg lg:text-xl animate-bounce md:animate-bounce">👋🏼</span>
           </div>
         </div>
@@ -210,8 +217,8 @@ const Header = () => {
             href="mailto:pavannaik0203@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
-            title="Contact Pavan Rathod - Full Stack Developer"
-            aria-label="Email Pavan Rathod"
+            title={`Contact ${site.name} - Full Stack Developer`}
+            aria-label={`Email ${site.name}`}
             className="group relative flex items-center justify-center w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400/0 to-emerald-500/0 group-hover:from-emerald-400/20 group-hover:to-emerald-500/30 transition-all duration-300"></div>
@@ -230,8 +237,8 @@ const Header = () => {
             href="https://www.linkedin.com/in/pavan-rathod-0203k/"
             target="_blank"
             rel="noopener noreferrer"
-            title="Pavan LinkedIn Profile - Full Stack Developer"
-            aria-label="Visit Pavan's LinkedIn profile"
+            title={`${site.name} LinkedIn Profile - Full Stack Developer`}
+            aria-label={`Visit ${site.name}'s LinkedIn profile`}
             className="group relative flex items-center justify-center w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/0 to-blue-600/0 group-hover:from-blue-400/20 group-hover:to-blue-600/30 transition-all duration-300"></div>
@@ -250,8 +257,8 @@ const Header = () => {
             href="https://github.com/pavan20250"
             target="_blank"
             rel="noopener noreferrer"
-            title="Pavan GitHub Profile - Full Stack Developer"
-            aria-label="Visit Pavan's GitHub profile"
+            title={`${site.name} GitHub Profile - Full Stack Developer`}
+            aria-label={`Visit ${site.name}'s GitHub profile`}
             className="group relative flex items-center justify-center w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-700/0 to-gray-900/0 group-hover:from-gray-700/20 group-hover:to-gray-900/30 transition-all duration-300"></div>

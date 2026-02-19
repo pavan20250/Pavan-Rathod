@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { site } from '@/lib/site';
 
 interface SEOProps {
   title?: string;
@@ -10,12 +11,11 @@ interface SEOProps {
 }
 
 export default function SEO({
-  title = "Pavan Rathod - Software Developer ",
-  description = "Pavan is a passionate Software Developer specializing in React, TypeScript, JavaScript, Node.js, and AWS. Explore my portfolio, projects, and technical blogs on modern web development.",
+  title = site.title,
+  description = site.description,
   keywords = [
-    "Pavan Rathod",
+    site.name,
     "Software Developer",
-    "Katravath Pavan",
     "Full Stack Developer",
     "React Developer",
     "TypeScript Developer",
@@ -28,8 +28,8 @@ export default function SEO({
     "Portfolio",
     "Software Engineer"
   ],
-  image = "https://pavanrathod.in/pavan.jpg",
-  url = "https://pavanrathod.in",
+  image = `${site.url}/pavan.jpg`,
+  url = site.url,
   type = "website"
 }: SEOProps) {
   return (
@@ -38,7 +38,7 @@ export default function SEO({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords.join(', ')} />
-      <meta name="author" content="Pavan Rathod" />
+      <meta name="author" content={site.name} />
       <meta name="robots" content="index, follow" />
       <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
@@ -54,7 +54,7 @@ export default function SEO({
       <meta property="og:image" content={image} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
-      <meta property="og:site_name" content="Pavan Rathod - Portfolio" />
+      <meta property="og:site_name" content={`${site.name} - Portfolio`} />
       <meta property="og:locale" content="en_US" />
       
       {/* Twitter Card Meta Tags */}
@@ -76,9 +76,9 @@ export default function SEO({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Person",
-            name: "Pavan Rathod",
-            givenName: "Pavan",
-            familyName: "Rathod",
+            name: site.name,
+            givenName: site.shortName,
+            familyName: site.name.split(" ").slice(1).join(" ") || site.name,
             jobTitle: "Full Stack Developer",
             description: description,
             url: url,
@@ -86,7 +86,7 @@ export default function SEO({
             sameAs: [
               "https://www.linkedin.com/in/pavan-rathod-0203k/",
               "https://github.com/pavan20250",
-              "https://pavanrathod.in",
+              site.url,
             ],
             knowsAbout: [
               "React",

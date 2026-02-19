@@ -19,6 +19,7 @@ const projects = [
     liveUrl: "https://mindcare-ai-blush.vercel.app",
     icon: Smartphone,
     accent: "violet",
+    badge: "Startup idea",
   },
   {
     title: "Food Delivery App",
@@ -87,7 +88,7 @@ const Projects = () => {
         }}
       />
 
-      <div className="container mx-auto relative z-10 max-w-7xl">
+      <div className="container mx-auto relative z-10 max-w-6xl">
         {/* Section header */}
         <div className="mb-6 sm:mb-8">
           <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
@@ -112,12 +113,15 @@ const Projects = () => {
             return (
               <article
                 key={index}
-                className={`group/card relative flex flex-col rounded-xl sm:rounded-2xl border border-gray-200/90 bg-white/80 backdrop-blur-sm p-4 sm:p-5 md:p-6 shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-gray-200/40 ${style.border}`}
+                className={`group/card relative flex flex-col rounded-xl sm:rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md shadow-lg shadow-slate-300/20 p-4 sm:p-5 md:p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-400/25 hover:bg-white/60 ${style.border}`}
               >
+                {/* Glass edge highlight */}
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/70 pointer-events-none" />
                 {/* Accent line on hover */}
                 <div
                   className={`absolute top-0 left-0 right-0 h-[3px] rounded-t-xl sm:rounded-t-2xl opacity-0 transition-opacity duration-300 group-hover/card:opacity-100 ${style.line}`}
                 />
+                <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-xl sm:rounded-t-2xl opacity-0 transition-opacity duration-300 group-hover/card:opacity-100 bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none" />
 
                 {/* Icon */}
                 <div
@@ -127,15 +131,22 @@ const Projects = () => {
                 </div>
 
                 {/* Title & description */}
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1.5 sm:mb-2 tracking-tight">
-                  {project.title}
-                </h3>
+                <div className="mb-1.5 sm:mb-2 flex flex-wrap items-center gap-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">
+                    {project.title}
+                  </h3>
+                  {"badge" in project && project.badge && (
+                    <span className="rounded-md border border-violet-200/80 bg-violet-50/80 px-2 py-0.5 text-[10px] font-medium text-violet-700">
+                      {project.badge}
+                    </span>
+                  )}
+                </div>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 sm:mb-5 flex-1 min-h-0">
                   {project.description}
                 </p>
 
                 {/* Tech stack - hidden on mobile for compact 2-column layout */}
-                <div className="hidden sm:flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5">
+                {/* <div className="hidden sm:flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
@@ -144,15 +155,15 @@ const Projects = () => {
                       {tech}
                     </span>
                   ))}
-                </div>
+                </div> */}
 
                 {/* Links */}
-                <div className="flex flex-wrap gap-2 pt-3 sm:pt-4 border-t border-gray-100">
+                <div className="flex flex-wrap gap-2 pt-3 sm:pt-4 border-t border-white/50">
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-white/80 bg-white/50 backdrop-blur-sm px-3 py-2 text-xs sm:text-sm font-medium text-gray-700 shadow-sm hover:bg-white/80 transition-colors"
                   >
                     <Github size={14} className="shrink-0" />
                     Code
@@ -161,7 +172,7 @@ const Projects = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-gray-900 px-3 py-2 text-xs sm:text-sm font-medium text-white hover:bg-gray-800 transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-slate-800/90 backdrop-blur-sm px-3 py-2 text-xs sm:text-sm font-medium text-white shadow-md hover:bg-slate-700/90 transition-colors"
                   >
                     <ExternalLink size={14} className="shrink-0" />
                     Live demo
@@ -178,7 +189,7 @@ const Projects = () => {
             href="https://github.com/pavan20250"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 px-5 sm:px-6 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-gray-900/20 transition-all hover:bg-gray-800 hover:shadow-xl hover:shadow-gray-900/25 hover:-translate-y-0.5 min-h-[44px] touch-manipulation"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-800/90 backdrop-blur-sm px-5 sm:px-6 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-slate-400/20 transition-all hover:bg-slate-700/90 hover:shadow-xl hover:shadow-slate-500/25 hover:-translate-y-0.5 min-h-[44px] touch-manipulation"
           >
             <Github size={16} className="shrink-0" />
             View more on GitHub
