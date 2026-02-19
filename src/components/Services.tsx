@@ -98,7 +98,7 @@ const Services: React.FC = () => {
         }}
       />
 
-      <div className="container mx-auto relative z-10 w-full max-w-6xl">
+      <div className="container mx-auto relative z-10 w-full max-w-5xl">
         <header className="text-center mb-8 sm:mb-10 lg:mb-14">
           <p className="text-[10px] sm:text-xs font-semibold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-gray-400 mb-1.5 sm:mb-2">
             What I Offer & Where I&apos;ve Been
