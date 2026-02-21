@@ -75,7 +75,9 @@ const item = {
 const About = () => {
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const [videoInView, setVideoInView] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
+  // Start loading earlier: trigger when section is 400px away so it can buffer before user sees it
   useEffect(() => {
     const el = videoContainerRef.current;
     if (!el) return;
@@ -83,7 +85,7 @@ const About = () => {
       (entries) => {
         if (entries[0].isIntersecting) setVideoInView(true);
       },
-      { rootMargin: "100px", threshold: 0.1 }
+      { rootMargin: "400px", threshold: 0 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -92,15 +94,14 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden bg-[#fafafa]"
+      className="relative py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden bg-white"
     >
-      {/* Subtle grid background */}
+      {/* Dot pattern */}
       <div
-        className="absolute inset-0 opacity-[0.025]"
+        className="absolute inset-0 opacity-[0.4]"
         style={{
-          backgroundImage: `linear-gradient(#0f172a 1px, transparent 1px),
-            linear-gradient(90deg, #0f172a 1px, transparent 1px)`,
-          backgroundSize: "48px 48px",
+          backgroundImage: `radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0)`,
+          backgroundSize: "24px 24px",
         }}
         aria-hidden
       />
@@ -109,8 +110,17 @@ const About = () => {
         <div className="flex flex-col lg:flex-row lg:items-center gap-8 sm:gap-12 lg:gap-24">
           {/* Media block - video loads only when in viewport */}
           <div ref={videoContainerRef} className="shrink-0 mx-auto lg:mx-0 order-2 lg:order-1">
-            <div className="relative max-w-[10rem] sm:max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] w-full mx-auto">
-              <div className="relative overflow-hidden rounded-[2rem] bg-[#fafafa]">
+            <div className="relative max-w-[10rem] sm:max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] w-full mx-auto aspect-square">
+              <div className="relative overflow-hidden rounded-[2rem] bg-slate-100">
+                {/* Placeholder until video can play — avoids blank flash */}
+                {!videoReady && (
+                  <div
+                    className="absolute inset-0 z-10 flex items-center justify-center rounded-[2rem] bg-slate-100"
+                    aria-hidden
+                  >
+                    <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-600" />
+                  </div>
+                )}
                 <video
                   src={videoInView ? "/Anime_Boy_Intro.mp4" : undefined}
                   autoPlay
@@ -118,13 +128,14 @@ const About = () => {
                   muted
                   playsInline
                   preload={videoInView ? "auto" : "none"}
-                  className="w-full h-auto object-contain relative z-0"
+                  onCanPlay={() => setVideoReady(true)}
+                  className="w-full h-full object-contain relative z-0"
                   aria-label="Intro video"
                 />
                 <div
                   className="absolute inset-0 pointer-events-none z-10 rounded-[2rem]"
                   style={{
-                    background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 45%, #fafafa 88%)",
+                    background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 45%, #fff 88%)",
                   }}
                   aria-hidden
                 />
@@ -186,14 +197,14 @@ const About = () => {
             {/* At a glance — open source / README-style metrics */}
             <motion.div
               variants={item}
-              className="mt-6 sm:mt-8 rounded-r-lg border border-slate-200/80 border-l-[3px] border-l-slate-400 bg-slate-50/80 font-mono text-sm overflow-hidden"
+              className="mt-6 sm:mt-8 rounded-lg border border-slate-200 border-l-4 border-l-slate-400 bg-white font-mono text-sm overflow-hidden shadow-sm"
               aria-label="Key metrics"
             >
-              <div className="flex items-center gap-1 px-3 py-1.5 border-b border-slate-200/60 bg-slate-100/50">
+              <div className="flex items-center gap-1 px-3 py-1.5 border-b border-slate-200 bg-slate-50">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
                 <span className="text-[10px] sm:text-xs uppercase tracking-wider text-slate-500">at a glance</span>
               </div>
-              <div className="flex flex-wrap divide-x divide-slate-200/80">
+              <div className="flex flex-wrap divide-x divide-slate-200">
                 {atAGlance.map((stat, i) => (
                   <div
                     key={i}
@@ -219,7 +230,7 @@ const About = () => {
                       key={index}
                       variants={item}
                       whileHover={{ y: -2, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-                      className={`group flex flex-col gap-2 sm:gap-3 rounded-xl sm:rounded-2xl py-4 sm:py-5 px-3 sm:px-4 ${skill.bg} border ${skill.border} shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.12)] transition-all duration-300 cursor-default`}
+                      className={`group flex flex-col gap-2 sm:gap-3 rounded-lg py-4 sm:py-5 px-3 sm:px-4 bg-white border border-slate-200 hover:border-slate-300 hover:shadow-md hover:shadow-slate-200/60 transition-all duration-200 cursor-default`}
                     >
                       <span
                         className={`flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-lg sm:rounded-xl ${skill.iconBg} ${skill.iconHover} transition-colors duration-300`}

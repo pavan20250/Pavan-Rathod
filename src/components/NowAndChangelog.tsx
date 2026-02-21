@@ -129,15 +129,14 @@ const NowAndChangelog = () => {
     <section
       id="now"
       ref={ref}
-      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden bg-[#fafafa]"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden bg-white"
       aria-label="Now & Changelog"
     >
       <div
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.4]"
         style={{
-          backgroundImage: `linear-gradient(#0f172a 1px, transparent 1px),
-            linear-gradient(90deg, #0f172a 1px, transparent 1px)`,
-          backgroundSize: "48px 48px",
+          backgroundImage: `radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0)`,
+          backgroundSize: "24px 24px",
         }}
         aria-hidden
       />
@@ -147,7 +146,7 @@ const NowAndChangelog = () => {
           initial={{ opacity: 0, y: 8 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4 }}
-          className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-gray-500 mb-3"
+          className="text-[10px] sm:text-xs font-medium tracking-widest uppercase text-slate-500 mb-3"
         >
           {/*Out of the box*/}
           {site.shortName.toUpperCase()}@PORTFOLIO
@@ -156,7 +155,7 @@ const NowAndChangelog = () => {
           initial={{ opacity: 0, y: 8 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, delay: 0.05 }}
-          className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-2"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-2"
         >
           Now & Changelog
         </motion.h2>
@@ -164,14 +163,14 @@ const NowAndChangelog = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="text-gray-600 text-sm sm:text-base mb-12 sm:mb-14 max-w-2xl"
+          className="text-slate-600 text-sm sm:text-base mb-12 sm:mb-14 max-w-2xl"
         >
           What I&apos;m focused on · Career as releases (inspired by{" "}
           <a
             href="https://keepachangelog.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-700 underline underline-offset-2 hover:text-gray-900 transition-colors"
+            className="text-slate-700 underline underline-offset-2 hover:text-slate-900 transition-colors"
           >
             keep-a-changelog
           </a>

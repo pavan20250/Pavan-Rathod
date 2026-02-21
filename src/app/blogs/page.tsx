@@ -67,26 +67,33 @@ const BlogPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#fafafa]">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_0.5px,transparent_0.5px),linear-gradient(to_bottom,#e5e7eb_0.5px,transparent_0.5px)] bg-[size:24px_24px] opacity-40 pointer-events-none" aria-hidden />
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
+    <div className="min-h-screen relative bg-white overflow-hidden">
+      {/* Dot pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.4]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0)`,
+          backgroundSize: "24px 24px",
+        }}
+        aria-hidden
+      />
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900 mb-3 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900 mb-3 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" aria-hidden />
           Back to home
         </Link>
         {/* Page header */}
         <header className="text-center mb-8 md:mb-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500 mb-2">
+          <p className="text-xs font-medium tracking-widest uppercase text-slate-400 mb-2">
             Blog
           </p>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-2 max-w-2xl mx-auto">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight mb-2 max-w-2xl mx-auto">
             The Funny Side of Code
           </h1>
-          <p className="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
             Where programming meets humor, and bugs become features.
           </p>
         </header>
@@ -98,7 +105,7 @@ const BlogPage = () => {
             return (
               <article
                 key={index}
-                className="group/card bg-white rounded-xl border border-gray-200/80 shadow-sm hover:shadow-md hover:border-gray-300/80 transition-all duration-300 overflow-hidden flex flex-col"
+                className="group/card bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:shadow-slate-200/60 hover:border-slate-300 transition-all duration-200 overflow-hidden flex flex-col"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 <div className="p-4 sm:p-5 flex flex-col flex-1">
@@ -108,13 +115,13 @@ const BlogPage = () => {
                       {post.category}
                     </span>
                   </div>
-                  <h2 className="text-base font-semibold text-gray-900 mb-1.5 line-clamp-2 group-hover/card:text-gray-700 transition-colors">
+                  <h2 className="text-base font-semibold text-slate-900 mb-1.5 line-clamp-2 group-hover/card:text-slate-700 transition-colors">
                     {post.title}
                   </h2>
-                  <p className="text-sm text-gray-600 leading-snug mb-3 line-clamp-2 flex-1">
+                  <p className="text-sm text-slate-600 leading-snug mb-3 line-clamp-2 flex-1">
                     {post.excerpt}
                   </p>
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500 mt-auto pt-3 border-t border-gray-100">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500 mt-auto pt-3 border-t border-slate-100">
                     <span className="flex items-center gap-1.5">
                       <User className="w-3.5 h-3.5" aria-hidden />
                       {post.author}
@@ -130,7 +137,7 @@ const BlogPage = () => {
                   </div>
                   <a
                     href="#"
-                    className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors"
+                    className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-slate-900 hover:text-slate-600 transition-colors"
                   >
                     Read more
                     <ArrowRight className="w-4 h-4 group-hover/card:translate-x-0.5 transition-transform" />
@@ -143,26 +150,26 @@ const BlogPage = () => {
 
         {/* CTA section */}
         <section className="mt-10 sm:mt-12">
-          <div className="relative rounded-xl border border-gray-200/80 bg-white p-6 sm:p-8 text-center shadow-sm max-w-3xl mx-auto">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+          <div className="relative rounded-lg border border-slate-200 bg-white p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:shadow-slate-200/60 transition-shadow max-w-3xl mx-auto">
+            <p className="text-xs font-medium tracking-widest uppercase text-slate-400 mb-2">
               More coming soon
             </p>
-            <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">
               More stories & updates
             </h2>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-lg mx-auto">
+            <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-lg mx-auto">
               New posts on coding, debugging, and dev life are in the works. Get notified when they go live.
             </p>
             <div className="flex flex-col sm:flex-row gap-2 justify-center">
               <button
                 type="button"
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm font-medium hover:bg-slate-700 transition-colors"
               >
                 Subscribe for updates
               </button>
               <button
                 type="button"
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border border-gray-300 text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors"
               >
                 Suggest a topic
               </button>

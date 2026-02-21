@@ -84,17 +84,16 @@ const Services: React.FC = () => {
   return (
     <section
       id="services"
-      className="relative min-h-0 sm:min-h-screen flex items-center bg-[#fafafa] overflow-hidden px-4 sm:px-6 md:px-12 lg:px-24 py-10 sm:py-14 md:py-16"
+      className="relative min-h-0 sm:min-h-screen flex items-center bg-white overflow-hidden px-4 sm:px-6 md:px-12 lg:px-24 py-10 sm:py-14 md:py-16"
       role="region"
       aria-labelledby="services-heading"
     >
-      {/* Subtle grid background */}
+      {/* Dot pattern */}
       <div
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.4]"
         style={{
-          backgroundImage: `linear-gradient(#0f172a 1px, transparent 1px),
-            linear-gradient(90deg, #0f172a 1px, transparent 1px)`,
-          backgroundSize: "48px 48px",
+          backgroundImage: `radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0)`,
+          backgroundSize: "24px 24px",
         }}
       />
 
@@ -124,18 +123,18 @@ const Services: React.FC = () => {
                 return (
                   <article
                     key={index}
-                    className={`group relative flex gap-3 sm:gap-4 py-4 sm:py-5 ${!isLast ? "border-b border-white/50" : ""}`}
+                    className={`group relative flex gap-3 sm:gap-4 py-4 sm:py-5 ${!isLast ? "border-b border-slate-100" : ""}`}
                     role="listitem"
                     tabIndex={0}
                   >
                     <div className="flex flex-col items-center shrink-0">
-                      <div className={`h-2 w-2 rounded-full ${style.line} ring-4 ring-[#fafafa]`} aria-hidden />
+                      <div className={`h-2 w-2 rounded-full ${style.line} ring-4 ring-white`} aria-hidden />
                       {!isLast && (
                         <div className="w-px flex-1 min-h-[2rem] mt-1 bg-gradient-to-b from-slate-300/60 to-transparent" aria-hidden />
                       )}
                     </div>
                     <div className="flex-1 min-w-0 pb-1">
-                      <span className={`inline-block rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-medium mb-1.5 sm:mb-2 backdrop-blur-sm border-white/40 ${style.badge}`}>
+                      <span className={`inline-block rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-medium mb-1.5 sm:mb-2 backdrop-blur-sm border border-slate-200/60 ${style.badge}`}>
                         {exp.period}
                       </span>
                       <h4 className="text-sm sm:text-base font-semibold text-gray-900 tracking-tight">{exp.company}</h4>
