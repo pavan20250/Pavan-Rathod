@@ -43,7 +43,7 @@ const Projects = () => {
       id="projects"
       className="relative py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 md:px-12 lg:px-24 bg-white overflow-hidden"
     >
-      <div className="absolute inset-0 opacity-[0.35]" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`, backgroundSize: "20px 20px" }} />
+      <div className="absolute inset-0 opacity-[0.25]" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`, backgroundSize: "20px 20px" }} />
 
       <div className="container mx-auto relative z-10 max-w-5xl">
         <header className="mb-12 sm:mb-14 md:mb-16">

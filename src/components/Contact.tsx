@@ -58,10 +58,10 @@ export default function ContactSection() {
     <div id="contact" className="relative flex flex-col bg-white overflow-hidden">
       {/* Dot pattern */}
       <div
-        className="absolute inset-0 opacity-[0.4]"
+        className="absolute inset-0 opacity-[0.25]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0)`,
-          backgroundSize: "24px 24px",
+          backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`,
+          backgroundSize: "20px 20px",
         }}
         aria-hidden
       />

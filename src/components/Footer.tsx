@@ -5,10 +5,10 @@ export default function Footer() {
   return (
     <footer className="relative bg-white py-6 sm:py-8 px-4 sm:px-6 overflow-hidden">
       <div
-        className="absolute inset-0 opacity-[0.4]"
+        className="absolute inset-0 opacity-[0.25]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0)`,
-          backgroundSize: "24px 24px",
+          backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`,
+          backgroundSize: "20px 20px",
         }}
         aria-hidden
       />
