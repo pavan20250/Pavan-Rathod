@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
-import { Mails, Menu, X } from "lucide-react";
+import { Mails, Menu, X, ChevronDown } from "lucide-react";
 import { site } from "@/lib/site";
 import pavan from "../../public/gimini_pavan.png";
 import bgImage from "../../public/bg.jpg";
@@ -13,6 +13,28 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('home');
+  const hasNudged = useRef(false);
+
+  // One-time nudge: if user hasn't scrolled in ~2.5s, scroll down a bit as a hint
+  useEffect(() => {
+    if (hasNudged.current) return;
+    const t = setTimeout(() => {
+      if (hasNudged.current) return;
+      const y = window.scrollY;
+      if (y < 50) {
+        hasNudged.current = true;
+        window.scrollBy({ top: 120, behavior: "smooth" });
+      }
+    }, 2500);
+    const onScroll = () => {
+      if (window.scrollY > 50) hasNudged.current = true;
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -210,7 +232,7 @@ const Header = () => {
       </div>
 
       {/* Social Links with Icons - Mobile Responsive */}
-      <div className="absolute top-4 xs:top-6 bottom-auto sm:top-auto sm:bottom-10 md:bottom-12 left-0 right-0 z-20 flex justify-center items-center px-6 xs:px-8 sm:px-4 md:px-6">
+      <div className="absolute top-4 xs:top-6 bottom-auto sm:top-auto sm:bottom-16 md:bottom-20 left-0 right-0 z-20 flex justify-center items-center px-6 xs:px-8 sm:px-4 md:px-6">
         <div className="flex flex-row items-center gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 flex-shrink-0">
           {/* Email Link */}
           <a
@@ -273,6 +295,21 @@ const Header = () => {
           </a>
         </div>
       </div>
+
+      {/* Scroll Down - mirror UI (frosted glass + reflection) */}
+      <button
+        onClick={() => scrollToSection('about')}
+        aria-label="Scroll down"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 group cursor-pointer"
+      >
+        <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden flex items-center justify-center transition-all duration-300 animate-bounce group-hover:scale-105">
+          {/* Mirror: frosted glass */}
+          <div className="absolute inset-0 bg-white/25 backdrop-blur-md border border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.08)]" />
+          {/* Top-edge highlight (reflection) */}
+          <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-gradient-to-b from-white/40 to-transparent" />
+          <ChevronDown className="relative w-4 h-4 sm:w-5 sm:h-5 text-gray-800 drop-shadow-sm" />
+        </div>
+      </button>
     </header>
     </>
   );
