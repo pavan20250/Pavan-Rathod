@@ -84,18 +84,10 @@ const Services: React.FC = () => {
   return (
     <section
       id="services"
-      className="relative min-h-0 sm:min-h-screen flex items-center bg-white overflow-hidden px-4 sm:px-6 md:px-12 lg:px-24 py-10 sm:py-14 md:py-16"
+      className="relative min-h-0 sm:min-h-screen flex items-center overflow-hidden px-4 sm:px-6 md:px-12 lg:px-24 py-10 sm:py-14 md:py-16"
       role="region"
       aria-labelledby="services-heading"
     >
-      {/* Dot pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.25]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`,
-          backgroundSize: "20px 20px",
-        }}
-      />
 
       <div className="container mx-auto relative z-10 w-full max-w-5xl">
         <header className="text-center mb-8 sm:mb-10 lg:mb-14">
@@ -154,11 +146,11 @@ const Services: React.FC = () => {
               return (
                 <article
                   key={index}
-                  className={`group relative flex flex-col rounded-xl sm:rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md shadow-lg shadow-slate-300/20 p-4 sm:p-5 md:p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-400/25 hover:bg-white/60 ${style.border} ${style.glow}`}
+                  className={`card-apple-mirror group relative flex flex-col rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 transition-all duration-300 hover:-translate-y-1 ${style.border} ${style.glow}`}
                   role="listitem"
                   tabIndex={0}
                 >
-                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/70 pointer-events-none" aria-hidden />
+                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/60 pointer-events-none" aria-hidden />
                   <div className={`absolute left-0 top-4 sm:top-6 bottom-4 sm:bottom-6 w-1 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${style.line}`} aria-hidden />
                   <div
                     className={`mb-3 sm:mb-4 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl ${style.iconBg} transition-all duration-300 group-hover:scale-105 group-hover:rotate-3`}

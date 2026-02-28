@@ -105,7 +105,7 @@ const BlogPage = () => {
             return (
               <article
                 key={index}
-                className="group/card bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:shadow-slate-200/60 hover:border-slate-300 transition-all duration-200 overflow-hidden flex flex-col"
+                className="card-apple-mirror group/card rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:scale-[1.02]"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 <div className="p-4 sm:p-5 flex flex-col flex-1">
@@ -150,7 +150,7 @@ const BlogPage = () => {
 
         {/* CTA section */}
         <section className="mt-10 sm:mt-12">
-          <div className="relative rounded-lg border border-slate-200 bg-white p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:shadow-slate-200/60 transition-shadow max-w-3xl mx-auto">
+          <div className="card-apple-mirror relative rounded-2xl p-6 sm:p-8 text-center transition-all duration-300 hover:scale-[1.01] max-w-3xl mx-auto">
             <p className="text-xs font-medium tracking-widest uppercase text-slate-400 mb-2">
               More coming soon
             </p>

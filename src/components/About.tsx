@@ -94,28 +94,25 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden bg-white"
+      className="relative py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden"
     >
-      {/* Dot pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.25]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`,
-          backgroundSize: "20px 20px",
-        }}
-        aria-hidden
-      />
 
       <div className="container relative mx-auto max-w-5xl z-10">
         <div className="flex flex-col lg:flex-row lg:items-center gap-8 sm:gap-12 lg:gap-24">
           {/* Media block - video loads only when in viewport */}
           <div ref={videoContainerRef} className="shrink-0 mx-auto lg:mx-0 order-2 lg:order-1">
             <div className="relative max-w-[10rem] sm:max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] w-full mx-auto aspect-square">
-              <div className="relative overflow-hidden rounded-[2rem] bg-slate-100">
+              <div
+                className="relative overflow-hidden rounded-[2rem]"
+                style={{
+                  WebkitMaskImage: "radial-gradient(ellipse 65% 65% at 50% 50%, black 40%, transparent 80%)",
+                  maskImage: "radial-gradient(ellipse 65% 65% at 50% 50%, black 40%, transparent 80%)",
+                }}
+              >
                 {/* Placeholder until video can play — avoids blank flash */}
                 {!videoReady && (
                   <div
-                    className="absolute inset-0 z-10 flex items-center justify-center rounded-[2rem] bg-slate-100"
+                    className="absolute inset-0 z-10 flex items-center justify-center rounded-[2rem] bg-black/5"
                     aria-hidden
                   >
                     <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-600" />
@@ -131,13 +128,6 @@ const About = () => {
                   onCanPlay={() => setVideoReady(true)}
                   className="w-full h-full object-contain relative z-0"
                   aria-label="Intro video"
-                />
-                <div
-                  className="absolute inset-0 pointer-events-none z-10 rounded-[2rem]"
-                  style={{
-                    background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 45%, #fff 88%)",
-                  }}
-                  aria-hidden
                 />
               </div>
             </div>

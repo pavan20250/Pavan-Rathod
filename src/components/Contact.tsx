@@ -55,16 +55,7 @@ export default function ContactSection() {
   };
 
   return (
-    <div id="contact" className="relative flex flex-col bg-white overflow-hidden">
-      {/* Dot pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.25]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`,
-          backgroundSize: "20px 20px",
-        }}
-        aria-hidden
-      />
+    <div id="contact" className="relative flex flex-col overflow-hidden">
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center px-4 sm:px-6 py-8 sm:py-12 gap-6 sm:gap-8">
         {/* Left Side - Contact Info */}
         <div className="flex flex-col items-center justify-center text-center lg:text-left lg:items-center lg:justify-center w-full lg:w-1/2">
