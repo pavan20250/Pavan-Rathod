@@ -129,17 +129,9 @@ const NowAndChangelog = () => {
     <section
       id="now"
       ref={ref}
-      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden bg-white"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden"
       aria-label="Now & Changelog"
     >
-      <div
-        className="absolute inset-0 opacity-[0.25]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`,
-          backgroundSize: "20px 20px",
-        }}
-        aria-hidden
-      />
 
       <div className="container mx-auto relative z-10 max-w-5xl">
         <motion.p

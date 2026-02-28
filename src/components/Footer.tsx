@@ -3,15 +3,7 @@ import { site } from '@/lib/site';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-white py-6 sm:py-8 px-4 sm:px-6 overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-[0.25]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`,
-          backgroundSize: "20px 20px",
-        }}
-        aria-hidden
-      />
+    <footer className="relative py-6 sm:py-8 px-4 sm:px-6 overflow-hidden">
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="border-t border-slate-200 pt-4 sm:pt-6">
           <div className="flex flex-col sm:flex-row justify-between items-center text-slate-500 text-xs sm:text-sm space-y-3 sm:space-y-0 gap-2">

@@ -41,9 +41,8 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="relative py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 md:px-12 lg:px-24 bg-white overflow-hidden"
+      className="relative py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden"
     >
-      <div className="absolute inset-0 opacity-[0.25]" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`, backgroundSize: "20px 20px" }} />
 
       <div className="container mx-auto relative z-10 max-w-5xl">
         <header className="mb-12 sm:mb-14 md:mb-16">
@@ -64,52 +63,56 @@ const Projects = () => {
             return (
               <article
                 key={index}
-                className="group/card relative flex flex-col rounded-xl border border-slate-200/80 bg-white/80 backdrop-blur-sm pl-5 sm:pl-6 pr-5 sm:pr-6 py-5 sm:py-6 transition-all duration-300 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50"
+                className="group/card relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02]"
               >
-                <div className="absolute left-0 top-4 bottom-4 w-0.5 rounded-full bg-slate-300 opacity-60 group-hover/card:opacity-100 group-hover/card:bg-slate-500 transition-all duration-300" />
+                <div className="card-apple-mirror relative flex flex-col h-full min-h-0 rounded-2xl pl-5 sm:pl-6 pr-5 sm:pr-6 py-5 sm:py-6 transition-all duration-300">
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent" aria-hidden />
 
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <span className="text-[11px] font-medium tabular-nums text-slate-400">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-600 group-hover/card:border-slate-300 group-hover/card:bg-slate-100 transition-colors">
-                    <IconComponent size={18} strokeWidth={1.75} />
-                  </div>
-                </div>
+                  <div className="absolute left-0 top-5 bottom-5 w-0.5 rounded-full bg-gradient-to-b from-slate-300/70 to-slate-400/50 opacity-70 group-hover/card:opacity-100 group-hover/card:from-slate-400 group-hover/card:to-slate-500 transition-all duration-300" />
 
-                <div className="mb-2 flex flex-wrap items-center gap-2">
-                  <h3 className="text-base sm:text-lg font-semibold text-slate-900 tracking-tight">
-                    {project.title}
-                  </h3>
-                  {"badge" in project && project.badge && (
-                    <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-slate-600">
-                      {project.badge}
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <span className="text-[11px] font-semibold tabular-nums text-slate-400/90">
+                      {String(index + 1).padStart(2, "0")}
                     </span>
-                  )}
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed mb-5 flex-1 min-h-0">
-                  {project.description}
-                </p>
+                    <div className="card-apple-mirror-sm inline-flex h-9 w-9 items-center justify-center rounded-xl text-slate-600 transition-all duration-300 group-hover/card:scale-105">
+                      <IconComponent size={18} strokeWidth={1.75} />
+                    </div>
+                  </div>
 
-                <div className="flex flex-nowrap gap-2 pt-4 border-t border-slate-100">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50/80 px-3 py-2 text-xs font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-100"
-                  >
-                    <Github size={14} className="shrink-0" />
-                    <span>Code</span>
-                  </a>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-lg border border-slate-800 bg-slate-800 px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-slate-700 hover:border-slate-700"
-                  >
-                    <ExternalLink size={14} className="shrink-0" />
-                    <span>Live</span>
-                  </a>
+                  <div className="mb-2 flex flex-wrap items-center gap-2">
+                    <h3 className="text-base sm:text-lg font-semibold text-slate-900 tracking-tight">
+                      {project.title}
+                    </h3>
+                    {"badge" in project && project.badge && (
+                      <span className="card-apple-mirror-sm rounded-lg px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-slate-600">
+                        {project.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-5 flex-1 min-h-0">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-nowrap gap-2 pt-4 border-t border-slate-200/50">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="card-apple-mirror-sm inline-flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-xs font-medium text-slate-700 transition-all"
+                    >
+                      <Github size={14} className="shrink-0" />
+                      <span>Code</span>
+                    </a>
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-xl border border-slate-700/80 bg-slate-800/90 backdrop-blur-sm px-3 py-2 text-xs font-medium text-white shadow-md transition-all hover:bg-slate-700 hover:border-slate-600 hover:shadow-lg"
+                    >
+                      <ExternalLink size={14} className="shrink-0" />
+                      <span>Live</span>
+                    </a>
+                  </div>
                 </div>
               </article>
             );
@@ -121,7 +124,7 @@ const Projects = () => {
             href="https://github.com/pavan20250"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-800 bg-slate-800 px-6 sm:px-8 py-3.5 text-sm font-medium text-white transition-all hover:bg-white hover:text-slate-800 min-h-[48px] touch-manipulation"
+            className="card-apple-mirror inline-flex items-center justify-center gap-2 rounded-full px-6 sm:px-8 py-3.5 text-sm font-medium text-slate-800 transition-all hover:scale-[1.02] min-h-[48px] touch-manipulation"
           >
             <Github size={18} className="shrink-0" />
             View more on GitHub
