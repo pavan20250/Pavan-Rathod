@@ -16,23 +16,18 @@
 
 html {
   scroll-behavior: smooth;
-  /* Mobile scroll optimizations */
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
-  will-change: scroll-position;
 }
 
 body {
   color: var(--foreground);
   background: #fafafa;
   font-family: Arial, Helvetica, sans-serif;
-  /* Mobile performance optimizations */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  /* Prevent horizontal scroll on mobile */
   overflow-x: hidden;
-  /* Smooth scrolling optimization */
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
 }
@@ -40,53 +35,43 @@ body {
 /* Mobile-specific optimizations */
 @media (max-width: 768px) {
   html {
-    /* Smooth scroll momentum on mobile */
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain;
   }
-  
+
   body {
-    /* Optimize rendering for mobile - only on body, not all elements */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
+    /* Scoped transform — do NOT add will-change: scroll-position to body */
     -webkit-backface-visibility: hidden;
-    will-change: scroll-position;
+    backface-visibility: hidden;
   }
-  
-  /* Reduce animations on mobile for better performance */
-  * {
-    animation-duration: 0.3s !important;
-    animation-delay: 0s !important;
+
+  /* Only reduce CSS-only decorative animations, NOT JS/Framer Motion */
+  .animate-pulse {
+    animation-duration: 2s !important;
   }
-  
-  /* Optimize blur effects for mobile */
+
+  .animate-bounce {
+    animation-duration: 0.8s !important;
+  }
+
+  /* Reduce blur on mobile for performance */
   .blur-xl {
     filter: blur(8px);
   }
-  
+
   .blur-2xl {
     filter: blur(12px);
   }
-  
+
   .blur-3xl {
     filter: blur(16px);
   }
-  
-  /* Disable animations on mobile for better performance */
-  .animate-pulse {
-    animation: none !important;
-  }
-  
-  .animate-bounce {
-    animation: none !important;
-  }
-  
+
   /* Reduce backdrop-blur on mobile */
   .backdrop-blur-sm {
     backdrop-filter: blur(2px);
   }
-  
+
   .backdrop-blur-xl {
     backdrop-filter: blur(8px);
   }
@@ -133,7 +118,7 @@ body {
   overflow: hidden;
 }
 
-/* About section – photo float & glow (desktop only to avoid mobile override) */
+/* About section – photo float & glow (desktop only) */
 @keyframes about-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
@@ -193,7 +178,7 @@ body {
 
 /* ── Dynamic background system ── */
 
-/* Animated gradient — light with a noticeable blue/lavender warmth */
+/* Animated gradient — scoped will-change, NOT on body */
 .bg-gradient-animated {
   background: linear-gradient(
     -45deg,
@@ -206,6 +191,7 @@ body {
   );
   background-size: 400% 400%;
   animation: gradient-shift 20s ease infinite;
+  will-change: background-position;
 }
 
 /* Fine grid */
@@ -243,7 +229,7 @@ body {
   50% { transform: translate(20px, -30px) scale(1.02); }
 }
 
-/* Floating particle animation — gentle drift with opacity pulse */
+/* Floating particle animation */
 @keyframes float-particle {
   0%, 100% {
     transform: translate(0, 0) scale(1);
@@ -260,13 +246,6 @@ body {
   75% {
     transform: translate(12px, -15px) scale(1.2);
     opacity: 0.5;
-  }
-}
-
-/* Keep animated gradient smooth on mobile (override the global 0.3s rule) */
-@media (max-width: 768px) {
-  .bg-gradient-animated {
-    animation-duration: 20s !important;
   }
 }
 
@@ -303,7 +282,7 @@ body {
     0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* Small mirror surfaces (icon boxes, badges, buttons) */
+/* Small mirror surfaces */
 .card-apple-mirror-sm {
   background: linear-gradient(
     165deg,

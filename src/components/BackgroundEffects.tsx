@@ -26,6 +26,9 @@ export default function BackgroundEffects() {
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
+    // Skip canvas entirely on mobile — prevents battery drain and scroll jank
+    if (window.innerWidth < 768) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -72,7 +75,6 @@ export default function BackgroundEffects() {
 
         const alphaA = 1 - dA / MOUSE_RADIUS;
 
-        // Dot — pure white shining
         ctx.shadowColor = "rgba(255,255,255,1)";
         ctx.shadowBlur = 10 * alphaA;
         ctx.beginPath();
@@ -80,7 +82,6 @@ export default function BackgroundEffects() {
         ctx.fillStyle = `rgba(255,255,255,${alphaA * 0.95})`;
         ctx.fill();
 
-        // Hot white core
         if (alphaA > 0.4) {
           ctx.shadowBlur = 15 * alphaA;
           ctx.beginPath();
@@ -90,7 +91,6 @@ export default function BackgroundEffects() {
         }
         ctx.shadowBlur = 0;
 
-        // Line to cursor — white
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(mx, my);
@@ -98,7 +98,6 @@ export default function BackgroundEffects() {
         ctx.lineWidth = 0.5;
         ctx.stroke();
 
-        // Lines between nearby dots — pure white shining
         for (let j = i + 1; j < dots.length; j++) {
           const b = dots[j];
           const dB = Math.hypot(b.x - mx, b.y - my);
@@ -159,10 +158,10 @@ export default function BackgroundEffects() {
       <div className="absolute top-[50%] -left-[8%] w-[45vw] h-[45vw] max-w-[460px] max-h-[460px] rounded-full bg-gradient-to-tr from-slate-300/22 to-violet-200/12 blur-[110px] md:animate-[drift-3_24s_ease-in-out_infinite]" />
       <div className="hidden md:block absolute top-[35%] left-[25%] w-[30vw] h-[30vw] max-w-[320px] max-h-[320px] rounded-full bg-gradient-to-r from-blue-200/14 to-slate-200/10 blur-[90px] md:animate-[drift-1_30s_ease-in-out_infinite_reverse]" />
 
-      {/* Layer 4: Interactive neural network canvas */}
+      {/* Layer 4: Interactive neural network canvas — desktop only */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none hidden md:block"
       />
 
       {/* Layer 5: Floating particles — desktop only */}

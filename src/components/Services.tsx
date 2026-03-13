@@ -49,13 +49,21 @@ const experiences = [
   },
 ];
 
-const accentStyles: Record<string, { border: string; iconBg: string; line: string; badge: string; glow: string }> = {
+const accentStyles: Record<string, {
+  border: string;
+  iconBg: string;
+  line: string;
+  badge: string;
+  glow: string;
+  dot: string;
+}> = {
   blue: {
     border: "hover:border-blue-400/40",
     iconBg: "bg-blue-500/10 text-blue-600",
     line: "bg-blue-500",
     badge: "bg-blue-500/10 text-blue-700 border border-blue-200/50",
     glow: "group-hover:shadow-blue-500/10",
+    dot: "bg-blue-500",
   },
   violet: {
     border: "hover:border-violet-400/40",
@@ -63,6 +71,7 @@ const accentStyles: Record<string, { border: string; iconBg: string; line: strin
     line: "bg-violet-500",
     badge: "bg-violet-500/10 text-violet-700 border border-violet-200/50",
     glow: "group-hover:shadow-violet-500/10",
+    dot: "bg-violet-500",
   },
   indigo: {
     border: "hover:border-indigo-400/40",
@@ -70,6 +79,7 @@ const accentStyles: Record<string, { border: string; iconBg: string; line: strin
     line: "bg-indigo-500",
     badge: "bg-indigo-500/10 text-indigo-700 border border-indigo-200/50",
     glow: "group-hover:shadow-indigo-500/10",
+    dot: "bg-indigo-500",
   },
   emerald: {
     border: "hover:border-emerald-400/40",
@@ -77,6 +87,7 @@ const accentStyles: Record<string, { border: string; iconBg: string; line: strin
     line: "bg-emerald-500",
     badge: "bg-emerald-500/10 text-emerald-700 border border-emerald-200/50",
     glow: "group-hover:shadow-emerald-500/10",
+    dot: "bg-emerald-500",
   },
 };
 
@@ -88,13 +99,15 @@ const Services: React.FC = () => {
       role="region"
       aria-labelledby="services-heading"
     >
-
       <div className="container mx-auto relative z-10 w-full max-w-5xl">
         <header className="text-center mb-8 sm:mb-10 lg:mb-14">
           <p className="text-[10px] sm:text-xs font-semibold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-gray-400 mb-1.5 sm:mb-2">
             What I Offer & Where I&apos;ve Been
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-semibold tracking-tight text-gray-900 px-1" id="services-heading">
+          <h2
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-semibold tracking-tight text-gray-900 px-1"
+            id="services-heading"
+          >
             Services & Experience
           </h2>
           <p className="text-gray-500 max-w-md mx-auto mt-1.5 sm:mt-2 text-xs sm:text-sm leading-relaxed px-2">
@@ -103,9 +116,13 @@ const Services: React.FC = () => {
         </header>
 
         <div className="grid lg:grid-cols-[1fr_1.4fr] gap-6 sm:gap-8 lg:gap-10 items-start">
+
           {/* Left: Experience — vertical timeline */}
           <div className="lg:sticky lg:top-24" role="list" aria-labelledby="experience-heading">
-            <h3 className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4 sm:mb-6" id="experience-heading">
+            <h3
+              className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4 sm:mb-6"
+              id="experience-heading"
+            >
               Background
             </h3>
             <div className="space-y-0">
@@ -120,7 +137,11 @@ const Services: React.FC = () => {
                     tabIndex={0}
                   >
                     <div className="flex flex-col items-center shrink-0">
-                      <div className={`h-2 w-2 rounded-full ${style.line} ring-4 ring-white`} aria-hidden />
+                      {/* Dot — larger (12px) for better touch visibility */}
+                      <div
+                        className={`h-3 w-3 rounded-full ${style.dot} ring-4 ring-white shrink-0`}
+                        aria-hidden
+                      />
                       {!isLast && (
                         <div className="w-px flex-1 min-h-[2rem] mt-1 bg-gradient-to-b from-slate-300/60 to-transparent" aria-hidden />
                       )}
@@ -151,7 +172,16 @@ const Services: React.FC = () => {
                   tabIndex={0}
                 >
                   <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/60 pointer-events-none" aria-hidden />
-                  <div className={`absolute left-0 top-4 sm:top-6 bottom-4 sm:bottom-6 w-1 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${style.line}`} aria-hidden />
+
+                  {/*
+                    Accent line: always visible on mobile (opacity-100),
+                    hidden then revealed on hover for desktop (md:opacity-0 md:group-hover:opacity-100)
+                  */}
+                  <div
+                    className={`absolute left-0 top-4 sm:top-6 bottom-4 sm:bottom-6 w-1 rounded-full opacity-100 md:opacity-0 transition-opacity duration-300 md:group-hover:opacity-100 ${style.line}`}
+                    aria-hidden
+                  />
+
                   <div
                     className={`mb-3 sm:mb-4 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl ${style.iconBg} transition-all duration-300 group-hover:scale-105 group-hover:rotate-3`}
                     aria-hidden

@@ -80,11 +80,12 @@ const BlogPage = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900 mb-3 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900 mb-6 transition-colors min-h-[44px] touch-manipulation"
         >
           <ArrowLeft className="w-4 h-4" aria-hidden />
           Back to home
         </Link>
+
         {/* Page header */}
         <header className="text-center mb-8 md:mb-10">
           <p className="text-xs font-medium tracking-widest uppercase text-slate-400 mb-2">
@@ -98,30 +99,37 @@ const BlogPage = () => {
           </p>
         </header>
 
-        {/* Blog grid */}
-        <div className="grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {/* Blog grid — cards are equal height via h-full */}
+        <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post, index) => {
             const Icon = post.icon;
             return (
               <article
                 key={index}
-                className="card-apple-mirror group/card rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:scale-[1.02]"
+                className="card-apple-mirror group/card rounded-2xl overflow-hidden flex flex-col h-full transition-all duration-300 hover:scale-[1.02]"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 <div className="p-4 sm:p-5 flex flex-col flex-1">
+                  {/* Category badge */}
                   <div className="flex items-center gap-3 mb-3">
                     <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-medium border ${post.color}`}>
                       <Icon className="w-3 h-3" aria-hidden />
                       {post.category}
                     </span>
                   </div>
+
+                  {/* Title */}
                   <h2 className="text-base font-semibold text-slate-900 mb-1.5 line-clamp-2 group-hover/card:text-slate-700 transition-colors">
                     {post.title}
                   </h2>
-                  <p className="text-sm text-slate-600 leading-snug mb-3 line-clamp-2 flex-1">
+
+                  {/* Excerpt — flex-1 ensures equal card height */}
+                  <p className="text-sm text-slate-600 leading-snug mb-3 line-clamp-3 flex-1">
                     {post.excerpt}
                   </p>
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500 mt-auto pt-3 border-t border-slate-100">
+
+                  {/* Meta — always at bottom */}
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500 pt-3 border-t border-slate-100">
                     <span className="flex items-center gap-1.5">
                       <User className="w-3.5 h-3.5" aria-hidden />
                       {post.author}
@@ -135,9 +143,10 @@ const BlogPage = () => {
                       {post.readTime}
                     </span>
                   </div>
+
                   <a
                     href="#"
-                    className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-slate-900 hover:text-slate-600 transition-colors"
+                    className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-slate-900 hover:text-slate-600 transition-colors min-h-[36px]"
                   >
                     Read more
                     <ArrowRight className="w-4 h-4 group-hover/card:translate-x-0.5 transition-transform" />
@@ -161,18 +170,18 @@ const BlogPage = () => {
               New posts on coding, debugging, and dev life are in the works. Get notified when they go live.
             </p>
             <div className="flex flex-col sm:flex-row gap-2 justify-center">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm font-medium hover:bg-slate-700 transition-colors"
+              <a
+                href="mailto:pavannaik0203@gmail.com?subject=Subscribe to blog updates"
+                className="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-slate-800 text-white text-sm font-medium hover:bg-slate-700 transition-colors min-h-[44px] touch-manipulation"
               >
                 Subscribe for updates
-              </button>
-              <button
-                type="button"
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors"
+              </a>
+              <a
+                href="mailto:pavannaik0203@gmail.com?subject=Blog topic suggestion"
+                className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors min-h-[44px] touch-manipulation"
               >
                 Suggest a topic
-              </button>
+              </a>
             </div>
           </div>
         </section>
