@@ -13,28 +13,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('home');
-  const hasNudged = useRef(false);
-
-  // One-time nudge hint
-  useEffect(() => {
-    if (hasNudged.current) return;
-    const t = setTimeout(() => {
-      if (hasNudged.current) return;
-      const y = window.scrollY;
-      if (y < 50) {
-        hasNudged.current = true;
-        window.scrollBy({ top: 120, behavior: "smooth" });
-      }
-    }, 2500);
-    const onScroll = () => {
-      if (window.scrollY > 50) hasNudged.current = true;
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
+  // Removed hasNudged ref — the programmatic nudge fights touch scroll on mobile
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,14 +32,23 @@ const Header = () => {
       }
     };
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Use scrollIntoView with smooth behavior — works well on desktop.
+      // On iOS Safari, smooth scrollIntoView can sometimes be jerky;
+      // using scrollTo with the element's offset is more reliable.
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        const top = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top, behavior: 'smooth' });
+      } else {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
     setIsMenuOpen(false);
   };
@@ -161,7 +149,7 @@ const Header = () => {
           borderRight: "8px solid white",
         }}
       >
-        {/* Hero Section — clean flex column, no conflicting absolutes */}
+        {/* Hero Section */}
         <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto relative z-10 pt-16 pb-12 gap-6 sm:gap-8">
 
           {/* Ambient background blobs */}
@@ -195,7 +183,7 @@ const Header = () => {
               </div>
             </div>
 
-            {/* Name tag — positioned relative to image, stays contained */}
+            {/* Name tag */}
             <div className="absolute flex items-center gap-1 sm:gap-2 bg-white/90 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full shadow-lg -top-3 right-0 translate-x-1/3 -rotate-12 group-hover:scale-110 transition-transform duration-300 whitespace-nowrap">
               <p className="text-xs sm:text-sm text-black font-mono font-bold">{site.shortName}</p>
               <span className="text-sm sm:text-base animate-bounce">👋🏼</span>
@@ -217,7 +205,7 @@ const Header = () => {
           <div className="flex flex-row gap-3 justify-center items-center">
             <a
               href="/blogs"
-              className="group relative px-5 py-2.5 bg-gradient-to-r from-gray-800 to-gray-900 text-white font-bold text-sm rounded-full hover:from-gray-700 hover:to-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-block min-h-[44px] flex items-center"
+              className="group relative px-5 py-2.5 bg-gradient-to-r from-gray-800 to-gray-900 text-white font-bold text-sm rounded-full hover:from-gray-700 hover:to-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-flex items-center min-h-[44px]"
             >
               Latest Blogs
             </a>
@@ -229,7 +217,7 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Social Links — inline row, no absolute positioning conflicts */}
+          {/* Social Links */}
           <div className="flex flex-row items-center gap-3 sm:gap-4">
             {/* Email */}
             <a
@@ -280,7 +268,7 @@ const Header = () => {
             </a>
           </div>
 
-          {/* Scroll Down — sits at bottom of flow, safe from overlaps */}
+          {/* Scroll Down */}
           <button
             onClick={() => scrollToSection('about')}
             aria-label="Scroll down to about section"

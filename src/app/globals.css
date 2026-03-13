@@ -16,8 +16,8 @@
 
 html {
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: contain;
+  /* Removed: overscroll-behavior-y: contain — breaks iOS momentum scroll */
+  /* Removed: -webkit-overflow-scrolling: touch — deprecated, causes jank */
 }
 
 body {
@@ -28,22 +28,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: contain;
+  /* Removed: -webkit-overflow-scrolling: touch — deprecated */
+  /* Removed: overscroll-behavior-y: contain — kills momentum scrolling on mobile */
 }
 
 /* Mobile-specific optimizations */
 @media (max-width: 768px) {
-  html {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
-  }
-
-  body {
-    /* Scoped transform — do NOT add will-change: scroll-position to body */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
+  /* Removed: -webkit-backface-visibility: hidden on body — creates stacking context
+     that prevents native iOS momentum scrolling. Only apply to specific
+     animated elements if needed, never on body. */
 
   /* Only reduce CSS-only decorative animations, NOT JS/Framer Motion */
   .animate-pulse {

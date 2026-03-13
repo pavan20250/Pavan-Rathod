@@ -77,10 +77,8 @@ const About = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [videoInView, setVideoInView] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
-  // Controls Framer Motion — fires once when section enters viewport
   const [sectionVisible, setSectionVisible] = useState(false);
 
-  // Trigger section animations exactly once on intersection
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -88,7 +86,7 @@ const About = () => {
       (entries) => {
         if (entries[0].isIntersecting) {
           setSectionVisible(true);
-          obs.disconnect(); // stop observing after first trigger
+          obs.disconnect();
         }
       },
       { rootMargin: "-60px", threshold: 0 }
@@ -97,8 +95,9 @@ const About = () => {
     return () => obs.disconnect();
   }, []);
 
-  // Lazy-load video: only start buffering when container is ~400px from viewport
+  // Only lazy-load video on desktop (md+)
   useEffect(() => {
+    if (window.innerWidth < 768) return;
     const el = videoContainerRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
@@ -120,8 +119,11 @@ const About = () => {
       <div className="container relative mx-auto max-w-5xl z-10">
         <div className="flex flex-col lg:flex-row lg:items-center gap-8 sm:gap-12 lg:gap-24">
 
-          {/* Media block */}
-          <div ref={videoContainerRef} className="shrink-0 mx-auto lg:mx-0 order-2 lg:order-1">
+          {/* Media block — hidden on mobile, visible md+ */}
+          <div
+            ref={videoContainerRef}
+            className="hidden md:block shrink-0 mx-auto lg:mx-0 order-2 lg:order-1"
+          >
             <div className="relative max-w-[10rem] sm:max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] w-full mx-auto aspect-square">
               <div
                 className="relative overflow-hidden rounded-[2rem]"
@@ -130,7 +132,6 @@ const About = () => {
                   maskImage: "radial-gradient(ellipse 65% 65% at 50% 50%, black 40%, transparent 80%)",
                 }}
               >
-                {/* Spinner shown until video can play */}
                 {!videoReady && (
                   <div
                     className="absolute inset-0 z-10 flex items-center justify-center rounded-[2rem] bg-black/5"
@@ -146,7 +147,6 @@ const About = () => {
                   muted
                   playsInline
                   preload={videoInView ? "auto" : "none"}
-                  // poster prevents blank white flash while video buffers on mobile
                   poster="/pavan.jpg"
                   onCanPlay={() => setVideoReady(true)}
                   className="w-full h-full object-contain relative z-0"
@@ -218,23 +218,14 @@ const About = () => {
                 </span>
               </div>
 
-              {/*
-                FIXED: was `flex flex-wrap divide-x` — all 4 items on one row at ~25% each.
-                On a 320px phone each cell was only ~80px wide, making the text illegible.
-                Now: 2 columns on mobile (each cell ~50% = ~160px), 4 columns on sm+.
-                Border logic manually applied since Tailwind divide-* doesn't work on grid.
-              */}
               <div className="grid grid-cols-2 sm:grid-cols-4">
                 {atAGlance.map((stat, i) => (
                   <div
                     key={i}
                     className={[
                       "flex min-w-0 items-baseline gap-2 px-3 sm:px-4 py-3 sm:py-3.5",
-                      // Right border for left column items (col 0) on mobile
                       i % 2 === 0 ? "border-r border-slate-200" : "",
-                      // Top border for bottom row on mobile
                       i >= 2 ? "border-t border-slate-200 sm:border-t-0" : "",
-                      // Left borders on sm+ (replaces divide-x)
                       i > 0 ? "sm:border-l sm:border-slate-200" : "",
                     ]
                       .filter(Boolean)
