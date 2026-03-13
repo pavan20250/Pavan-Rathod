@@ -40,7 +40,6 @@ const item = {
   },
 };
 
-/* Mac Terminal window shell — matches native macOS Terminal */
 const MacTitleBar = ({ title }: { title: string }) => (
   <div
     className="relative flex items-center justify-center shrink-0 h-10 px-4 border-b border-black/10"
@@ -50,32 +49,11 @@ const MacTitleBar = ({ title }: { title: string }) => (
     }}
   >
     <div className="absolute left-4 flex items-center gap-2" aria-hidden>
-      <span
-        className="w-3 h-3 rounded-full flex items-center justify-center"
-        style={{
-          background: "#ff5f57",
-          boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.06)",
-        }}
-      />
-      <span
-        className="w-3 h-3 rounded-full flex items-center justify-center"
-        style={{
-          background: "#febc2e",
-          boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.06)",
-        }}
-      />
-      <span
-        className="w-3 h-3 rounded-full flex items-center justify-center"
-        style={{
-          background: "#28c840",
-          boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.06)",
-        }}
-      />
+      <span className="w-3 h-3 rounded-full" style={{ background: "#ff5f57", boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.06)" }} />
+      <span className="w-3 h-3 rounded-full" style={{ background: "#febc2e", boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.06)" }} />
+      <span className="w-3 h-3 rounded-full" style={{ background: "#28c840", boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.06)" }} />
     </div>
-    <span
-      className="text-[13px] font-medium text-gray-600 text-center truncate max-w-[80%]"
-      style={{ color: "#3c3c3c" }}
-    >
+    <span className="text-[13px] font-medium text-center truncate max-w-[80%]" style={{ color: "#3c3c3c" }}>
       {title}
     </span>
   </div>
@@ -125,6 +103,16 @@ const NowAndChangelog = () => {
     fetchGitHub();
   }, [fetchGitHub]);
 
+  const terminalStyle: React.CSSProperties = {
+    background: "#0d0d0d",
+    color: "#e6edf3",
+    fontFamily: 'ui-monospace, "SF Mono", "Menlo", "Monaco", "Cascadia Mono", "Consolas", monospace',
+    fontSize: "13px",
+    minHeight: "320px",
+  };
+
+  const shortName = site.shortName.toLowerCase().replace(/\s+/g, "");
+
   return (
     <section
       id="now"
@@ -132,7 +120,6 @@ const NowAndChangelog = () => {
       className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden"
       aria-label="Now & Changelog"
     >
-
       <div className="container mx-auto relative z-10 max-w-5xl">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
@@ -140,7 +127,6 @@ const NowAndChangelog = () => {
           transition={{ duration: 0.4 }}
           className="text-[10px] sm:text-xs font-medium tracking-widest uppercase text-slate-500 mb-3"
         >
-          {/*Out of the box*/}
           {site.shortName.toUpperCase()}@PORTFOLIO
         </motion.p>
         <motion.h2
@@ -169,28 +155,25 @@ const NowAndChangelog = () => {
           )
         </motion.p>
 
-        <div className="grid lg:grid-cols-[1fr_1fr] gap-6 sm:gap-8 lg:gap-10 items-stretch">
+        {/* Grid — single column on mobile, two columns on lg+ */}
+        <div className="grid gap-6 sm:gap-8 lg:gap-10 lg:grid-cols-2 items-stretch">
+
           {/* Now — macOS Terminal window */}
           <motion.div
             variants={container}
             initial="hidden"
             animate={inView ? "show" : "hidden"}
-            className="mac-terminal flex flex-col min-h-[250px] h-full"
+            className="mac-terminal flex flex-col"
           >
-            <div className="relative shrink-0">
+            <div className="shrink-0">
               <MacTitleBar title="NOW.md" />
             </div>
             <div
-              className="flex-1 p-4 sm:p-5 min-h-0 leading-[1.55]"
-              style={{
-                background: "#0d0d0d",
-                color: "#e6edf3",
-                fontFamily: 'ui-monospace, "SF Mono", "Menlo", "Monaco", "Cascadia Mono", "Consolas", monospace',
-                fontSize: "13px",
-              }}
+              className="flex-1 p-4 sm:p-5 leading-[1.55] overflow-x-auto"
+              style={terminalStyle}
             >
               <motion.div variants={item} className="flex flex-wrap items-center gap-x-0.5">
-                <span style={{ color: "#5ddc5d" }}>{site.shortName.toLowerCase().replace(/\s+/g, "")}@portfolio</span>
+                <span style={{ color: "#5ddc5d" }}>{shortName}@portfolio</span>
                 <span style={{ color: "#6e7681" }}>:</span>
                 <span style={{ color: "#79c0ff" }}>~</span>
                 <span style={{ color: "#6e7681" }}> % </span>
@@ -200,12 +183,12 @@ const NowAndChangelog = () => {
               {nowEntries.map((entry) => (
                 <motion.div key={entry.key} variants={item} className="flex flex-wrap gap-x-0.5 py-0.5">
                   <span style={{ color: "#79c0ff" }}>{entry.key}:</span>
-                  <span style={{ color: "#e6edf3" }}>{entry.value}</span>
+                  <span style={{ color: "#e6edf3" }}>&nbsp;{entry.value}</span>
                 </motion.div>
               ))}
               <div className="h-3" aria-hidden />
               <motion.div variants={item} className="flex flex-wrap items-center gap-x-0.5">
-                <span style={{ color: "#5ddc5d" }}>{site.shortName.toLowerCase().replace(/\s+/g, "")}@portfolio</span>
+                <span style={{ color: "#5ddc5d" }}>{shortName}@portfolio</span>
                 <span style={{ color: "#6e7681" }}>:</span>
                 <span style={{ color: "#79c0ff" }}>~</span>
                 <span style={{ color: "#6e7681" }}> % </span>
@@ -229,41 +212,34 @@ const NowAndChangelog = () => {
                 </div>
               )}
               {!githubLoading && !githubError && github && (
-                <div className="space-y-0.5" style={{ color: "#e6edf3" }}>
+                <div className="space-y-0.5">
                   <div className="flex flex-wrap gap-x-0.5 py-0.5">
                     <span style={{ color: "#79c0ff" }}>GitHub</span>
-                    <span style={{ color: "#8b949e" }}>·</span>
+                    <span style={{ color: "#8b949e" }}>&nbsp;·&nbsp;</span>
                     <span style={{ color: "#e6edf3" }}>{github.user.login}</span>
-                    <span style={{ color: "#8b949e" }}> · Repos:</span>
+                    <span style={{ color: "#8b949e" }}>&nbsp;· Repos:&nbsp;</span>
                     <span style={{ color: "#e6edf3" }}>{github.user.publicRepos}</span>
-                    <span style={{ color: "#8b949e" }}> · Contributions:</span>
+                    <span style={{ color: "#8b949e" }}>&nbsp;· Contributions:&nbsp;</span>
                     <span style={{ color: "#e6edf3" }}>{github.user.contributions}</span>
                   </div>
-                  <div style={{ color: "#8b949e" }} className="py-0.5 text-[12px]">
-                    Recent:
-                  </div>
+                  <div style={{ color: "#8b949e" }} className="py-0.5 text-[12px]">Recent:</div>
                   {github.recentCommits.length > 0 ? (
                     github.recentCommits.map((c, i) => (
-                      <div
-                        key={`${c.repo}-${c.date}-${i}`}
-                        className="flex flex-wrap gap-x-0.5 py-0.5 pl-2"
-                      >
+                      <div key={`${c.repo}-${c.date}-${i}`} className="flex flex-wrap gap-x-0.5 py-0.5 pl-2">
                         <span style={{ color: "#79c0ff" }}>{c.repo}</span>
-                        <span style={{ color: "#8b949e" }}> </span>
+                        <span style={{ color: "#8b949e" }}>&nbsp;</span>
                         <span style={{ color: "#e6edf3" }}>{c.message}</span>
-                        <span style={{ color: "#8b949e", fontSize: "11px" }}> {c.date}</span>
+                        <span style={{ color: "#8b949e", fontSize: "11px" }}>&nbsp;{c.date}</span>
                       </div>
                     ))
                   ) : (
-                    <div style={{ color: "#8b949e" }} className="py-0.5 pl-2 text-[12px]">
-                      (no recent commits)
-                    </div>
+                    <div style={{ color: "#8b949e" }} className="py-0.5 pl-2 text-[12px]">(no recent commits)</div>
                   )}
                 </div>
               )}
               <div className="h-3" aria-hidden />
               <motion.div variants={item} className="flex flex-wrap items-center gap-x-0.5">
-                <span style={{ color: "#5ddc5d" }}>{site.shortName.toLowerCase().replace(/\s+/g, "")}@portfolio</span>
+                <span style={{ color: "#5ddc5d" }}>{shortName}@portfolio</span>
                 <span style={{ color: "#6e7681" }}>:</span>
                 <span style={{ color: "#79c0ff" }}>~</span>
                 <span style={{ color: "#6e7681" }}> % </span>
@@ -277,21 +253,17 @@ const NowAndChangelog = () => {
             variants={container}
             initial="hidden"
             animate={inView ? "show" : "hidden"}
-            className="mac-terminal flex flex-col min-h-[250px] h-full"
+            className="mac-terminal flex flex-col"
           >
-            <div className="relative shrink-0">
+            <div className="shrink-0">
               <MacTitleBar title="CHANGELOG.md" />
             </div>
             <div
-              className="flex-1 p-4 sm:p-5 min-h-0 leading-[1.55]"
-              style={{
-                background: "#0d0d0d",
-                fontFamily: 'ui-monospace, "SF Mono", "Menlo", "Monaco", "Cascadia Mono", "Consolas", monospace',
-                fontSize: "13px",
-              }}
+              className="flex-1 p-4 sm:p-5 leading-[1.55] overflow-x-auto"
+              style={terminalStyle}
             >
               <motion.div variants={item} className="flex flex-wrap items-center gap-x-0.5">
-                <span style={{ color: "#5ddc5d" }}>{site.shortName.toLowerCase().replace(/\s+/g, "")}@portfolio</span>
+                <span style={{ color: "#5ddc5d" }}>{shortName}@portfolio</span>
                 <span style={{ color: "#6e7681" }}>:</span>
                 <span style={{ color: "#79c0ff" }}>~</span>
                 <span style={{ color: "#6e7681" }}> % </span>
@@ -300,20 +272,14 @@ const NowAndChangelog = () => {
               <div className="h-2" aria-hidden />
               {changelogEntries.map((release) => (
                 <motion.div key={release.version} variants={item} className="py-1.5 flex gap-3 flex-wrap">
-                  <span style={{ color: "#79c0ff" }} className="shrink-0">
-                    [v{release.version}]
-                  </span>
-                  <span style={{ color: "#6e7681" }} className="shrink-0 text-[12px]">
-                    {release.date}
-                  </span>
-                  <span style={{ color: "#e6edf3" }} className="min-w-0">
-                    {release.note}
-                  </span>
+                  <span style={{ color: "#79c0ff" }} className="shrink-0">[v{release.version}]</span>
+                  <span style={{ color: "#6e7681" }} className="shrink-0 text-[12px]">{release.date}</span>
+                  <span style={{ color: "#e6edf3" }} className="min-w-0">{release.note}</span>
                 </motion.div>
               ))}
               <div className="h-2" aria-hidden />
               <motion.div variants={item} className="flex flex-wrap items-center gap-x-0.5">
-                <span style={{ color: "#5ddc5d" }}>{site.shortName.toLowerCase().replace(/\s+/g, "")}@portfolio</span>
+                <span style={{ color: "#5ddc5d" }}>{shortName}@portfolio</span>
                 <span style={{ color: "#6e7681" }}>:</span>
                 <span style={{ color: "#79c0ff" }}>~</span>
                 <span style={{ color: "#6e7681" }}> % </span>

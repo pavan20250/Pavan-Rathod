@@ -37,13 +37,14 @@ const projects = [
   },
 ];
 
+const MAX_VISIBLE_PILLS = 4;
+
 const Projects = () => {
   return (
     <section
       id="projects"
       className="relative py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden"
     >
-
       <div className="container mx-auto relative z-10 max-w-5xl">
         <header className="mb-12 sm:mb-14 md:mb-16">
           <p className="text-[10px] sm:text-xs font-medium tracking-[0.2em] uppercase text-slate-500 mb-2">
@@ -57,19 +58,23 @@ const Projects = () => {
           </p>
         </header>
 
-        <div className="grid gap-4 sm:gap-5 grid-cols-2 lg:grid-cols-4">
+        {/* Responsive grid: 1 col mobile → 2 col tablet → 4 col desktop */}
+        <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {projects.map((project, index) => {
             const IconComponent = project.icon;
+            const visibleTechs = project.technologies.slice(0, MAX_VISIBLE_PILLS);
+            const extraCount = project.technologies.length - MAX_VISIBLE_PILLS;
+
             return (
               <article
                 key={index}
-                className="group/card relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02]"
+                className="group/card relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] h-full"
               >
                 <div className="card-apple-mirror relative flex flex-col h-full min-h-0 rounded-2xl pl-5 sm:pl-6 pr-5 sm:pr-6 py-5 sm:py-6 transition-all duration-300">
                   <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent" aria-hidden />
-
                   <div className="absolute left-0 top-5 bottom-5 w-0.5 rounded-full bg-gradient-to-b from-slate-300/70 to-slate-400/50 opacity-70 group-hover/card:opacity-100 group-hover/card:from-slate-400 group-hover/card:to-slate-500 transition-all duration-300" />
 
+                  {/* Card header */}
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <span className="text-[11px] font-semibold tabular-nums text-slate-400/90">
                       {String(index + 1).padStart(2, "0")}
@@ -79,8 +84,9 @@ const Projects = () => {
                     </div>
                   </div>
 
+                  {/* Title + badge */}
                   <div className="mb-2 flex flex-wrap items-center gap-2">
-                    <h3 className="text-base sm:text-lg font-semibold text-slate-900 tracking-tight">
+                    <h3 className="text-base sm:text-[15px] font-semibold text-slate-900 tracking-tight">
                       {project.title}
                     </h3>
                     {"badge" in project && project.badge && (
@@ -89,16 +95,36 @@ const Projects = () => {
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-slate-600 leading-relaxed mb-5 flex-1 min-h-0">
+
+                  {/* Description — flex-1 pushes footer down */}
+                  <p className="text-sm text-slate-600 leading-relaxed mb-3 flex-1 min-h-0">
                     {project.description}
                   </p>
 
+                  {/* Tech pills with overflow indicator */}
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {visibleTechs.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {extraCount > 0 && (
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-medium">
+                        +{extraCount}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Action buttons */}
                   <div className="flex flex-nowrap gap-2 pt-4 border-t border-slate-200/50">
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="card-apple-mirror-sm inline-flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-xs font-medium text-slate-700 transition-all"
+                      className="card-apple-mirror-sm inline-flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-xs font-medium text-slate-700 transition-all min-h-[36px]"
                     >
                       <Github size={14} className="shrink-0" />
                       <span>Code</span>
@@ -107,7 +133,7 @@ const Projects = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-xl border border-slate-700/80 bg-slate-800/90 backdrop-blur-sm px-3 py-2 text-xs font-medium text-white shadow-md transition-all hover:bg-slate-700 hover:border-slate-600 hover:shadow-lg"
+                      className="inline-flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-xl border border-slate-700/80 bg-slate-800/90 backdrop-blur-sm px-3 py-2 text-xs font-medium text-white shadow-md transition-all hover:bg-slate-700 hover:border-slate-600 hover:shadow-lg min-h-[36px]"
                     >
                       <ExternalLink size={14} className="shrink-0" />
                       <span>Live</span>
