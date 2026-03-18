@@ -4,27 +4,27 @@ import { Code, Globe, Smartphone, Palette } from "lucide-react";
 const services = [
   {
     title: "UX & UI Design",
-    description: "Creating intuitive and beautiful user interfaces that enhance user experience.",
+    description: "Crafting intuitive, beautiful interfaces grounded in user research and design systems.",
     icon: Palette,
-    accent: "blue",
+    color: "#5b8af0",
   },
   {
     title: "Full Stack Development",
     description: "Building scalable web applications with modern frontend and backend technologies.",
     icon: Code,
-    accent: "violet",
+    color: "#4caf7d",
   },
   {
     title: "Web & Mobile Apps",
-    description: "Developing responsive web applications and native mobile apps for all platforms.",
+    description: "Responsive web and native mobile apps with performance at the core.",
     icon: Smartphone,
-    accent: "indigo",
+    color: "#d4a853",
   },
   {
     title: "Creative Solutions",
-    description: "Crafting innovative digital solutions that stand out in the market.",
+    description: "Innovative digital products that solve real problems and stand out.",
     icon: Globe,
-    accent: "emerald",
+    color: "#a78bfa",
   },
 ];
 
@@ -32,171 +32,136 @@ const experiences = [
   {
     company: "Mongrov",
     role: "Developer",
-    period: "May 2025 - Nov 2025",
-    accent: "blue",
+    period: "May 2025 – Nov 2025",
+    color: "#5b8af0",
+    tag: "Recent",
   },
   {
     company: "Redwood Partners",
     role: "Full Stack Developer",
-    period: "May 2024 - Apr 2025",
-    accent: "emerald",
+    period: "May 2024 – Apr 2025",
+    color: "#4caf7d",
+    tag: null,
   },
   {
     company: "Zummit Infolabs",
     role: "Junior Web Developer",
     period: "2024",
-    accent: "violet",
+    color: "#d4a853",
+    tag: null,
   },
 ];
-
-const accentStyles: Record<string, {
-  border: string;
-  iconBg: string;
-  line: string;
-  badge: string;
-  glow: string;
-  dot: string;
-}> = {
-  blue: {
-    border: "hover:border-blue-400/40",
-    iconBg: "bg-blue-500/10 text-blue-600",
-    line: "bg-blue-500",
-    badge: "bg-blue-500/10 text-blue-700 border border-blue-200/50",
-    glow: "group-hover:shadow-blue-500/10",
-    dot: "bg-blue-500",
-  },
-  violet: {
-    border: "hover:border-violet-400/40",
-    iconBg: "bg-violet-500/10 text-violet-600",
-    line: "bg-violet-500",
-    badge: "bg-violet-500/10 text-violet-700 border border-violet-200/50",
-    glow: "group-hover:shadow-violet-500/10",
-    dot: "bg-violet-500",
-  },
-  indigo: {
-    border: "hover:border-indigo-400/40",
-    iconBg: "bg-indigo-500/10 text-indigo-600",
-    line: "bg-indigo-500",
-    badge: "bg-indigo-500/10 text-indigo-700 border border-indigo-200/50",
-    glow: "group-hover:shadow-indigo-500/10",
-    dot: "bg-indigo-500",
-  },
-  emerald: {
-    border: "hover:border-emerald-400/40",
-    iconBg: "bg-emerald-500/10 text-emerald-600",
-    line: "bg-emerald-500",
-    badge: "bg-emerald-500/10 text-emerald-700 border border-emerald-200/50",
-    glow: "group-hover:shadow-emerald-500/10",
-    dot: "bg-emerald-500",
-  },
-};
 
 const Services: React.FC = () => {
   return (
     <section
       id="services"
-      className="relative min-h-0 sm:min-h-screen flex items-center overflow-hidden px-4 sm:px-6 md:px-12 lg:px-24 py-10 sm:py-14 md:py-16"
-      role="region"
-      aria-labelledby="services-heading"
+      className="relative py-14 sm:py-20 px-4 sm:px-8 md:px-16 lg:px-24 overflow-hidden"
     >
-      <div className="container mx-auto relative z-10 w-full max-w-5xl">
-        <header className="text-center mb-8 sm:mb-10 lg:mb-14">
-          <p className="text-[10px] sm:text-xs font-semibold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-gray-400 mb-1.5 sm:mb-2">
-            What I Offer & Where I&apos;ve Been
-          </p>
-          <h2
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-semibold tracking-tight text-gray-900 px-1"
-            id="services-heading"
-          >
-            Services & Experience
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <div className="mb-10">
+          <div className="section-label mb-4">What I Offer</div>
+          <h2 className="heading-display text-4xl sm:text-5xl">
+            Services &<br />
+            <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>Experience</span>
           </h2>
-          <p className="text-gray-500 max-w-md mx-auto mt-1.5 sm:mt-2 text-xs sm:text-sm leading-relaxed px-2">
-            Design, development, and roles that shape what I build.
-          </p>
-        </header>
+        </div>
 
-        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-6 sm:gap-8 lg:gap-10 items-start">
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16 items-start">
 
-          {/* Left: Experience — vertical timeline */}
-          <div className="lg:sticky lg:top-24" role="list" aria-labelledby="experience-heading">
-            <h3
-              className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4 sm:mb-6"
-              id="experience-heading"
-            >
-              Background
-            </h3>
-            <div className="space-y-0">
-              {experiences.map((exp, index) => {
-                const style = accentStyles[exp.accent];
-                const isLast = index === experiences.length - 1;
-                return (
-                  <article
-                    key={index}
-                    className={`group relative flex gap-3 sm:gap-4 py-4 sm:py-5 ${!isLast ? "border-b border-slate-100" : ""}`}
-                    role="listitem"
-                    tabIndex={0}
-                  >
-                    <div className="flex flex-col items-center shrink-0">
-                      {/* Dot — larger (12px) for better touch visibility */}
-                      <div
-                        className={`h-3 w-3 rounded-full ${style.dot} ring-4 ring-white shrink-0`}
-                        aria-hidden
-                      />
-                      {!isLast && (
-                        <div className="w-px flex-1 min-h-[2rem] mt-1 bg-gradient-to-b from-slate-300/60 to-transparent" aria-hidden />
-                      )}
+          {/* Experience timeline */}
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-widest mb-5" style={{ color: 'var(--text-muted)' }}>
+              Work History
+            </p>
+
+            <div className="relative">
+              {/* Vertical line */}
+              <div
+                className="absolute left-[5px] top-2 bottom-2"
+                style={{ width: '1px', background: 'var(--border)' }}
+              />
+
+              <div className="space-y-5 pl-8">
+                {experiences.map((exp, index) => (
+                  <div key={index} className="relative group">
+                    {/* Dot */}
+                    <div
+                      className="absolute -left-8 top-1.5 w-2.5 h-2.5 rounded-full ring-4 transition-all duration-200"
+                      style={{
+                        background: exp.color,
+                        boxShadow: `0 0 0 3px var(--bg-primary), 0 0 0 4px ${exp.color}40`,
+                      }}
+                    />
+
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span
+                          className="font-mono text-[10px] uppercase tracking-wider"
+                          style={{ color: exp.color }}
+                        >
+                          {exp.period}
+                        </span>
+                        {exp.tag && (
+                          <span
+                            className="font-mono text-[9px] uppercase tracking-widest px-1.5 py-0.5 rounded"
+                            style={{ background: `${exp.color}15`, color: exp.color, border: `1px solid ${exp.color}30` }}
+                          >
+                            {exp.tag}
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-base font-semibold mb-0.5" style={{ color: 'var(--text-primary)' }}>
+                        {exp.company}
+                      </h3>
+                      <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                        {exp.role}
+                      </p>
                     </div>
-                    <div className="flex-1 min-w-0 pb-1">
-                      <span className={`inline-block rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-medium mb-1.5 sm:mb-2 backdrop-blur-sm border border-slate-200/60 ${style.badge}`}>
-                        {exp.period}
-                      </span>
-                      <h4 className="text-sm sm:text-base font-semibold text-gray-900 tracking-tight">{exp.company}</h4>
-                      <p className="text-xs sm:text-sm text-gray-500">{exp.role}</p>
-                    </div>
-                  </article>
-                );
-              })}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Right: Services — 2x2 grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4" role="list" aria-labelledby="services-heading">
-            {services.map((service, index) => {
-              const IconComponent = service.icon;
-              const style = accentStyles[service.accent];
-              return (
-                <article
-                  key={index}
-                  className={`card-apple-mirror group relative flex flex-col rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 transition-all duration-300 hover:-translate-y-1 ${style.border} ${style.glow}`}
-                  role="listitem"
-                  tabIndex={0}
-                >
-                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/60 pointer-events-none" aria-hidden />
+          {/* Services grid */}
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-widest mb-5" style={{ color: 'var(--text-muted)' }}>
+              What I Build
+            </p>
 
-                  {/*
-                    Accent line: always visible on mobile (opacity-100),
-                    hidden then revealed on hover for desktop (md:opacity-0 md:group-hover:opacity-100)
-                  */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {services.map((service, index) => {
+                const Icon = service.icon;
+                return (
                   <div
-                    className={`absolute left-0 top-4 sm:top-6 bottom-4 sm:bottom-6 w-1 rounded-full opacity-100 md:opacity-0 transition-opacity duration-300 md:group-hover:opacity-100 ${style.line}`}
-                    aria-hidden
-                  />
-
-                  <div
-                    className={`mb-3 sm:mb-4 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl ${style.iconBg} transition-all duration-300 group-hover:scale-105 group-hover:rotate-3`}
-                    aria-hidden
+                    key={index}
+                    className="group relative rounded-xl p-5 transition-all duration-300 hover:-translate-y-0.5 card card-glow"
                   >
-                    <IconComponent size={20} strokeWidth={1.5} />
+                    {/* Accent left border */}
+                    <div
+                      className="absolute left-0 top-4 bottom-4 w-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: service.color }}
+                    />
+
+                    <div
+                      className="w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-all duration-200 group-hover:scale-105"
+                      style={{ background: `${service.color}15`, color: service.color }}
+                    >
+                      <Icon size={20} strokeWidth={1.5} />
+                    </div>
+
+                    <h4 className="text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                      {service.title}
+                    </h4>
+                    <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                      {service.description}
+                    </p>
                   </div>
-                  <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-1.5 sm:mb-2 tracking-tight pl-0.5">
-                    {service.title}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed flex-1">
-                    {service.description}
-                  </p>
-                </article>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
