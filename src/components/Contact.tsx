@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from 'react';
 import { FaEnvelope, FaLinkedin } from "react-icons/fa";
-import { Send, CheckCircle, AlertCircle } from "lucide-react";
-import handShake from '../../public/image (1).jpg';
+import { Send, CheckCircle, AlertCircle, ArrowRight } from "lucide-react";
 import Image from 'next/image';
+import handShake from '../../public/image (1).jpg';
 
 export default function ContactSection() {
   const email = "pavannaik0203@gmail.com";
@@ -16,7 +16,6 @@ export default function ContactSection() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // Clear error when user starts typing again
     if (errorMsg) setErrorMsg('');
   };
 
@@ -24,100 +23,182 @@ export default function ContactSection() {
     e.preventDefault();
     setIsLoading(true);
     setErrorMsg('');
-
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
       if (response.ok) {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', message: '' });
         setTimeout(() => setIsSubmitted(false), 6000);
       } else {
         const errorData = await response.json();
-        setErrorMsg(errorData.error || 'Failed to send message. Please try again.');
+        setErrorMsg(errorData.error || 'Failed to send. Please try again.');
       }
     } catch {
-      setErrorMsg('Network error. Please check your connection and try again.');
+      setErrorMsg('Network error. Check your connection and retry.');
     } finally {
       setIsLoading(false);
     }
   };
 
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '10px 14px',
+    background: 'rgba(255,255,255,0.04)',
+    border: '1px solid var(--border)',
+    borderRadius: '8px',
+    color: 'var(--text-primary)',
+    fontSize: '14px',
+    fontFamily: 'inherit',
+    outline: 'none',
+    transition: 'border-color 0.2s',
+  };
+
+  const labelStyle: React.CSSProperties = {
+    display: 'block',
+    fontSize: '11px',
+    fontFamily: '"DM Mono", monospace',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.1em',
+    color: 'var(--text-muted)',
+    marginBottom: '8px',
+  };
+
   return (
-    <div id="contact" className="relative flex flex-col overflow-hidden">
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center px-4 sm:px-6 py-8 sm:py-12 gap-6 sm:gap-8">
-
-        {/* Left Side — Contact Info */}
-        <div className="flex flex-col items-center justify-center text-center w-full lg:w-1/2">
-          <div className="mb-4 sm:mb-6 flex flex-col items-center">
-            {/* Photo circle */}
-            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center rounded-full bg-slate-100 mb-3 sm:mb-4 overflow-hidden ring-2 ring-slate-200">
-              <Image
-                src={handShake}
-                alt="Handshake"
-                width={128}
-                height={128}
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-slate-900 mb-1.5 sm:mb-2 px-2">
-              Open to <span className="text-slate-500">new opportunities!</span>
-            </h2>
-            <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-slate-900 mb-3 sm:mb-4">
-              Let&apos;s connect.
-            </h2>
-
-            {/* Contact buttons */}
-            <div className="flex flex-row gap-2 sm:gap-3 w-full max-w-xs">
-              <button
-                onClick={() => window.location.href = `mailto:${email}`}
-                className="flex items-center justify-center gap-2 px-4 sm:px-5 py-3 w-full bg-slate-800 text-white rounded-full hover:bg-slate-700 text-xs sm:text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-slate-800 focus:ring-offset-2 min-h-[44px] touch-manipulation"
-              >
-                <FaEnvelope className="shrink-0" />
-                Email Me
-              </button>
-              <button
-                onClick={() => window.open(linkedInUrl, "_blank")}
-                className="flex items-center justify-center gap-2 px-4 sm:px-5 py-3 w-full border-2 border-slate-200 text-slate-700 rounded-full hover:bg-slate-50 hover:border-slate-300 text-xs sm:text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 min-h-[44px] touch-manipulation"
-              >
-                <FaLinkedin className="shrink-0" />
-                LinkedIn
-              </button>
-            </div>
-          </div>
+    <section
+      id="contact"
+      className="relative py-14 sm:py-20 px-4 sm:px-8 md:px-16 lg:px-24 overflow-hidden"
+    >
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <div className="mb-10">
+          <div className="section-label mb-4">Get In Touch</div>
+          <h2 className="heading-display text-4xl sm:text-5xl">
+            Let&apos;s build<br />
+            <span style={{ color: 'var(--accent)' }}>something great.</span>
+          </h2>
         </div>
 
-        {/* Right Side — Contact Form */}
-        <div className="w-full lg:w-1/2 max-w-md">
-          <div className="bg-white p-4 sm:p-5 md:p-6 rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:shadow-slate-200/60 transition-shadow">
-            <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 sm:mb-4 text-center">
-              Send me a message
+        <div className="grid lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-16 items-start">
+
+          {/* Left — info */}
+          <div>
+            {/* Avatar + status */}
+            <div className="flex items-center gap-4 mb-5">
+              <div
+                className="w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0"
+                style={{ border: '1px solid var(--border)' }}
+              >
+                <Image
+                  src={handShake}
+                  alt="Contact"
+                  width={64}
+                  height={64}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div>
+                <p className="text-base font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+                  Open to opportunities
+                </p>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  <span className="font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>
+                    Available for new projects
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>
+              Whether you have a project in mind, want to collaborate,
+              or just want to say hi — my inbox is always open.
+            </p>
+
+            {/* Quick links */}
+            <div className="space-y-3">
+              <a
+                href={`mailto:${email}`}
+                className="flex items-center justify-between px-4 py-3.5 rounded-xl group transition-all duration-200 card"
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'rgba(212,168,83,0.1)', color: 'var(--accent)' }}
+                  >
+                    <FaEnvelope size={14} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>Email</p>
+                    <p className="font-mono text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                      pavannaik0203@gmail.com
+                    </p>
+                  </div>
+                </div>
+                <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: 'var(--accent)' }} />
+              </a>
+
+              <a
+                href={linkedInUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-4 py-3.5 rounded-xl group transition-all duration-200 card"
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'rgba(91,138,240,0.1)', color: '#5b8af0' }}
+                  >
+                    <FaLinkedin size={14} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>LinkedIn</p>
+                    <p className="font-mono text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                      pavan-rathod-0203k
+                    </p>
+                  </div>
+                </div>
+                <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#5b8af0' }} />
+              </a>
+            </div>
+          </div>
+
+          {/* Right — form */}
+          <div
+            className="rounded-2xl p-5 sm:p-6"
+            style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+          >
+            <h3 className="text-base font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
+              Send a message
             </h3>
 
-            {/* Success state */}
             {isSubmitted && (
-              <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg flex items-center gap-2">
-                <CheckCircle size={18} className="shrink-0" />
-                <span className="text-sm">Message sent successfully! I&apos;ll get back to you soon.</span>
+              <div
+                className="mb-5 p-3 rounded-lg flex items-center gap-3"
+                style={{ background: 'rgba(76,175,125,0.1)', border: '1px solid rgba(76,175,125,0.2)', color: '#4caf7d' }}
+              >
+                <CheckCircle size={16} className="shrink-0" />
+                <span className="text-sm">Message sent! I&apos;ll get back to you soon.</span>
               </div>
             )}
 
-            {/* Error state — replaces alert() */}
             {errorMsg && (
-              <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-800 rounded-lg flex items-center gap-2">
-                <AlertCircle size={18} className="shrink-0" />
+              <div
+                className="mb-5 p-3 rounded-lg flex items-center gap-3"
+                style={{ background: 'rgba(224,92,92,0.1)', border: '1px solid rgba(224,92,92,0.2)', color: '#e05c5c' }}
+              >
+                <AlertCircle size={16} className="shrink-0" />
                 <span className="text-sm">{errorMsg}</span>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-3" noValidate>
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               <div>
-                <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">
-                  Name <span className="text-red-400">*</span>
+                <label htmlFor="name" style={labelStyle}>
+                  Name <span style={{ color: '#e05c5c' }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -127,14 +208,19 @@ export default function ContactSection() {
                   onChange={handleInputChange}
                   required
                   autoComplete="name"
-                  className="w-full px-3 py-2.5 sm:py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-800 focus:border-transparent text-slate-900 text-sm min-h-[44px] sm:min-h-0 transition-colors"
                   placeholder="Your name"
+                  style={inputStyle}
+                  onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--border)')}
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">
-                  Email <span className="text-slate-400 text-[11px] font-normal">(optional)</span>
+                <label htmlFor="email" style={labelStyle}>
+                  Email{' '}
+                  <span style={{ color: 'var(--text-muted)', textTransform: 'none' as const, letterSpacing: 'normal', fontSize: '10px' }}>
+                    (optional)
+                  </span>
                 </label>
                 <input
                   type="email"
@@ -143,14 +229,16 @@ export default function ContactSection() {
                   value={formData.email}
                   onChange={handleInputChange}
                   autoComplete="email"
-                  className="w-full px-3 py-2.5 sm:py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-800 focus:border-transparent text-slate-900 text-sm min-h-[44px] sm:min-h-0 transition-colors"
-                  placeholder="your.email@example.com"
+                  placeholder="your@email.com"
+                  style={inputStyle}
+                  onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--border)')}
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">
-                  Message <span className="text-red-400">*</span>
+                <label htmlFor="message" style={labelStyle}>
+                  Message <span style={{ color: '#e05c5c' }}>*</span>
                 </label>
                 <textarea
                   id="message"
@@ -158,25 +246,34 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={handleInputChange}
                   required
-                  rows={4}
-                  className="w-full px-3 py-2.5 sm:py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-800 focus:border-transparent resize-none text-slate-900 text-sm min-h-[100px] transition-colors"
+                  rows={5}
                   placeholder="Tell me about your project or just say hello!"
+                  style={{ ...inputStyle, resize: 'none' as const, minHeight: '120px' }}
+                  onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--border)')}
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-800 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm min-h-[44px] touch-manipulation font-medium"
+                className="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200"
+                style={{
+                  background: isLoading ? 'rgba(212,168,83,0.5)' : 'var(--accent)',
+                  color: '#0c0c0f',
+                  cursor: isLoading ? 'not-allowed' : 'pointer',
+                }}
+                onMouseEnter={e => { if (!isLoading) (e.currentTarget as HTMLElement).style.background = 'var(--accent-light)'; }}
+                onMouseLeave={e => { if (!isLoading) (e.currentTarget as HTMLElement).style.background = 'var(--accent)'; }}
               >
                 {isLoading ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin opacity-70" />
                     Sending...
                   </>
                 ) : (
                   <>
-                    <Send size={16} />
+                    <Send size={15} />
                     Send Message
                   </>
                 )}
@@ -185,6 +282,6 @@ export default function ContactSection() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,190 +1,235 @@
 import React from "react";
 import Link from "next/link";
-import { Calendar, Clock, User, ArrowRight, ArrowLeft, Coffee, Bug, Rocket, Heart } from "lucide-react";
+import { Calendar, Clock, ArrowRight, ArrowLeft, Coffee, Bug, Rocket, Heart } from "lucide-react";
 
 const BlogPage = () => {
   const blogPosts = [
     {
       title: "Why My Code Works at 3 AM But Not at 9 AM",
-      excerpt: "The mysterious phenomenon of debugging at different hours. Spoiler: It's not the coffee, it's the sleep deprivation.",
-      author: "Pavan",
+      excerpt: "The mysterious phenomenon of debugging at different hours. Spoiler: It's not the coffee.",
       date: "2024-01-15",
-      readTime: "5 min read",
-      category: "Programming Humor",
+      readTime: "5 min",
+      category: "Humor",
       icon: Coffee,
-      color: "bg-amber-500/10 text-amber-700 border-amber-200/60",
+      color: "#d4a853",
+      index: "01",
     },
     {
       title: "The Great Console.log() Mystery",
-      excerpt: "Why does adding console.log() suddenly make your bug disappear? A detective story for developers.",
-      author: "Pavan",
+      excerpt: "Why does adding console.log() suddenly make your bug disappear? A detective story.",
       date: "2024-01-12",
-      readTime: "3 min read",
+      readTime: "3 min",
       category: "Debugging",
       icon: Bug,
-      color: "bg-rose-500/10 text-rose-700 border-rose-200/60",
+      color: "#e05c5c",
+      index: "02",
     },
     {
       title: "How I Explained React to My Grandma",
-      excerpt: "She still thinks I'm building websites with actual bricks and mortar. But at least she understands components now!",
-      author: "Pavan",
+      excerpt: "She still thinks I'm building websites with actual bricks. But she understands components now.",
       date: "2024-01-10",
-      readTime: "7 min read",
+      readTime: "7 min",
       category: "React",
       icon: Heart,
-      color: "bg-pink-500/10 text-pink-700 border-pink-200/60",
+      color: "#a78bfa",
+      index: "03",
     },
     {
       title: "The Day I Deployed to Production on Friday",
-      excerpt: "A horror story that every developer knows too well. Spoiler: The weekend was... eventful.",
-      author: "Pavan",
+      excerpt: "A horror story every developer knows too well. The weekend was... eventful.",
       date: "2024-01-08",
-      readTime: "4 min read",
+      readTime: "4 min",
       category: "DevOps",
       icon: Rocket,
-      color: "bg-sky-500/10 text-sky-700 border-sky-200/60",
+      color: "#5b8af0",
+      index: "04",
     },
     {
-      title: "Why 'It Works on My Machine' is a Valid Excuse",
-      excerpt: "A comprehensive defense of the most famous developer phrase. Includes scientific evidence and legal precedents.",
-      author: "Pavan",
+      title: "Why 'It Works on My Machine' is Valid",
+      excerpt: "A comprehensive defense of the most famous developer phrase. With evidence.",
       date: "2024-01-05",
-      readTime: "6 min read",
-      category: "Programming Philosophy",
+      readTime: "6 min",
+      category: "Philosophy",
       icon: Coffee,
-      color: "bg-emerald-500/10 text-emerald-700 border-emerald-200/60",
+      color: "#4caf7d",
+      index: "05",
     },
     {
       title: "The Art of Naming Variables",
-      excerpt: "From 'temp' to 'data' to 'thing' - a journey through the creative process of variable naming.",
-      author: "Pavan",
+      excerpt: "From 'temp' to 'data' to 'thing' — a journey through variable naming creativity.",
       date: "2024-01-03",
-      readTime: "8 min read",
+      readTime: "8 min",
       category: "Code Quality",
       icon: Bug,
-      color: "bg-violet-500/10 text-violet-700 border-violet-200/60",
+      color: "#d4a853",
+      index: "06",
     },
   ];
 
   return (
-    <div className="min-h-screen relative bg-white overflow-hidden">
-      {/* Dot pattern */}
+    <div
+      className="min-h-screen relative"
+      style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}
+    >
+      {/* Grid overlay */}
+      <div className="fixed inset-0 grid-overlay pointer-events-none" />
+
+      {/* Ambient orb */}
       <div
-        className="absolute inset-0 opacity-[0.4]"
+        className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0)`,
-          backgroundSize: "24px 24px",
+          background: 'radial-gradient(ellipse, rgba(212,168,83,0.04) 0%, transparent 70%)',
+          filter: 'blur(40px)',
         }}
-        aria-hidden
       />
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
+
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 md:px-12 py-8 sm:py-10">
+
+        {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900 mb-6 transition-colors min-h-[44px] touch-manipulation"
+          className="inline-flex items-center gap-2 mb-8 transition-colors link-arrow"
+          style={{ color: 'var(--text-muted)', fontSize: '12px', fontFamily: '"DM Mono", monospace' }}
         >
-          <ArrowLeft className="w-4 h-4" aria-hidden />
-          Back to home
+          <ArrowLeft size={13} />
+          cd ~/home
         </Link>
 
-        {/* Page header */}
-        <header className="text-center mb-8 md:mb-10">
-          <p className="text-xs font-medium tracking-widest uppercase text-slate-400 mb-2">
-            Blog
-          </p>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight mb-2 max-w-2xl mx-auto">
-            The Funny Side of Code
+        {/* Header */}
+        <header className="mb-10">
+          <div className="section-label mb-4">Writing</div>
+          <h1 className="heading-display text-4xl sm:text-5xl lg:text-6xl mb-4">
+            The Funny Side<br />
+            <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>of Code</span>
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
-            Where programming meets humor, and bugs become features.
+          <p className="text-sm sm:text-base max-w-lg" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+            Where programming meets humor and bugs become features.
+            Technical tales from the trenches.
           </p>
         </header>
 
-        {/* Blog grid — cards are equal height via h-full */}
-        <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post, index) => {
+        {/* Blog grid */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-10">
+          {blogPosts.map((post) => {
             const Icon = post.icon;
             return (
               <article
-                key={index}
-                className="card-apple-mirror group/card rounded-2xl overflow-hidden flex flex-col h-full transition-all duration-300 hover:scale-[1.02]"
-                style={{ animationDelay: `${index * 80}ms` }}
+                key={post.index}
+                className="group relative rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-0.5 card card-glow cursor-pointer"
               >
-                <div className="p-4 sm:p-5 flex flex-col flex-1">
-                  {/* Category badge */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-medium border ${post.color}`}>
-                      <Icon className="w-3 h-3" aria-hidden />
-                      {post.category}
+                {/* Top accent line */}
+                <div
+                  className="h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: `linear-gradient(90deg, transparent, ${post.color}60, transparent)` }}
+                />
+
+                <div className="p-5 sm:p-6 flex flex-col flex-1">
+                  {/* Top row */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div
+                      className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-200 group-hover:scale-105"
+                      style={{ background: `${post.color}15`, color: post.color }}
+                    >
+                      <Icon size={17} strokeWidth={1.5} />
+                    </div>
+                    <span
+                      className="font-mono text-2xl font-bold opacity-10 group-hover:opacity-20 transition-opacity"
+                      style={{ color: post.color }}
+                    >
+                      {post.index}
                     </span>
                   </div>
 
+                  {/* Category */}
+                  <span
+                    className="font-mono text-[9px] uppercase tracking-widest mb-3 inline-block"
+                    style={{ color: post.color }}
+                  >
+                    {post.category}
+                  </span>
+
                   {/* Title */}
-                  <h2 className="text-base font-semibold text-slate-900 mb-1.5 line-clamp-2 group-hover/card:text-slate-700 transition-colors">
+                  <h2
+                    className="text-sm font-semibold mb-2 line-clamp-2 leading-snug transition-colors duration-200"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
                     {post.title}
                   </h2>
 
-                  {/* Excerpt — flex-1 ensures equal card height */}
-                  <p className="text-sm text-slate-600 leading-snug mb-3 line-clamp-3 flex-1">
+                  {/* Excerpt */}
+                  <p
+                    className="text-xs leading-relaxed line-clamp-3 flex-1 mb-4"
+                    style={{ color: 'var(--text-secondary)' }}
+                  >
                     {post.excerpt}
                   </p>
 
-                  {/* Meta — always at bottom */}
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500 pt-3 border-t border-slate-100">
-                    <span className="flex items-center gap-1.5">
-                      <User className="w-3.5 h-3.5" aria-hidden />
-                      {post.author}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5" aria-hidden />
-                      {post.date}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5" aria-hidden />
-                      {post.readTime}
+                  {/* Meta + link */}
+                  <div
+                    className="flex items-center justify-between pt-4"
+                    style={{ borderTop: '1px solid var(--border)' }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="flex items-center gap-1.5 font-mono text-[10px]" style={{ color: 'var(--text-muted)' }}>
+                        <Calendar size={10} />
+                        {post.date}
+                      </span>
+                      <span className="flex items-center gap-1.5 font-mono text-[10px]" style={{ color: 'var(--text-muted)' }}>
+                        <Clock size={10} />
+                        {post.readTime}
+                      </span>
+                    </div>
+                    <span
+                      className="flex items-center gap-1 text-[11px] font-mono opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-1 group-hover:translate-x-0"
+                      style={{ color: post.color }}
+                    >
+                      Read
+                      <ArrowRight size={11} />
                     </span>
                   </div>
-
-                  <a
-                    href="#"
-                    className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-slate-900 hover:text-slate-600 transition-colors min-h-[36px]"
-                  >
-                    Read more
-                    <ArrowRight className="w-4 h-4 group-hover/card:translate-x-0.5 transition-transform" />
-                  </a>
                 </div>
               </article>
             );
           })}
         </div>
 
-        {/* CTA section */}
-        <section className="mt-10 sm:mt-12">
-          <div className="card-apple-mirror relative rounded-2xl p-6 sm:p-8 text-center transition-all duration-300 hover:scale-[1.01] max-w-3xl mx-auto">
-            <p className="text-xs font-medium tracking-widest uppercase text-slate-400 mb-2">
-              More coming soon
-            </p>
-            <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">
-              More stories & updates
-            </h2>
-            <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-lg mx-auto">
-              New posts on coding, debugging, and dev life are in the works. Get notified when they go live.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-2 justify-center">
-              <a
-                href="mailto:pavannaik0203@gmail.com?subject=Subscribe to blog updates"
-                className="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-slate-800 text-white text-sm font-medium hover:bg-slate-700 transition-colors min-h-[44px] touch-manipulation"
-              >
-                Subscribe for updates
-              </a>
-              <a
-                href="mailto:pavannaik0203@gmail.com?subject=Blog topic suggestion"
-                className="inline-flex items-center justify-center px-5 py-3 rounded-lg border-2 border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors min-h-[44px] touch-manipulation"
-              >
-                Suggest a topic
-              </a>
-            </div>
+        {/* CTA */}
+        <div
+          className="rounded-2xl p-6 sm:p-8 text-center"
+          style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+        >
+          <span className="font-mono text-[10px] uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
+            More coming soon
+          </span>
+          <h2 className="heading-display text-2xl sm:text-3xl mt-3 mb-3">
+            More stories & updates
+          </h2>
+          <p className="text-sm max-w-md mx-auto mb-8" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+            New posts on coding, debugging, and dev life are in the works.
+            Get notified when they go live.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="mailto:pavannaik0203@gmail.com?subject=Subscribe to blog updates"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200"
+              style={{ background: 'var(--accent)', color: '#0c0c0f' }}
+            >
+              Subscribe for updates
+            </a>
+            <a
+              href="mailto:pavannaik0203@gmail.com?subject=Blog topic suggestion"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200"
+              style={{
+                border: '1px solid var(--border)',
+                color: 'var(--text-secondary)',
+                background: 'transparent',
+              }}
+            >
+              Suggest a topic
+            </a>
           </div>
-        </section>
+        </div>
+
       </div>
     </div>
   );

@@ -2,81 +2,55 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Code, Database, Cloud, Zap } from "lucide-react";
+import { Code, Database, Cloud, Zap, MapPin, Briefcase } from "lucide-react";
 import { site } from "@/lib/site";
 
 const atAGlance = [
-  { value: "10+", label: "Projects (1 startup)" },
-  { value: "1+", label: "Years of Experience" },
-  { value: "E2E", label: "Full stack" },
-  { value: "—", label: "Open to work" },
+  { value: "10+", label: "Projects" },
+  { value: "1+", label: "Yrs Exp" },
+  { value: "E2E", label: "Full Stack" },
+  { value: "Open", label: "To Work" },
 ];
 
 const skills = [
   {
     name: "Frontend",
     icon: Code,
-    description: "JavaScript, React, Next.js, TypeScript, HTML, CSS",
-    color: "from-blue-500 to-cyan-500",
-    bg: "bg-blue-50",
-    border: "border-blue-200/80",
-    iconBg: "bg-blue-100 text-blue-600",
-    iconHover: "group-hover:bg-blue-200 group-hover:text-blue-700",
+    description: "React · Next.js · TypeScript · Tailwind · HTML · CSS",
+    color: "#5b8af0",
   },
   {
     name: "Backend",
     icon: Database,
-    description: "Node.js, PostgreSQL, APIs, SQL, MongoDB, Serverless",
-    color: "from-emerald-500 to-teal-500",
-    bg: "bg-emerald-50",
-    border: "border-emerald-200/80",
-    iconBg: "bg-emerald-100 text-emerald-600",
-    iconHover: "group-hover:bg-emerald-200 group-hover:text-emerald-700",
+    description: "Node.js · PostgreSQL · MongoDB · REST APIs · Serverless",
+    color: "#4caf7d",
   },
   {
     name: "Cloud",
     icon: Cloud,
-    description: "AWS, Vercel, Docker, CI/CD, Appwright, Cloudflare",
-    color: "from-violet-500 to-purple-500",
-    bg: "bg-violet-50",
-    border: "border-violet-200/80",
-    iconBg: "bg-violet-100 text-violet-600",
-    iconHover: "group-hover:bg-violet-200 group-hover:text-violet-700",
+    description: "AWS · Vercel · Docker · CI/CD · Cloudflare",
+    color: "#d4a853",
   },
   {
     name: "Tools",
     icon: Zap,
-    description: "Git, Figma, Testing, Jest, Cypress, ESLint",
-    color: "from-amber-500 to-orange-500",
-    bg: "bg-amber-50",
-    border: "border-amber-200/80",
-    iconBg: "bg-amber-100 text-amber-600",
-    iconHover: "group-hover:bg-amber-200 group-hover:text-amber-700",
+    description: "Git · Figma · Jest · Cypress · ESLint · Testing",
+    color: "#a78bfa",
   },
 ];
 
 const container = {
   hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.15 },
-  },
+  show: { opacity: 1, transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 120, damping: 20 },
-  },
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 140, damping: 22 } },
 };
 
 const About = () => {
-  const videoContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const [videoInView, setVideoInView] = useState(false);
-  const [videoReady, setVideoReady] = useState(false);
   const [sectionVisible, setSectionVisible] = useState(false);
 
   useEffect(() => {
@@ -84,27 +58,9 @@ const About = () => {
     if (!el) return;
     const obs = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          setSectionVisible(true);
-          obs.disconnect();
-        }
+        if (entries[0].isIntersecting) { setSectionVisible(true); obs.disconnect(); }
       },
       { rootMargin: "-60px", threshold: 0 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  // Only lazy-load video on desktop (md+)
-  useEffect(() => {
-    if (window.innerWidth < 768) return;
-    const el = videoContainerRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) setVideoInView(true);
-      },
-      { rootMargin: "400px", threshold: 0 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -114,185 +70,184 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden"
+      className="relative py-14 sm:py-20 px-4 sm:px-8 md:px-16 lg:px-24 overflow-hidden"
     >
-      <div className="container relative mx-auto max-w-5xl z-10">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-8 sm:gap-12 lg:gap-24">
+      {/* Subtle ambient glow behind heading */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse, rgba(212,168,83,0.04) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+        }}
+      />
 
-          {/* Media block — hidden on mobile, visible md+ */}
-          <div
-            ref={videoContainerRef}
-            className="hidden md:block shrink-0 mx-auto lg:mx-0 order-2 lg:order-1"
-          >
-            <div className="relative max-w-[10rem] sm:max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] w-full mx-auto aspect-square">
-              <div
-                className="relative overflow-hidden rounded-[2rem]"
-                style={{
-                  WebkitMaskImage: "radial-gradient(ellipse 65% 65% at 50% 50%, black 40%, transparent 80%)",
-                  maskImage: "radial-gradient(ellipse 65% 65% at 50% 50%, black 40%, transparent 80%)",
-                }}
+      <div className="max-w-5xl mx-auto">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate={sectionVisible ? "show" : "hidden"}
+        >
+          <motion.div variants={item} className="section-label mb-4">About</motion.div>
+
+          {/* Top row — heading left, stats card right */}
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-8 lg:gap-14 mb-10">
+
+            {/* Heading + bio + tags */}
+            <div>
+              <motion.h2
+                variants={item}
+                className="heading-display text-3xl sm:text-4xl lg:text-5xl mb-5 leading-tight"
               >
-                {!videoReady && (
-                  <div
-                    className="absolute inset-0 z-10 flex items-center justify-center rounded-[2rem] bg-black/5"
-                    aria-hidden
-                  >
-                    <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-600" />
-                  </div>
-                )}
-                <video
-                  src={videoInView ? "/Anime_Boy_Intro.mp4" : undefined}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload={videoInView ? "auto" : "none"}
-                  poster="/pavan.jpg"
-                  onCanPlay={() => setVideoReady(true)}
-                  className="w-full h-full object-contain relative z-0"
-                  aria-label="Intro video"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Copy + skills */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate={sectionVisible ? "show" : "hidden"}
-            className="flex-1 min-w-0 order-1 lg:order-2"
-          >
-            <motion.p
-              variants={item}
-              className="text-xs sm:text-sm font-medium tracking-[0.15em] sm:tracking-[0.2em] uppercase text-violet-600/90 mb-1.5 sm:mb-2"
-            >
-              About
-            </motion.p>
-            <motion.h2
-              variants={item}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-semibold text-slate-900 tracking-tight mb-6 sm:mb-8 leading-[1.2]"
-            >
-              Hi, I&apos;m{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">{site.shortName}</span>
-                <motion.span
-                  className="absolute bottom-1 left-0 right-0 h-2.5 bg-gradient-to-r rounded-sm -z-0"
-                  aria-hidden
-                  initial={{ scaleX: 0 }}
-                  animate={sectionVisible ? { scaleX: 1 } : {}}
-                  transition={{ delay: 0.4, duration: 0.5 }}
-                  style={{ transformOrigin: "left" }}
-                />
-              </span>
-            </motion.h2>
-
-            <div className="space-y-4 sm:space-y-6 text-slate-600 text-sm sm:text-[0.9375rem] font-semibold md:text-base leading-[1.7] max-w-5xl">
-              <motion.p variants={item} className="text-slate-600/95">
-                <strong className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600 font-semibold text-slate-700">
+                Hi, I&apos;m{" "}
+                <span style={{ color: 'var(--accent)' }}>{site.shortName}</span>
+                <br />
+                <span style={{ color: 'var(--text-secondary)', fontWeight: 400, fontSize: '0.65em' }}>
                   Full Stack Developer
-                </strong>{" "}
-                with hands-on experience in modern JavaScript frameworks and end-to-end application
-                development, including seamless backend integrations.
-              </motion.p>
-              <motion.p variants={item} className="text-slate-600/95">
-                Skilled in building scalable, production-ready applications with clean UI and
-                optimized performance.
-              </motion.p>
-              <motion.p variants={item} className="text-slate-600/95">
-                Passionate about solving real-world problems and continuously enhancing technical
-                and problem-solving skills.
-              </motion.p>
-            </div>
-
-            {/* At a glance */}
-            <motion.div
-              variants={item}
-              className="mt-6 sm:mt-8 rounded-lg border border-slate-200 border-l-4 border-l-slate-400 bg-white font-mono text-sm overflow-hidden shadow-sm"
-              aria-label="Key metrics"
-            >
-              <div className="flex items-center gap-1 px-3 py-1.5 border-b border-slate-200 bg-slate-50">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
-                <span className="text-[10px] sm:text-xs uppercase tracking-wider text-slate-500">
-                  at a glance
                 </span>
+              </motion.h2>
+
+              <div className="space-y-3 mb-6" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+                <motion.p variants={item} className="text-base sm:text-lg">
+                  Crafting scalable, production-ready applications with clean architecture
+                  and obsessive attention to developer and user experience.
+                </motion.p>
+                <motion.p variants={item} className="text-sm sm:text-base">
+                  Passionate about solving real-world problems through thoughtful engineering
+                  and continuously pushing the boundaries of what modern web can do.
+                </motion.p>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4">
-                {atAGlance.map((stat, i) => (
+              <motion.div variants={item} className="flex flex-wrap gap-2">
+                {[
+                  { icon: <MapPin size={11} style={{ color: 'var(--accent)' }} />, label: 'India · Remote-friendly' },
+                  { icon: <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />, label: 'Open to work' },
+                  { icon: <Briefcase size={11} style={{ color: 'var(--accent)' }} />, label: '1+ yr experience' },
+                ].map((tag, i) => (
                   <div
                     key={i}
-                    className={[
-                      "flex min-w-0 items-baseline gap-2 px-3 sm:px-4 py-3 sm:py-3.5",
-                      i % 2 === 0 ? "border-r border-slate-200" : "",
-                      i >= 2 ? "border-t border-slate-200 sm:border-t-0" : "",
-                      i > 0 ? "sm:border-l sm:border-slate-200" : "",
-                    ]
-                      .filter(Boolean)
-                      .join(" ")}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono"
+                    style={{
+                      background: 'var(--bg-card)',
+                      border: '1px solid var(--border)',
+                      color: 'var(--text-secondary)',
+                    }}
                   >
-                    <span className="tabular-nums font-semibold text-slate-800">{stat.value}</span>
-                    <span className="text-[10px] sm:text-xs uppercase tracking-widest text-slate-500 leading-snug">
-                      {stat.label}
-                    </span>
+                    {tag.icon}
+                    {tag.label}
                   </div>
                 ))}
+              </motion.div>
+            </div>
+
+            {/* Stats card */}
+            <motion.div variants={item} className="flex flex-col justify-center">
+              <div
+                className="rounded-2xl overflow-hidden"
+                style={{ border: '1px solid var(--border)', background: 'var(--bg-card)' }}
+              >
+                {/* Terminal chrome */}
+                <div
+                  className="flex items-center gap-2 px-4 py-3"
+                  style={{ borderBottom: '1px solid var(--border)', background: 'rgba(255,255,255,0.02)' }}
+                >
+                  <div className="flex gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#ff5f57' }} />
+                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#febc2e' }} />
+                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#28c840' }} />
+                  </div>
+                  <span className="font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
+                    ~/pavan — at-a-glance
+                  </span>
+                </div>
+
+                {/* 2x2 stats */}
+                <div className="grid grid-cols-2">
+                  {atAGlance.map((stat, i) => (
+                    <div
+                      key={i}
+                      className="flex flex-col gap-2 px-5 py-5"
+                      style={{
+                        borderRight: i % 2 === 0 ? '1px solid var(--border)' : 'none',
+                        borderBottom: i < 2 ? '1px solid var(--border)' : 'none',
+                      }}
+                    >
+                      <span className="font-display text-2xl sm:text-3xl font-bold" style={{ color: 'var(--accent)' }}>
+                        {stat.value}
+                      </span>
+                      <span className="font-mono text-[10px] uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>
+                        {stat.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Status footer */}
+                <div
+                  className="px-5 py-3 flex items-center justify-between"
+                  style={{ borderTop: '1px solid var(--border)', background: 'rgba(255,255,255,0.01)' }}
+                >
+                  <span className="font-mono text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                    $ status --check
+                  </span>
+                  <span className="font-mono text-[11px] flex items-center gap-2" style={{ color: '#4caf7d' }}>
+                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#4caf7d' }} />
+                    available
+                  </span>
+                </div>
               </div>
             </motion.div>
+          </div>
 
-            {/* Stack */}
-            <motion.div variants={item} className="mt-8 sm:mt-10">
-              <p className="text-xs sm:text-sm font-medium tracking-[0.15em] uppercase text-slate-400 mb-3 sm:mb-5">
-                Stack
-              </p>
-              <ul className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-                {skills.map((skill, index) => {
-                  const Icon = skill.icon;
-                  return (
-                    <motion.li
-                      key={index}
-                      variants={item}
-                      whileHover={{ y: -2, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-                      className="group flex flex-col gap-2 sm:gap-3 rounded-lg py-4 sm:py-5 px-3 sm:px-4 bg-white border border-slate-200 hover:border-slate-300 hover:shadow-md hover:shadow-slate-200/60 transition-all duration-200 cursor-default"
-                    >
-                      <span
-                        className={`flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-lg sm:rounded-xl ${skill.iconBg} ${skill.iconHover} transition-colors duration-300`}
+          {/* Skills — full width 4 col */}
+          <motion.div variants={item}>
+            <p className="font-mono text-[10px] uppercase tracking-widest mb-4" style={{ color: 'var(--text-muted)' }}>
+              Technical Stack
+            </p>
+            <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {skills.map((skill) => {
+                const Icon = skill.icon;
+                return (
+                  <motion.li
+                    key={skill.name}
+                    variants={item}
+                    whileHover={{ y: -3, transition: { type: "spring", stiffness: 400, damping: 25 } }}
+                    className="group flex flex-col gap-3 p-4 rounded-xl cursor-default transition-all duration-200"
+                    style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110"
+                        style={{ background: `${skill.color}18`, color: skill.color }}
                       >
-                        <Icon size={20} strokeWidth={1.6} />
-                      </span>
-                      <div className="min-w-0">
-                        <p className="font-semibold text-slate-800 text-xs sm:text-sm tracking-tight">
-                          {skill.name}
-                        </p>
-                        <p
-                          className="text-[10px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1 line-clamp-2 leading-relaxed"
-                          title={skill.description}
-                        >
-                          {skill.description}
-                        </p>
+                        <Icon size={18} strokeWidth={1.5} />
                       </div>
-                    </motion.li>
-                  );
-                })}
-              </ul>
-            </motion.div>
+                      <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                        {skill.name}
+                      </p>
+                    </div>
+
+                    <div style={{ height: '1px', background: 'var(--border)' }} />
+
+                    <p className="text-[11px] font-mono leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                      {skill.description}
+                    </p>
+
+                    {/* Accent bar on hover */}
+                    <div
+                      className="h-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: `linear-gradient(90deg, ${skill.color}, transparent)` }}
+                    />
+                  </motion.li>
+                );
+              })}
+            </ul>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Hidden SEO content */}
       <div className="sr-only">
         <h2>{site.name} - Full Stack Developer</h2>
-        <p>
-          {site.shortName} is a skilled Full Stack Developer specializing in React, TypeScript,
-          JavaScript, Node.js, and AWS. {site.shortName} creates modern web applications and provides
-          expert development services. Contact {site.shortName} for your next project.
-        </p>
-        <p>
-          Keywords: {site.shortName}, {site.name}, Full Stack Developer, React Developer, TypeScript
-          Developer, JavaScript Developer, Node.js Developer, AWS Developer, Web Developer,
-          Software Engineer, Portfolio, LinkedIn, GitHub
-        </p>
+        <p>{site.shortName} specializes in React, TypeScript, Node.js, and AWS.</p>
       </div>
     </section>
   );

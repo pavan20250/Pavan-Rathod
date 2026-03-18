@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { Mails, Menu, X, ChevronDown } from "lucide-react";
 import { site } from "@/lib/site";
@@ -13,7 +13,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('home');
-  // Removed hasNudged ref — the programmatic nudge fights touch scroll on mobile
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,10 +24,7 @@ const Header = () => {
       const scrollY = window.scrollY + 100;
       for (let i = SECTION_IDS.length - 1; i >= 0; i--) {
         const el = document.getElementById(SECTION_IDS[i]);
-        if (el && el.offsetTop <= scrollY) {
-          setActiveSection(SECTION_IDS[i]);
-          break;
-        }
+        if (el && el.offsetTop <= scrollY) { setActiveSection(SECTION_IDS[i]); break; }
       }
     };
     handleScroll();
@@ -39,9 +35,6 @@ const Header = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // Use scrollIntoView with smooth behavior — works well on desktop.
-      // On iOS Safari, smooth scrollIntoView can sometimes be jerky;
-      // using scrollTo with the element's offset is more reliable.
       const isMobile = window.innerWidth < 768;
       if (isMobile) {
         const top = element.getBoundingClientRect().top + window.scrollY;
@@ -64,52 +57,55 @@ const Header = () => {
 
   return (
     <>
-      {/* Navigation Bar — visible only after scrolling past About */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg' : 'opacity-0 pointer-events-none'
-      }`}>
+      {/* Navigation Bar */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        style={isScrolled ? {
+          background: 'rgba(12, 12, 15, 0.92)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderBottom: '1px solid rgba(255,255,255,0.07)',
+        } : {}}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <div className="flex-shrink-0">
-              <button onClick={() => scrollToSection('home')} className="outline-none flex items-center">
-                <Image
-                  src="/pavan_logo.png"
-                  alt={site.name}
-                  width={120}
-                  height={36}
-                  className="h-10 w-auto object-contain"
-                />
-              </button>
-            </div>
+            <button onClick={() => scrollToSection('home')} className="outline-none flex items-center">
+              <span className="sr-only">{site.name} Home</span>
+              <span className="ml-2 font-mono font-bold text-lg" style={{ color: 'var(--accent)' }}>
+                {site.shortName}
+              </span>
+            </button>
+             
 
             {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                {navItems.map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`px-3 py-2 rounded-md text-sm font-bold transition-colors ${
-                      activeSection === item.id
-                        ? 'text-gray-900 bg-gray-100'
-                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                ))}
-              </div>
+            <div className="hidden md:flex items-center gap-1">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.id)}
+                  className="px-3 py-2 rounded-md text-sm font-medium transition-all duration-150"
+                  style={{
+                    fontFamily: '"DM Mono", monospace',
+                    fontSize: '12px',
+                    color: activeSection === item.id ? 'var(--accent)' : 'rgba(255,255,255,0.5)',
+                    background: activeSection === item.id ? 'rgba(212,168,83,0.08)' : 'transparent',
+                  }}
+                >
+                  {item.name}
+                </button>
+              ))}
             </div>
 
             {/* Mobile menu button */}
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 rounded-md text-gray-700 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                className="p-2 rounded-md min-w-[44px] min-h-[44px] flex items-center justify-center"
+                style={{ color: 'rgba(255,255,255,0.7)' }}
                 aria-label="Toggle menu"
               >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
               </button>
             </div>
           </div>
@@ -117,15 +113,25 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-sm shadow-lg">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+          <div
+            className="md:hidden"
+            style={{
+              background: 'rgba(12,12,15,0.98)',
+              borderBottom: '1px solid rgba(255,255,255,0.07)',
+            }}
+          >
+            <div className="px-3 pt-2 pb-4 space-y-1">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.id)}
-                  className={`block px-3 py-3 rounded-md text-base font-medium w-full text-left min-h-[44px] ${
-                    activeSection === item.id ? 'text-gray-900 bg-gray-100' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                  }`}
+                  className="block px-4 py-3 rounded-lg text-sm font-medium w-full text-left min-h-[44px] transition-all duration-150"
+                  style={{
+                    fontFamily: '"DM Mono", monospace',
+                    fontSize: '13px',
+                    color: activeSection === item.id ? 'var(--accent)' : 'rgba(255,255,255,0.5)',
+                    background: activeSection === item.id ? 'rgba(212,168,83,0.08)' : 'transparent',
+                  }}
                 >
                   {item.name}
                 </button>
@@ -135,6 +141,7 @@ const Header = () => {
         )}
       </nav>
 
+      {/* Hero header — LAYOUT PRESERVED */}
       <header
         id="home"
         className="relative flex flex-col justify-center items-center min-h-screen px-4 sm:px-6 lg:px-8"
@@ -145,25 +152,36 @@ const Header = () => {
           backgroundRepeat: "no-repeat",
           borderBottomLeftRadius: "50px",
           borderBottomRightRadius: "50px",
-          borderLeft: "8px solid white",
-          borderRight: "8px solid white",
+          borderLeft: "8px solid #0c0c0f",
+          borderRight: "8px solid #0c0c0f",
         }}
       >
-        {/* Hero Section */}
+        {/* Dark overlay so all text is visible over the light bg image */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'linear-gradient(160deg, rgba(12,12,15,0.82) 0%, rgba(12,12,15,0.70) 50%, rgba(12,12,15,0.86) 100%)',
+            borderBottomLeftRadius: "44px",
+            borderBottomRightRadius: "44px",
+          }}
+        />
+
         <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto relative z-10 pt-16 pb-12 gap-6 sm:gap-8">
 
-          {/* Ambient background blobs */}
+          {/* Ambient blobs */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/4 left-1/4 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-white/10 rounded-full blur-lg md:blur-2xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-1/4 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 bg-white/5 rounded-full blur-lg md:blur-xl animate-pulse delay-1000" />
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40 bg-white/5 rounded-full blur-xl md:blur-3xl animate-pulse delay-500" />
+            <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full blur-2xl animate-pulse" style={{ background: 'rgba(212,168,83,0.12)' }} />
+            <div className="absolute bottom-1/4 right-1/4 w-24 h-24 rounded-full blur-xl animate-pulse" style={{ background: 'rgba(91,138,240,0.08)', animationDelay: '1s' }} />
           </div>
 
           {/* Profile image */}
           <div className="relative inline-block group">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-lg md:blur-xl group-hover:blur-2xl transition-all duration-500" />
-              <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 rounded-full overflow-hidden border-2 sm:border-4 border-white/80 shadow-2xl backdrop-blur-sm group-hover:scale-105 transition-transform duration-500">
+              <div className="absolute inset-0 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500" style={{ background: 'radial-gradient(circle, rgba(212,168,83,0.2) 0%, transparent 70%)' }} />
+              <div
+                className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 rounded-full overflow-hidden border-2 sm:border-4 shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                style={{ borderColor: 'rgba(212,168,83,0.4)' }}
+              >
                 <Image
                   src={pavan}
                   alt={`${site.name} - Full Stack Developer`}
@@ -174,30 +192,35 @@ const Header = () => {
                 />
               </div>
 
-              {/* Floating badge elements */}
-              <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
-                <span className="text-white text-xs">✨</span>
+              <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center shadow-lg animate-bounce" style={{ background: 'var(--accent)' }}>
+                <span className="text-black text-xs">✨</span>
               </div>
-              <div className="absolute -bottom-1 -left-1 sm:-bottom-2 sm:-left-2 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center shadow-lg animate-bounce delay-500">
+              <div className="absolute -bottom-1 -left-1 sm:-bottom-2 sm:-left-2 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-lg animate-bounce" style={{ background: '#4caf7d', animationDelay: '0.5s' }}>
                 <span className="text-white text-xs">💻</span>
               </div>
             </div>
 
             {/* Name tag */}
-            <div className="absolute flex items-center gap-1 sm:gap-2 bg-white/90 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full shadow-lg -top-3 right-0 translate-x-1/3 -rotate-12 group-hover:scale-110 transition-transform duration-300 whitespace-nowrap">
-              <p className="text-xs sm:text-sm text-black font-mono font-bold">{site.shortName}</p>
+            <div
+              className="absolute flex items-center gap-2 px-3 py-1 rounded-full shadow-lg -top-3 right-0 translate-x-1/3 -rotate-12 group-hover:scale-110 transition-transform duration-300 whitespace-nowrap"
+              style={{ background: 'rgba(12,12,15,0.9)', border: '1px solid rgba(212,168,83,0.3)', backdropFilter: 'blur(8px)' }}
+            >
+              <p className="text-xs sm:text-sm font-mono font-bold" style={{ color: 'var(--accent)' }}>{site.shortName}</p>
               <span className="text-sm sm:text-base animate-bounce">👋🏼</span>
             </div>
           </div>
 
           {/* Title */}
           <div className="text-center px-2">
-            <h1 className="text-base sm:text-lg md:text-2xl lg:text-4xl font-bold leading-tight text-gray-800">
-              Building <span className="text-black">scalable applications,</span>{" "}
+            <h1
+              className="text-base sm:text-lg md:text-2xl lg:text-4xl font-bold leading-tight"
+              style={{ fontFamily: '"Playfair Display", Georgia, serif', color: 'rgba(240,237,232,0.95)' }}
+            >
+              Building <span style={{ color: 'var(--accent)' }}>scalable applications,</span>{" "}
               <br className="hidden sm:block" />
-              refining <span className="text-gray-700">user experiences,</span> and{" "}
+              refining <span style={{ color: 'rgba(240,237,232,0.7)' }}>user experiences,</span> and{" "}
               <br className="hidden sm:block" />
-              crafting <span className="text-gray-600">seamless digital solutions.</span>
+              crafting <span style={{ color: 'rgba(240,237,232,0.5)' }}>seamless digital solutions.</span>
             </h1>
           </div>
 
@@ -205,13 +228,20 @@ const Header = () => {
           <div className="flex flex-row gap-3 justify-center items-center">
             <a
               href="/blogs"
-              className="group relative px-5 py-2.5 bg-gradient-to-r from-gray-800 to-gray-900 text-white font-bold text-sm rounded-full hover:from-gray-700 hover:to-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-flex items-center min-h-[44px]"
+              className="px-5 py-2.5 text-sm font-semibold rounded-full inline-flex items-center min-h-[44px] transition-all duration-200 hover:scale-105"
+              style={{ background: 'var(--accent)', color: '#0c0c0f' }}
             >
               Latest Blogs
             </a>
             <button
               onClick={() => scrollToSection('contact')}
-              className="group relative px-5 py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 text-gray-800 font-bold text-sm rounded-full hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 min-h-[44px]"
+              className="px-5 py-2.5 text-sm font-semibold rounded-full min-h-[44px] transition-all duration-200 hover:scale-105"
+              style={{
+                border: '1px solid rgba(255,255,255,0.2)',
+                color: 'rgba(255,255,255,0.8)',
+                background: 'rgba(255,255,255,0.08)',
+                backdropFilter: 'blur(8px)',
+              }}
             >
               Get In Touch
             </button>
@@ -219,65 +249,51 @@ const Header = () => {
 
           {/* Social Links */}
           <div className="flex flex-row items-center gap-3 sm:gap-4">
-            {/* Email */}
-            <a
-              href="mailto:pavannaik0203@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              title={`Contact ${site.name}`}
-              aria-label={`Email ${site.name}`}
-              className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
-            >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400/0 to-emerald-500/0 group-hover:from-emerald-400/20 group-hover:to-emerald-500/30 transition-all duration-300" />
-              <Mails size={20} className="text-gray-800 group-hover:text-emerald-700 transition-colors duration-300 relative z-10 drop-shadow-sm" />
-              <span className="absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap bg-gray-900/95 text-white text-xs px-2 py-1 rounded-md pointer-events-none hidden sm:block shadow-lg">
-                Email
-              </span>
-            </a>
-
-            {/* LinkedIn */}
-            <a
-              href="https://www.linkedin.com/in/pavan-rathod-0203k/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title={`${site.name} LinkedIn`}
-              aria-label={`Visit ${site.name}'s LinkedIn`}
-              className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
-            >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/0 to-blue-600/0 group-hover:from-blue-400/20 group-hover:to-blue-600/30 transition-all duration-300" />
-              <FaLinkedin size={20} className="text-gray-800 group-hover:text-blue-600 transition-colors duration-300 relative z-10 drop-shadow-sm" />
-              <span className="absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap bg-gray-900/95 text-white text-xs px-2 py-1 rounded-md pointer-events-none hidden sm:block shadow-lg">
-                LinkedIn
-              </span>
-            </a>
-
-            {/* GitHub */}
-            <a
-              href="https://github.com/pavan20250"
-              target="_blank"
-              rel="noopener noreferrer"
-              title={`${site.name} GitHub`}
-              aria-label={`Visit ${site.name}'s GitHub`}
-              className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm border border-white/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
-            >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-700/0 to-gray-900/0 group-hover:from-gray-700/20 group-hover:to-gray-900/30 transition-all duration-300" />
-              <FaGithub size={20} className="text-gray-800 group-hover:text-gray-900 transition-colors duration-300 relative z-10 drop-shadow-sm" />
-              <span className="absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap bg-gray-900/95 text-white text-xs px-2 py-1 rounded-md pointer-events-none hidden sm:block shadow-lg">
-                GitHub
-              </span>
-            </a>
+            {[
+              { href: "mailto:pavannaik0203@gmail.com", label: `Email ${site.name}`, icon: <Mails size={20} />, tooltip: "Email" },
+              { href: "https://www.linkedin.com/in/pavan-rathod-0203k/", label: `LinkedIn`, icon: <FaLinkedin size={20} />, tooltip: "LinkedIn" },
+              { href: "https://github.com/pavan20250", label: `GitHub`, icon: <FaGithub size={20} />, tooltip: "GitHub" },
+            ].map((social) => (
+              <a
+                key={social.tooltip}
+                href={social.href}
+                target={social.href.startsWith('mailto') ? undefined : "_blank"}
+                rel={social.href.startsWith('mailto') ? undefined : "noopener noreferrer"}
+                aria-label={social.label}
+                className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
+                style={{
+                  background: 'rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  backdropFilter: 'blur(8px)',
+                  color: 'rgba(255,255,255,0.7)',
+                }}
+              >
+                {social.icon}
+                <span
+                  className="absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap text-xs px-2 py-1 rounded hidden sm:block"
+                  style={{ background: 'rgba(12,12,15,0.95)', color: 'var(--text-primary)', border: '1px solid var(--border)' }}
+                >
+                  {social.tooltip}
+                </span>
+              </a>
+            ))}
           </div>
 
           {/* Scroll Down */}
           <button
             onClick={() => scrollToSection('about')}
-            aria-label="Scroll down to about section"
+            aria-label="Scroll to about"
             className="group cursor-pointer mt-2"
           >
-            <div className="relative w-9 h-9 rounded-full overflow-hidden flex items-center justify-center transition-all duration-300 animate-bounce group-hover:scale-105">
-              <div className="absolute inset-0 bg-white/25 backdrop-blur-md border border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.08)]" />
-              <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-gradient-to-b from-white/40 to-transparent" />
-              <ChevronDown className="relative w-5 h-5 text-gray-800 drop-shadow-sm" />
+            <div
+              className="relative w-9 h-9 rounded-full overflow-hidden flex items-center justify-center transition-all duration-300 animate-bounce group-hover:scale-105"
+              style={{
+                background: 'rgba(255,255,255,0.1)',
+                border: '1px solid rgba(255,255,255,0.2)',
+                backdropFilter: 'blur(8px)',
+              }}
+            >
+              <ChevronDown className="w-5 h-5" style={{ color: 'rgba(255,255,255,0.7)' }} />
             </div>
           </button>
         </div>
