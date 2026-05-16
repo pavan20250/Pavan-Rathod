@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { ExternalLink, Github, Code, Globe, Smartphone } from "lucide-react";
+import { ExternalLink, Code, Globe, Smartphone } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 
 const projects = [
   {
@@ -10,7 +10,7 @@ const projects = [
     githubUrl: "https://github.com/pavan20250/smart-bookmark-app",
     liveUrl: "https://smart-bookmark-app-kappa.vercel.app",
     icon: Code,
-    color: "#5b8af0",
+    color: "#0A84FF",
   },
   {
     title: "MindCare AI",
@@ -20,7 +20,7 @@ const projects = [
     liveUrl: "https://www.neuralforge.in/",
     icon: Smartphone,
     badge: "Startup",
-    color: "#4caf7d",
+    color: "#30D158",
   },
   {
     title: "Food Delivery App",
@@ -29,7 +29,7 @@ const projects = [
     githubUrl: "https://github.com/pavan20250/food-delivery-app",
     liveUrl: "https://food-delivery-app-woad-eight.vercel.app",
     icon: Smartphone,
-    color: "#d4a853",
+    color: "#FF9F0A",
   },
   {
     title: "Web Qest",
@@ -38,7 +38,7 @@ const projects = [
     githubUrl: "https://github.com/pavan20250/web-qest",
     liveUrl: "https://web-qest.vercel.app",
     icon: Globe,
-    color: "#a78bfa",
+    color: "#BF5AF2",
   },
 ];
 
@@ -64,7 +64,7 @@ const Projects = () => {
             rel="noopener noreferrer"
             className="link-arrow group shrink-0 self-start sm:self-end mb-2"
           >
-            <Github size={14} />
+            <FaGithub size={14} />
             View all on GitHub
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </a>
@@ -77,36 +77,56 @@ const Projects = () => {
             return (
               <article
                 key={index}
-                className="group relative rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-0.5 card card-glow"
+                className="group relative rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border)',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = 'var(--border-hover)';
+                  (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px ${project.color}20`;
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)';
+                  (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+                }}
               >
-                {/* Accent top border on hover */}
+                {/* Color accent top stripe */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: `linear-gradient(90deg, transparent, ${project.color}60, transparent)` }}
+                  className="absolute top-0 left-0 right-0 h-[2px]"
+                  style={{ background: `linear-gradient(90deg, ${project.color}, ${project.color}40, transparent)` }}
                 />
 
                 <div className="p-6 sm:p-7 flex flex-col h-full">
                   {/* Top row */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
+                      {/* iOS app icon style */}
                       <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-105"
-                        style={{ background: `${project.color}15`, color: project.color }}
+                        className="w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-105"
+                        style={{
+                          background: `linear-gradient(135deg, ${project.color}25, ${project.color}10)`,
+                          border: `1px solid ${project.color}30`,
+                          color: project.color,
+                        }}
                       >
                         <IconComponent size={20} strokeWidth={1.5} />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h3 className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>
+                          <h3
+                            className="text-base font-semibold"
+                            style={{ color: 'var(--text-primary)', letterSpacing: '-0.015em' }}
+                          >
                             {project.title}
                           </h3>
                           {'badge' in project && project.badge && (
                             <span
-                              className="text-[9px] font-mono uppercase tracking-widest px-2 py-0.5 rounded"
+                              className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
                               style={{
-                                background: `${project.color}15`,
+                                background: `${project.color}18`,
                                 color: project.color,
-                                border: `1px solid ${project.color}30`,
+                                border: `1px solid ${project.color}35`,
                               }}
                             >
                               {project.badge}
@@ -116,15 +136,18 @@ const Projects = () => {
                       </div>
                     </div>
                     <span
-                      className="font-mono text-2xl font-bold opacity-10 group-hover:opacity-20 transition-opacity"
-                      style={{ color: project.color }}
+                      className="font-mono text-2xl font-bold opacity-8 group-hover:opacity-20 transition-opacity"
+                      style={{ color: project.color, fontSize: '22px' }}
                     >
                       {String(index + 1).padStart(2, '0')}
                     </span>
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: 'var(--text-secondary)' }}>
+                  <p
+                    className="text-sm leading-relaxed mb-4 flex-1"
+                    style={{ color: 'var(--text-secondary)', letterSpacing: '-0.005em' }}
+                  >
                     {project.description}
                   </p>
 
@@ -135,20 +158,21 @@ const Projects = () => {
                     ))}
                   </div>
 
-                  {/* Actions */}
+                  {/* Action buttons */}
                   <div
                     className="flex gap-3 pt-4"
-                    style={{ borderTop: '1px solid var(--border)' }}
+                    style={{ borderTop: '0.5px solid var(--border)' }}
                   >
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-mono transition-all duration-200"
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 hover:scale-[1.02]"
                       style={{
-                        background: 'rgba(255,255,255,0.04)',
+                        background: 'var(--fill-quaternary)',
                         border: '1px solid var(--border)',
                         color: 'var(--text-secondary)',
+                        letterSpacing: '-0.005em',
                       }}
                       onMouseEnter={e => {
                         (e.currentTarget as HTMLElement).style.borderColor = 'var(--border-hover)';
@@ -159,18 +183,20 @@ const Projects = () => {
                         (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)';
                       }}
                     >
-                      <Github size={13} />
+                      <FaGithub size={13} />
                       Source
                     </a>
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-mono transition-all duration-200"
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 hover:scale-[1.02]"
                       style={{
                         background: 'var(--accent)',
-                        color: '#0c0c0f',
+                        color: '#fff',
                         fontWeight: 600,
+                        letterSpacing: '-0.005em',
+                        boxShadow: '0 2px 8px rgba(10,132,255,0.30)',
                       }}
                       onMouseEnter={e => {
                         (e.currentTarget as HTMLElement).style.background = 'var(--accent-light)';

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Code, Database, Cloud, Zap, MapPin, Briefcase } from "lucide-react";
 import { site } from "@/lib/site";
@@ -17,25 +17,25 @@ const skills = [
     name: "Frontend",
     icon: Code,
     description: "React · Next.js · TypeScript · Tailwind · HTML · CSS",
-    color: "#5b8af0",
+    color: "#0A84FF",
   },
   {
     name: "Backend",
     icon: Database,
     description: "Node.js · PostgreSQL · MongoDB · REST APIs · Serverless",
-    color: "#4caf7d",
+    color: "#30D158",
   },
   {
     name: "Cloud",
     icon: Cloud,
     description: "AWS · Vercel · Docker · CI/CD · Cloudflare",
-    color: "#d4a853",
+    color: "#FF9F0A",
   },
   {
     name: "Tools",
     icon: Zap,
     description: "Git · Figma · Jest · Cypress · ESLint · Testing",
-    color: "#a78bfa",
+    color: "#BF5AF2",
   },
 ];
 
@@ -72,11 +72,11 @@ const About = () => {
       ref={sectionRef}
       className="relative py-14 sm:py-20 px-4 sm:px-8 md:px-16 lg:px-24 overflow-hidden"
     >
-      {/* Subtle ambient glow behind heading */}
+      {/* iOS blue ambient glow */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse, rgba(212,168,83,0.04) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(10,132,255,0.06) 0%, transparent 70%)',
           filter: 'blur(40px)',
         }}
       />
@@ -87,12 +87,11 @@ const About = () => {
           initial="hidden"
           animate={sectionVisible ? "show" : "hidden"}
         >
-          <motion.div variants={item} className="section-label mb-4">About</motion.div>
+          <motion.div variants={item} className="section-label mb-5">About</motion.div>
 
-          {/* Top row — heading left, stats card right */}
           <div className="grid lg:grid-cols-[1fr_1fr] gap-8 lg:gap-14 mb-10">
 
-            {/* Heading + bio + tags */}
+            {/* Left — heading + bio + tags */}
             <div>
               <motion.h2
                 variants={item}
@@ -101,80 +100,99 @@ const About = () => {
                 Hi, I&apos;m{" "}
                 <span style={{ color: 'var(--accent)' }}>{site.shortName}</span>
                 <br />
-                <span style={{ color: 'var(--text-secondary)', fontWeight: 400, fontSize: '0.65em' }}>
+                <span style={{ color: 'var(--text-secondary)', fontWeight: 400, fontSize: '0.65em', letterSpacing: '-0.01em' }}>
                   Full Stack Developer
                 </span>
               </motion.h2>
 
-              <div className="space-y-3 mb-6" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                <motion.p variants={item} className="text-base sm:text-lg">
+              {/* Bio — iOS grouped card */}
+              <motion.div
+                variants={item}
+                className="ios-card p-5 mb-5 space-y-3"
+              >
+                <p
+                  className="text-sm sm:text-base leading-relaxed"
+                  style={{ color: 'var(--text-secondary)', letterSpacing: '-0.01em' }}
+                >
                   Crafting scalable, production-ready applications with clean architecture
                   and obsessive attention to developer and user experience.
-                </motion.p>
-                <motion.p variants={item} className="text-sm sm:text-base">
+                </p>
+                <div style={{ height: '0.5px', background: 'var(--border)' }} />
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: 'var(--text-tertiary)', letterSpacing: '-0.01em' }}
+                >
                   Passionate about solving real-world problems through thoughtful engineering
                   and continuously pushing the boundaries of what modern web can do.
-                </motion.p>
-              </div>
+                </p>
+              </motion.div>
 
+              {/* Tags */}
               <motion.div variants={item} className="flex flex-wrap gap-2">
                 {[
-                  { icon: <MapPin size={11} style={{ color: 'var(--accent)' }} />, label: 'India · Remote-friendly' },
-                  { icon: <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />, label: 'Open to work' },
-                  { icon: <Briefcase size={11} style={{ color: 'var(--accent)' }} />, label: '1+ yr experience' },
+                  { icon: <MapPin size={11} />, label: 'India · Remote-friendly', color: 'var(--accent)' },
+                  { icon: <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'var(--green)' }} />, label: 'Open to work', color: 'var(--green)' },
+                  { icon: <Briefcase size={11} />, label: '1+ yr experience', color: 'var(--ios-purple)' },
                 ].map((tag, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono"
+                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium"
                     style={{
-                      background: 'var(--bg-card)',
+                      background: 'var(--bg-secondary)',
                       border: '1px solid var(--border)',
                       color: 'var(--text-secondary)',
+                      letterSpacing: '-0.005em',
                     }}
                   >
-                    {tag.icon}
+                    <span style={{ color: tag.color }}>{tag.icon}</span>
                     {tag.label}
                   </div>
                 ))}
               </motion.div>
             </div>
 
-            {/* Stats card */}
+            {/* Right — stats card */}
             <motion.div variants={item} className="flex flex-col justify-center">
               <div
                 className="rounded-2xl overflow-hidden"
-                style={{ border: '1px solid var(--border)', background: 'var(--bg-card)' }}
+                style={{ border: '1px solid var(--border)', background: 'var(--bg-secondary)' }}
               >
-                {/* Terminal chrome */}
+                {/* iOS Terminal chrome */}
                 <div
                   className="flex items-center gap-2 px-4 py-3"
-                  style={{ borderBottom: '1px solid var(--border)', background: 'rgba(255,255,255,0.02)' }}
+                  style={{ borderBottom: '0.5px solid var(--border)', background: 'rgba(255,255,255,0.02)' }}
                 >
                   <div className="flex gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#ff5f57' }} />
-                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#febc2e' }} />
-                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#28c840' }} />
+                    <span className="w-3 h-3 rounded-full" style={{ background: '#FF453A', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.2)' }} />
+                    <span className="w-3 h-3 rounded-full" style={{ background: '#FFD60A', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.2)' }} />
+                    <span className="w-3 h-3 rounded-full" style={{ background: '#30D158', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.2)' }} />
                   </div>
-                  <span className="font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
+                  <span className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>
                     ~/pavan — at-a-glance
                   </span>
                 </div>
 
-                {/* 2x2 stats */}
+                {/* 2×2 stats grid */}
                 <div className="grid grid-cols-2">
                   {atAGlance.map((stat, i) => (
                     <div
                       key={i}
                       className="flex flex-col gap-2 px-5 py-5"
                       style={{
-                        borderRight: i % 2 === 0 ? '1px solid var(--border)' : 'none',
-                        borderBottom: i < 2 ? '1px solid var(--border)' : 'none',
+                        borderRight: i % 2 === 0 ? '0.5px solid var(--border)' : 'none',
+                        borderBottom: i < 2 ? '0.5px solid var(--border)' : 'none',
                       }}
                     >
-                      <span className="font-display text-2xl sm:text-3xl font-bold" style={{ color: 'var(--accent)' }}>
+                      <span
+                        className="text-2xl sm:text-3xl font-bold"
+                        style={{ color: 'var(--accent)', letterSpacing: '-0.04em' }}
+                      >
                         {stat.value}
                       </span>
-                      <span className="font-mono text-[10px] uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>
+                      <span
+                        className="text-[10px] font-semibold uppercase tracking-widest"
+                        style={{ color: 'var(--text-muted)' }}
+                      >
                         {stat.label}
                       </span>
                     </div>
@@ -184,13 +202,16 @@ const About = () => {
                 {/* Status footer */}
                 <div
                   className="px-5 py-3 flex items-center justify-between"
-                  style={{ borderTop: '1px solid var(--border)', background: 'rgba(255,255,255,0.01)' }}
+                  style={{ borderTop: '0.5px solid var(--border)', background: 'rgba(255,255,255,0.015)' }}
                 >
                   <span className="font-mono text-[11px]" style={{ color: 'var(--text-muted)' }}>
                     $ status --check
                   </span>
-                  <span className="font-mono text-[11px] flex items-center gap-2" style={{ color: '#4caf7d' }}>
-                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#4caf7d' }} />
+                  <span className="font-mono text-[11px] flex items-center gap-2" style={{ color: 'var(--green)' }}>
+                    <span
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ background: 'var(--green)', animation: 'subtle-pulse 2s ease-in-out infinite' }}
+                    />
                     available
                   </span>
                 </div>
@@ -198,41 +219,48 @@ const About = () => {
             </motion.div>
           </div>
 
-          {/* Skills — full width 4 col */}
+          {/* Skills — iOS app icon grid */}
           <motion.div variants={item}>
-            <p className="font-mono text-[10px] uppercase tracking-widest mb-4" style={{ color: 'var(--text-muted)' }}>
+            <p
+              className="text-[10px] font-semibold uppercase tracking-widest mb-4"
+              style={{ color: 'var(--text-muted)' }}
+            >
               Technical Stack
             </p>
-            <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <ul className="grid grid-cols-2 lg:grid-cols-4 gap-3">
               {skills.map((skill) => {
                 const Icon = skill.icon;
                 return (
                   <motion.li
                     key={skill.name}
                     variants={item}
-                    whileHover={{ y: -3, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-                    className="group flex flex-col gap-3 p-4 rounded-xl cursor-default transition-all duration-200"
-                    style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+                    whileHover={{ y: -4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
+                    className="group flex flex-col gap-3 p-4 rounded-2xl cursor-default ios-card"
                   >
                     <div className="flex items-center gap-3">
                       <div
-                        className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110"
-                        style={{ background: `${skill.color}18`, color: skill.color }}
+                        className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110"
+                        style={{ background: `${skill.color}20`, color: skill.color }}
                       >
                         <Icon size={18} strokeWidth={1.5} />
                       </div>
-                      <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                      <p
+                        className="text-sm font-semibold"
+                        style={{ color: 'var(--text-primary)', letterSpacing: '-0.01em' }}
+                      >
                         {skill.name}
                       </p>
                     </div>
 
-                    <div style={{ height: '1px', background: 'var(--border)' }} />
+                    <div style={{ height: '0.5px', background: 'var(--border)' }} />
 
-                    <p className="text-[11px] font-mono leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                    <p
+                      className="text-[11px] font-mono leading-relaxed"
+                      style={{ color: 'var(--text-tertiary)' }}
+                    >
                       {skill.description}
                     </p>
 
-                    {/* Accent bar on hover */}
                     <div
                       className="h-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       style={{ background: `linear-gradient(90deg, ${skill.color}, transparent)` }}
